@@ -1,0 +1,121 @@
+"""
+Test Enhanced Services API - No Authentication
+임시 테스트용 API (인증 없음)
+"""
+
+from fastapi import APIRouter
+from sqlalchemy.orm import Session
+from sqlalchemy import desc
+from typing import List
+from datetime import date
+
+from core.database import SessionLocal
+from models.customer import Customer
+from models.enhanced_service import (
+    EnhancedServiceType,
+    ServiceSession,
+    EquipmentManagement
+)
+
+router = APIRouter()
+
+@router.get("/sessions/active")
+def get_active_sessions():
+    """현재 진행 중인 세션 목록 조회 (테스트용)"""
+    try:
+        db = SessionLocal()
+        try:
+            active_sessions = db.query(ServiceSession)\
+                .filter(ServiceSession.is_completed == False)\
+                .order_by(desc(ServiceSession.start_time))\
+                .all()
+            
+            result = []
+            for session in active_sessions:
+                customer = db.query(Customer).filter(Customer.customer_id == session.customer_id).first()
+                service_type = db.query(EnhancedServiceType).filter(EnhancedServiceType.service_type_id == session.service_type_id).first()
+                
+                result.append({
+                    "id": session.session_id,
+                    "customer_name": customer.name if customer else "Unknown",
+                    "service_type_name": service_type.name if service_type else "Unknown",
+                    "status": "in_progress" if not session.is_completed else "completed",
+                    "start_time": session.start_time.isoformat() if session.start_time else None,
+                    "expected_end_time": session.end_time.isoformat() if session.end_time else None,
+                    "actual_end_time": session.end_time.isoformat() if session.is_completed and session.end_time else None,
+                    "equipment_settings": session.equipment_settings or {}
+                })
+            
+            return result
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"Error in get_active_sessions: {e}")
+        return []
+
+@router.get("/stats/today")
+def get_today_stats():
+    """오늘의 통계 정보 (테스트용)"""
+    try:
+        db = SessionLocal()
+        try:
+            today = date.today()
+            
+            # 오늘 총 세션 수
+            total_sessions_today = db.query(ServiceSession)\
+                .filter(ServiceSession.session_date == today)\
+                .count()
+            
+            # 현재 활성 세션 수
+            active_sessions = db.query(ServiceSession)\
+                .filter(ServiceSession.is_completed == False)\
+                .count()
+            
+            # 오늘 매출 (임시로 세션당 평균 5만원으로 계산)
+            total_revenue_today = total_sessions_today * 50000
+            
+            # 장비 사용률
+            total_equipment = db.query(EquipmentManagement).count()
+            if total_equipment == 0:
+                equipment_utilization = 0
+            else:
+                equipment_utilization = (active_sessions / total_equipment) * 100
+                equipment_utilization = min(equipment_utilization, 100)
+            
+            return {
+                "total_sessions_today": total_sessions_today,
+                "active_sessions": active_sessions,
+                "total_revenue_today": int(total_revenue_today),
+                "equipment_utilization": round(equipment_utilization, 1)
+            }
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"Error in get_today_stats: {e}")
+        return {
+            "total_sessions_today": 0,
+            "active_sessions": 0,
+            "total_revenue_today": 0,
+            "equipment_utilization": 0
+        }
+
+@router.get("/service-types")
+def get_service_types():
+    """서비스 타입 목록 조회 (테스트용)"""
+    try:
+        db = SessionLocal()
+        try:
+            service_types = db.query(EnhancedServiceType)\
+                .filter(EnhancedServiceType.is_active == True)\
+                .order_by(EnhancedServiceType.sort_order, EnhancedServiceType.name)\
+                .all()
+            
+            return {
+                "service_types": service_types,
+                "total": len(service_types)
+            }
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"Error in get_service_types: {e}")
+        return {"service_types": [], "total": 0}

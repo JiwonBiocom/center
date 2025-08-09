@@ -1,0 +1,96 @@
+name: Schema Drift Detection v2
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'backend/models/**'
+      - 'backend/alembic/**'
+      - 'supabase/migrations/**'
+      - 'ci/schema_baseline.json'
+
+jobs:
+  # 🔧 TJ님 제안: 마이그레이션 순서 정비
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install psycopg2-binary
+          cd backend && pip install -r requirements.txt
+
+      - name: Run Database Migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🔄 Running database migrations..."
+          # 🔧 TJ님 제안: 루트에서 절대 경로로 실행
+          alembic -c alembic.ini upgrade head
+          echo "✅ Migrations completed"
+
+  # 마이그레이션 완료 후에만 실행
+  schema-drift-check:
+    runs-on: ubuntu-latest
+    needs: migrate  # 🔧 종속성 지정
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install psycopg2-binary pyyaml
+          cd backend && pip install -r requirements.txt
+
+      - name: Check Enum Consistency
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🔍 Checking Enum consistency..."
+          python scripts/check_enum_values.py || {
+            echo "::error::Enum values mismatch detected!"
+            exit 1
+          }
+
+      - name: Schema Drift Detection with Exclusion Rules
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🔍 Checking schema against baseline (with exclusion rules)..."
+
+          # 🔧 개선된 스크립트로 baseline과 현재 DB 비교
+          python scripts/check_schema_against_baseline.py
+
+          # 차이가 있으면 자동 PR 생성을 위한 마크
+          if [ -f schema_drift_detected.flag ]; then
+            echo "DRIFT_DETECTED=true" >> $GITHUB_ENV
+          fi
+
+      - name: Schema Drift Notification
+        if: env.DRIFT_DETECTED == 'true'
+        run: |
+          echo "🚨 Schema Drift Detected!"
+          echo "::error::Core business table schema has changed from baseline."
+          echo "::notice::⏭️ Backup/staging tables are automatically excluded from drift detection."
+          echo "::notice::📋 Run 'python scripts/standardized_baseline_refresh.py' to update baseline safely."
+          echo "::notice::📧 Or create an issue for manual review by DBA team."
+
+          # 스키마 차이 보고서 출력
+          if [ -f schema_drift_report.md ]; then
+            echo "📋 Schema Drift Report:"
+            cat schema_drift_report.md
+          fi
+
+          # 실패로 마킹하여 수동 개입 유도
+          exit 1

@@ -1,0 +1,833 @@
+{
+  "timestamp": "2025-06-21T01:58:26.724171",
+  "base_url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 0,
+    "total_js_errors": 21,
+    "total_network_errors": 21
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "console_messages": 12,
+      "network_errors": 3,
+      "js_errors": 3,
+      "status": "has_issues"
+    },
+    {
+      "page": "고객 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "결제 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "console_messages": 7,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "예약 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "console_messages": 7,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "리드 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "키트 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "설정",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "console_messages": 5,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "통계",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "console_messages": 7,
+      "network_errors": 2,
+      "js_errors": 2,
+      "status": "has_issues"
+    }
+  ],
+  "js_errors": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:56.998229"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:58.411652"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 429 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:59.762252"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:08.823649"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:10.016943"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:17.544871"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:18.499139"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:26.029702"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:27.235885"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:34.744975"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:35.698803"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:43.366642"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:44.346679"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:51.914368"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:52.829292"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:00.385715"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:01.293981"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:08.878726"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:09.827102"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:18.175549"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:19.137286"
+    }
+  ],
+  "network_errors": [
+    {
+      "page": "메인 대시보드",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:56:56.997043"
+    },
+    {
+      "page": "메인 대시보드",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:56:58.411582"
+    },
+    {
+      "page": "메인 대시보드",
+      "url": "https://vercel.com/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3/fp?x-kpsdk-v=j-1.1.0",
+      "status": 429,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:56:59.761193"
+    },
+    {
+      "page": "고객 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:08.821339"
+    },
+    {
+      "page": "고객 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:10.016819"
+    },
+    {
+      "page": "결제 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:17.543140"
+    },
+    {
+      "page": "결제 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:18.499030"
+    },
+    {
+      "page": "예약 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:26.021377"
+    },
+    {
+      "page": "예약 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:27.235712"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:34.743504"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:35.698710"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:43.360718"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:44.346522"
+    },
+    {
+      "page": "리드 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:57:51.911938"
+    },
+    {
+      "page": "리드 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:57:52.829205"
+    },
+    {
+      "page": "키트 관리",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:58:00.383008"
+    },
+    {
+      "page": "키트 관리",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:58:01.293858"
+    },
+    {
+      "page": "설정",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:58:08.869424"
+    },
+    {
+      "page": "설정",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:58:09.826930"
+    },
+    {
+      "page": "통계",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "status": 401,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:58:18.174351"
+    },
+    {
+      "page": "통계",
+      "url": "https://vercel.com/api/jwt",
+      "status": 403,
+      "method": "POST",
+      "timestamp": "2025-06-21T01:58:19.137114"
+    }
+  ],
+  "console_messages": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:56.998229"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:57.808202"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:57.808344"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:57.975959"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:58.411652"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 429 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:56:59.762252"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Error",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:01.371505"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Error",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:01.371666"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Error",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:01.371860"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "Error",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:01.449429"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:05.809242"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:57:05.809361"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:08.823649"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:09.451644"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:09.451845"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:09.912472"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:57:10.016943"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:17.349676"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:17.376852"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:17.544871"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:18.066659"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:18.066747"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:18.499139"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:57:18.518597"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:26.029702"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:26.641770"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:26.641860"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:27.107740"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:57:27.235885"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:34.538586"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:34.563014"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:34.744975"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:35.412251"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:35.412344"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:35.698803"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:57:35.853464"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:43.366642"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:44.022881"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:44.022979"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:44.346679"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:57:44.478851"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:51.914368"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:52.530204"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:52.530308"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:52.829292"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:57:52.984645"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:00.385715"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:00.988193"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:00.988302"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:01.293981"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:58:01.455095"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:08.878726"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:09.525670"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:09.525833"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:09.827102"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:58:09.979486"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:17.412291"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "Koala Edge API wasn't found",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:17.436470"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:18.175549"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "Check out our code here: https://vercel.com/oss",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:18.845168"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "Have a great day! 📣🐢",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:18.845408"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 ()",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:19.137286"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "Deprecated API for given entry type.",
+      "url": "https://frontend-7atx24ywj-taejunjeons-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:58:19.295135"
+    }
+  ]
+}

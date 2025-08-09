@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>캐시 클리어</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>🔄 브라우저 캐시 강제 클리어</h1>
+    <p>이 페이지는 브라우저 캐시를 강제로 클리어합니다.</p>
+    
+    <script>
+    console.log('🧹 강력한 캐시 클리어 시작...');
+    
+    // Service Worker 완전 제거
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+                console.log('✅ Service Worker 제거됨:', registration.scope);
+            }
+        });
+    }
+    
+    // 모든 저장소 클리어
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log('✅ localStorage, sessionStorage 클리어 완료');
+    
+    // IndexedDB 클리어
+    if ('indexedDB' in window) {
+        indexedDB.databases().then(databases => {
+            databases.forEach(db => {
+                indexedDB.deleteDatabase(db.name);
+                console.log('✅ IndexedDB 삭제됨:', db.name);
+            });
+        }).catch(err => console.log('IndexedDB 클리어 중 에러:', err));
+    }
+    
+    // 모든 캐시 클리어
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
+            names.forEach(function(name) {
+                caches.delete(name);
+                console.log('✅ 캐시 삭제됨:', name);
+            });
+        });
+    }
+    
+    // 브라우저별 강제 클리어 시도
+    try {
+        if (window.performance && window.performance.clearMarks) {
+            window.performance.clearMarks();
+            window.performance.clearMeasures();
+            console.log('✅ Performance 마크 클리어 완료');
+        }
+    } catch(e) {
+        console.log('Performance 클리어 건너뜀');
+    }
+    
+    // 메모리 강제 정리
+    if (window.gc) {
+        window.gc();
+        console.log('✅ 가비지 컬렉션 실행');
+    }
+    
+    // 페이지 강제 새로고침 및 리다이렉트
+    setTimeout(function() {
+        console.log('🔄 강력한 새로고침으로 메인 페이지 이동...');
+        // no-cache, no-store 헤더로 완전 새로고침
+        window.location.replace('/?nocache=' + Date.now());
+    }, 2000);
+    </script>
+    
+    <p>3초 후 자동으로 메인 페이지로 이동합니다.</p>
+</body>
+</html>

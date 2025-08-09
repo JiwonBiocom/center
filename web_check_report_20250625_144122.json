@@ -1,0 +1,852 @@
+{
+  "timestamp": "2025-06-25T14:41:22.552588",
+  "base_url": "http://localhost:5173/payments",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 10,
+    "total_js_errors": 0,
+    "total_network_errors": 0
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "http://localhost:5173/payments/",
+      "console_messages": 9,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "고객 관리",
+      "url": "http://localhost:5173/payments/customers",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "결제 관리",
+      "url": "http://localhost:5173/payments/payments",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "예약 관리",
+      "url": "http://localhost:5173/payments/reservations",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "http://localhost:5173/payments/services",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "http://localhost:5173/payments/packages",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "리드 관리",
+      "url": "http://localhost:5173/payments/leads",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "키트 관리",
+      "url": "http://localhost:5173/payments/kits",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "설정",
+      "url": "http://localhost:5173/payments/settings",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    },
+    {
+      "page": "통계",
+      "url": "http://localhost:5173/payments/analytics",
+      "console_messages": 11,
+      "network_errors": 0,
+      "js_errors": 0,
+      "status": "success"
+    }
+  ],
+  "js_errors": [],
+  "network_errors": [],
+  "console_messages": [
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830017210",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.212456"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.216391"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.216479"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.219999"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.223067"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.280277"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.280412"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:17.279Z",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.280966"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/",
+      "timestamp": "2025-06-25T14:40:17.292495"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830023797",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.798405"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.799515"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.799725"
+    },
+    {
+      "page": "고객 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.804479"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.804627"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.809506"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.809634"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:23.806Z",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.809819"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.816322"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/customers\" ",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.837494"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/customers\" ",
+      "url": "http://localhost:5173/payments/customers",
+      "timestamp": "2025-06-25T14:40:23.837683"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830030321",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.322008"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.322158"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.322269"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.325756"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.325866"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.328553"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.328656"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:30.326Z",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.328760"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.333674"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/payments\" ",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.335899"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/payments\" ",
+      "url": "http://localhost:5173/payments/payments",
+      "timestamp": "2025-06-25T14:40:30.336007"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830036847",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.848808"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.849385"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.849552"
+    },
+    {
+      "page": "예약 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.852437"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.852553"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.855184"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.855303"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:36.853Z",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.855411"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.860201"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/reservations\" ",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.862331"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/reservations\" ",
+      "url": "http://localhost:5173/payments/reservations",
+      "timestamp": "2025-06-25T14:40:36.862498"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830043368",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.369169"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.369776"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.369905"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.373088"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.373213"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.376170"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.376297"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:43.373Z",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.376441"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.381156"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/services\" ",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.383385"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/services\" ",
+      "url": "http://localhost:5173/payments/services",
+      "timestamp": "2025-06-25T14:40:43.383504"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830049891",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.892543"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.893159"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.893281"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.898694"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.898824"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.900184"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.900336"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:49.898Z",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.900470"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.906351"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/packages\" ",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.908560"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/packages\" ",
+      "url": "http://localhost:5173/payments/packages",
+      "timestamp": "2025-06-25T14:40:49.909075"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830056419",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.420303"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.421085"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.421325"
+    },
+    {
+      "page": "리드 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.425672"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.425867"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.429616"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.429775"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:40:56.427Z",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.429932"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.436500"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/leads\" ",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.440106"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/leads\" ",
+      "url": "http://localhost:5173/payments/leads",
+      "timestamp": "2025-06-25T14:40:56.440283"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830062943",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.944752"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.944917"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.945035"
+    },
+    {
+      "page": "키트 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.948337"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.948490"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.951456"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.951621"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:41:02.948Z",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.951759"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.955087"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/kits\" ",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.957077"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/kits\" ",
+      "url": "http://localhost:5173/payments/kits",
+      "timestamp": "2025-06-25T14:41:02.957223"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830069473",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.475216"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.475842"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.476278"
+    },
+    {
+      "page": "설정",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.480220"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.480439"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.483547"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.483730"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:41:09.480Z",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.483874"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.487931"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/settings\" ",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.490308"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/settings\" ",
+      "url": "http://localhost:5173/payments/settings",
+      "timestamp": "2025-06-25T14:41:09.490504"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔄 앱 버전: 1750830076000",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.001809"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.002101"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.002340"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.006479"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=QfSG_9X1SxIC",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.006678"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.011013"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.011180"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-25T05:41:16.006Z",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.011341"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.014673"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/analytics\" ",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.017438"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "No routes matched location \"/payments/analytics\" ",
+      "url": "http://localhost:5173/payments/analytics",
+      "timestamp": "2025-06-25T14:41:16.017668"
+    }
+  ]
+}

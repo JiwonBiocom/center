@@ -1,0 +1,101 @@
+[
+  {
+    "package_id": 1,
+    "package_name": "브레인 10회 패키지",
+    "total_sessions": 10,
+    "price": 1500000.0,
+    "valid_days": 60,
+    "description": "뇌 최적화 프로그램 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 2,
+    "package_name": "브레인 20회 패키지",
+    "total_sessions": 20,
+    "price": 2800000.0,
+    "valid_days": 90,
+    "description": "뇌 최적화 프로그램 20회 (10% 할인)",
+    "is_active": true
+  },
+  {
+    "package_id": 3,
+    "package_name": "펄스 10회 패키지",
+    "total_sessions": 10,
+    "price": 1200000.0,
+    "valid_days": 60,
+    "description": "전신 순환 개선 프로그램 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 4,
+    "package_name": "림프 10회 패키지",
+    "total_sessions": 10,
+    "price": 1000000.0,
+    "valid_days": 60,
+    "description": "림프 순환 개선 프로그램 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 5,
+    "package_name": "레드 10회 패키지",
+    "total_sessions": 10,
+    "price": 800000.0,
+    "valid_days": 60,
+    "description": "적외선 치료 프로그램 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 6,
+    "package_name": "올케어 40",
+    "total_sessions": 40,
+    "price": 2500000.0,
+    "valid_days": 120,
+    "description": "브레인, 펄스, 림프, 레드 각 10회 (총 40회)",
+    "is_active": true
+  },
+  {
+    "package_id": 7,
+    "package_name": "올케어 80",
+    "total_sessions": 80,
+    "price": 3800000.0,
+    "valid_days": 180,
+    "description": "브레인, 펄스, 림프, 레드 각 20회 (총 80회)",
+    "is_active": true
+  },
+  {
+    "package_id": 8,
+    "package_name": "올케어 120",
+    "total_sessions": 120,
+    "price": 5148000.0,
+    "valid_days": 365,
+    "description": "모든 서비스 자유롭게 선택하여 120회 이용",
+    "is_active": true
+  },
+  {
+    "package_id": 9,
+    "package_name": "펄스+레드 패키지 20회",
+    "total_sessions": 20,
+    "price": 1780000.0,
+    "valid_days": 90,
+    "description": "펄스 10회 + 레드 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 10,
+    "package_name": "브레인+펄스 패키지 20회",
+    "total_sessions": 20,
+    "price": 2476900.0,
+    "valid_days": 90,
+    "description": "브레인 10회 + 펄스 10회",
+    "is_active": true
+  },
+  {
+    "package_id": 11,
+    "package_name": "대사개선+화이트닝 20회",
+    "total_sessions": 20,
+    "price": 2013800.0,
+    "valid_days": 90,
+    "description": "대사개선 프로그램과 화이트닝 케어",
+    "is_active": true
+  }
+]

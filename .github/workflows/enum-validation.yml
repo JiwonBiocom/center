@@ -1,0 +1,127 @@
+name: Enum Validation
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    paths:
+      - 'backend/models/**'
+      - 'backend/schemas/**'
+      - 'backend/api/**'
+      - 'frontend/src/types/**'
+      - 'scripts/check_enum_values.py'
+      - 'scripts/check_api_routes.py'
+
+jobs:
+  validate-enums:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Backend Dependencies
+        run: |
+          # GitHub Actions에서는 최소 의존성만 설치
+          pip install sqlalchemy psycopg2-binary
+
+      - name: Check Enum Consistency
+        id: enum-check
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🔍 Checking Enum values consistency..."
+          python scripts/check_enum_values.py
+
+          if [ $? -ne 0 ]; then
+            echo "❌ Enum validation failed!"
+            echo "::error::Database enum values don't match code enum values"
+            exit 1
+          fi
+
+      - name: Check API Route Consistency
+        id: route-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking API route consistency..."
+          python scripts/check_api_routes.py || true
+
+          if [ $? -ne 0 ]; then
+            echo "⚠️ API route validation failed (non-blocking)"
+            echo "::warning::API routes are inconsistent between frontend and backend"
+          fi
+
+      - name: Generate Enum Report
+        if: always()
+        run: |
+          cat > enum_validation_report.md << EOF
+          # Enum Validation Report
+
+          **Date**: $(date)
+          **Branch**: ${{ github.ref_name }}
+          **Commit**: ${{ github.sha }}
+
+          ## Validation Results
+
+          - Enum Consistency: ${{ steps.enum-check.outcome || 'pending' }}
+          - API Route Consistency: ${{ steps.route-check.outcome || 'pending' }}
+
+          ## Known Enum Types
+
+          ### Database Enums
+          - membership_level: basic, silver, gold, platinum, vip
+          - customer_status: active, inactive, dormant
+          - payment_status: pending, completed, cancelled, refunded
+          - payment_method: cash, card, transfer, other
+          - user_role: admin, manager, staff
+          - reservation_status: pending, confirmed, cancelled, completed, no_show
+
+          ### Critical Files
+          - backend/schemas/customer.py
+          - backend/schemas/payment.py
+          - backend/models/customer.py
+          - frontend/src/types/enums.ts
+          EOF
+
+      - name: Upload Validation Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enum-validation-report
+          path: enum_validation_report.md
+
+  validate-on-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: validate-enums
+
+    steps:
+      - name: Comment PR
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ❌ Enum Validation Failed
+
+              The enum values in your code don't match the database schema. This will cause 500 errors in production!
+
+              ### Common Issues:
+              - membership_level should use: \`basic, silver, gold, platinum, vip\`
+              - payment_status should include: \`refunded\`
+              - payment_method should include: \`other\`
+
+              ### How to Fix:
+              1. Check the validation logs above
+              2. Update your code to match the database enum values
+              3. Run \`python scripts/check_enum_values.py\` locally
+
+              [View Full Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
+            })

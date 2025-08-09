@@ -1,0 +1,12 @@
+backend/
+api/
+*.py
+__pycache__/
+.env
+.env.*
+!.env.production
+docs/
+scripts/
+tests/
+*.md
+!README.md

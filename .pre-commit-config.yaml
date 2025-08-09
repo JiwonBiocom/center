@@ -1,0 +1,52 @@
+repos:
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: default, rules: {line-length: {max: 120}, truthy: disable, document-start: disable}}']
+        files: \.(yaml|yml)$
+
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: ^\.github/workflows/
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+
+  # Local custom hooks
+  - repo: local
+    hooks:
+      - id: actionlint
+        name: Lint GitHub Actions workflows
+        entry: actionlint
+        language: system
+        files: ^\.github/workflows/.*\.(yaml|yml)$
+        pass_filenames: true
+
+      - id: check-enums
+        name: Check Enum Consistency
+        entry: python scripts/check_enum_values.py
+        language: system
+        files: '\.(py|ts|tsx)$'
+        pass_filenames: false
+
+      # - id: check-api-routes
+      #   name: Check API Route Consistency
+      #   entry: python scripts/check_api_routes.py
+      #   language: system
+      #   files: '\.(py|ts|tsx)$'
+      #   pass_filenames: false
+
+      # - id: no-http-urls
+      #   name: Check for HTTP URLs
+      #   entry: bash -c 'grep -r "http://.*railway\|http://.*vercel" . && exit 1 || exit 0'
+      #   language: system
+      #   pass_filenames: false
+      #   exclude: ^(frontend/dist/|node_modules/)

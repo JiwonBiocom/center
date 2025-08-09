@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large data files
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+
+# Git objects
+.git/objects/
+
+# Documents
+*.docx
+*.pdf
+
+# Backup files
+*.bak
+*.backup
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp

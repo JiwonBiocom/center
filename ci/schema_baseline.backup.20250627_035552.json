@@ -1,0 +1,3858 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-06-21T20:49:05.559538",
+  "database": "production",
+  "tables": {
+    "answers": {
+      "columns": [
+        {
+          "name": "answer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('answers_answer_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "response_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "question_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "answer_value",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "answer_number",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "answer_json",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "answer_date",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "answered_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "time_spent_seconds",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 11
+    },
+    "audit_logs": {
+      "columns": [
+        {
+          "name": "log_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('audit_logs_log_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "action",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resource_type",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resource_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "details",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ip_address",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 45,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "user_agent",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "campaign_targets": {
+      "columns": [
+        {
+          "name": "target_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('campaign_targets_target_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "lead_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "contact_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "contact_result",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 200,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "converted",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 7
+    },
+    "company_info": {
+      "columns": [
+        {
+          "name": "company_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('company_info_company_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "company_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "business_hours",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "holidays",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "customer_analytics": {
+      "columns": [
+        {
+          "name": "analytics_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('customer_analytics_analytics_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "analysis_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "visit_frequency",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "consistency_score",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "most_used_service",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ltv_estimate",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "churn_risk",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "churn_probability",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "retention_score",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 11
+    },
+    "customer_preferences": {
+      "columns": [
+        {
+          "name": "preference_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('customer_preferences_preference_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "preferred_services",
+          "type": "ARRAY",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "preferred_time",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "preferred_intensity",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "health_interests",
+          "type": "ARRAY",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "communication_preference",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "marketing_consent",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 10
+    },
+    "customers": {
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('customers_customer_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "first_visit_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "region",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "referral_source",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "health_concerns",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "assigned_staff",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "birth_year",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "gender",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 10,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "emergency_contact",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "occupation",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "membership_level",
+          "type": "USER-DEFINED",
+          "nullable": true,
+          "default": "'basic'::membership_level",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "customer_status",
+          "type": "USER-DEFINED",
+          "nullable": true,
+          "default": "'active'::customer_status",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "preferred_time_slots",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "health_goals",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "last_visit_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "total_visits",
+          "type": "integer",
+          "nullable": true,
+          "default": "0",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "average_visit_interval",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "total_revenue",
+          "type": "numeric",
+          "nullable": true,
+          "default": "0",
+          "max_length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "average_satisfaction",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 3,
+          "scale": 2
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 26
+    },
+    "inbody_records": {
+      "columns": [
+        {
+          "name": "record_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('inbody_records_record_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "measurement_date",
+          "type": "timestamp without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "weight",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "body_fat_percentage",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "skeletal_muscle_mass",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "extracellular_water_ratio",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "phase_angle",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "visceral_fat_level",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "measured_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 13
+    },
+    "kakao_message_logs": {
+      "columns": [
+        {
+          "name": "log_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('kakao_message_logs_log_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "reservation_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "template_code",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone_number",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "message_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "message_id",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "variables_used",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "sent_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "delivered_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "read_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "error_code",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "fallback_status",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "fallback_sent_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 18
+    },
+    "kakao_templates": {
+      "columns": [
+        {
+          "name": "template_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('kakao_templates_template_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "template_code",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "template_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "template_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "variables",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "approved_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 10
+    },
+    "kit_management": {
+      "columns": [
+        {
+          "name": "kit_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('kit_management_kit_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "kit_type",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "kit_type_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "serial_number",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "received_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result_received_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result_delivered_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "kit_receipts": {
+      "columns": [
+        {
+          "name": "kit_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('kit_receipts_kit_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "kit_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "serial_number",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "receipt_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result_received_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result_delivered_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "kit_types": {
+      "columns": [
+        {
+          "name": "kit_type_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('kit_types_kit_type_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "price",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 8
+    },
+    "lead_consultation_history": {
+      "columns": [
+        {
+          "name": "history_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('lead_consultation_history_history_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "lead_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "consultation_date",
+          "type": "timestamp without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "consultation_type",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 255,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "next_action",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_by",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "marketing_leads": {
+      "columns": [
+        {
+          "name": "lead_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('marketing_leads_lead_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "lead_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "age",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "region",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "lead_channel",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "carrot_id",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ad_watched",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "price_informed",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ab_test_group",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "db_entry_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone_consult_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "visit_consult_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "registration_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "db_channel",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone_consult_result",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "remind_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "visit_cancelled",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "visit_cancel_reason",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_reregistration_target",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "last_service_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reregistration_proposal_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "purchased_product",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 200,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "no_registration_reason",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "revenue",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "assigned_staff_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "converted_customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 32
+    },
+    "notification_preferences": {
+      "columns": [
+        {
+          "name": "preference_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('notification_preferences_preference_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "notification_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "in_app",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "email",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "sms",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 8
+    },
+    "notification_settings": {
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "email_enabled",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "sms_enabled",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "push_enabled",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "package_alerts",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "appointment_reminders",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "payment_notifications",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "system_notifications",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "marketing_notifications",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "quiet_hours_enabled",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "quiet_hours_start",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 5,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "quiet_hours_end",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 5,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 14
+    },
+    "notifications": {
+      "columns": [
+        {
+          "name": "notification_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('notifications_notification_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "type",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "title",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 200,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "scheduled_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "sent_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true,
+          "default": "'pending'::character varying",
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "template_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_by",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_read",
+          "type": "boolean",
+          "nullable": true,
+          "default": "false",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 14
+    },
+    "package_purchases": {
+      "columns": [
+        {
+          "name": "purchase_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('package_purchases_purchase_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "package_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "purchase_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expiry_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "total_sessions",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "used_sessions",
+          "type": "integer",
+          "nullable": true,
+          "default": "0",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "remaining_sessions",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "price_paid",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "payment_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": "true",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 14
+    },
+    "packages": {
+      "columns": [
+        {
+          "name": "package_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('packages_package_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "package_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "total_sessions",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "valid_months",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "base_price",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": "true",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "payments": {
+      "columns": [
+        {
+          "name": "payment_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('payments_payment_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "payment_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "amount",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "payment_method",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "payment_type",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "payment_status",
+          "type": "USER-DEFINED",
+          "nullable": true,
+          "default": "'completed'::payment_status",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "transaction_id",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reference_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "reference_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "payment_staff",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 14
+    },
+    "questionnaire_analyses": {
+      "columns": [
+        {
+          "name": "analysis_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('questionnaire_analyses_analysis_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "response_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "overall_health_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "body_composition_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "metabolic_health_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "stress_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "sleep_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "nutrition_score",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "recommended_services",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "recommended_supplements",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "recommended_diet",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "detailed_analysis",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "risk_factors",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "improvement_areas",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "analyzed_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 15
+    },
+    "questionnaire_responses": {
+      "columns": [
+        {
+          "name": "response_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('questionnaire_responses_response_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "template_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "inbody_record_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "started_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_completed",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "completion_rate",
+          "type": "double precision",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 53,
+          "scale": null
+        },
+        {
+          "name": "device_id",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "app_version",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ai_analysis",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "health_scores",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "recommendations",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 15
+    },
+    "questionnaire_templates": {
+      "columns": [
+        {
+          "name": "template_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('questionnaire_templates_template_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "version",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 7
+    },
+    "questions": {
+      "columns": [
+        {
+          "name": "question_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('questions_question_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "template_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "section",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "question_type",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "question_code",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "question_text",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "question_subtext",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "order_index",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_required",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "condition_logic",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "options",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "validation_rules",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ui_config",
+          "type": "json",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 15
+    },
+    "reregistration_campaigns": {
+      "columns": [
+        {
+          "name": "campaign_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('reregistration_campaigns_campaign_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "campaign_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "campaign_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "target_criteria",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "message_template",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "target_count",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "success_count",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_by",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        }
+      ],
+      "column_count": 14
+    },
+    "reservation_slots": {
+      "columns": [
+        {
+          "name": "slot_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('reservation_slots_slot_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "staff_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "day_of_week",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "start_time",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "end_time",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_available",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "specific_date",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "reservations": {
+      "columns": [
+        {
+          "name": "reservation_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('reservations_reservation_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "service_type_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "staff_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "reservation_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reservation_time",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "duration_minutes",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "status",
+          "type": "USER-DEFINED",
+          "nullable": true,
+          "default": "'pending'::reservation_status",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "customer_request",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "internal_memo",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reminder_sent",
+          "type": "boolean",
+          "nullable": true,
+          "default": "false",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "confirmation_sent",
+          "type": "boolean",
+          "nullable": true,
+          "default": "false",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "cancelled_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "cancelled_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "cancel_reason",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 18
+    },
+    "service_types": {
+      "columns": [
+        {
+          "name": "service_type_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('service_types_service_type_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "service_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "service_color",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 7,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "default_duration",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "default_price",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": "true",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "service_usage": {
+      "columns": [
+        {
+          "name": "usage_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('service_usage_usage_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "service_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "service_type_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "package_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "session_details",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "session_number",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 9
+    },
+    "service_usages": {
+      "columns": [
+        {
+          "name": "usage_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('service_usages_usage_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "customer_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "service_type_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "usage_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "duration",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "staff_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "package_purchase_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "session_number",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 11
+    },
+    "staff_schedules": {
+      "columns": [
+        {
+          "name": "schedule_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('staff_schedules_schedule_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "week_start_date",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "schedule_data",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_by",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 8
+    },
+    "system_settings": {
+      "columns": [
+        {
+          "name": "setting_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('system_settings_setting_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "setting_key",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "setting_value",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "setting_type",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "now()",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 7
+    },
+    "users": {
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('users_user_id_seq'::regclass)",
+          "max_length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "password_hash",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 255,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "role",
+          "type": "USER-DEFINED",
+          "nullable": false,
+          "default": "'staff'::user_role",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": false,
+          "default": "true",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP",
+          "max_length": null,
+          "precision": null,
+          "scale": null
+        }
+      ],
+      "column_count": 8
+    }
+  }
+}

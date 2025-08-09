@@ -1,0 +1,192 @@
+"""
+Enhanced Service API Test Script
+새로운 확장된 서비스 관리 API 테스트
+"""
+
+import requests
+import json
+from datetime import date, time, datetime
+
+# API 설정
+BASE_URL = "http://localhost:8000"
+# 테스트용 토큰 (실제로는 인증 후 받아야 함)
+TEST_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBhaWJpby5jb20iLCJleHAiOjE3MzMzNTQzMjgsInVzZXJfaWQiOjF9.aBzw6XLlKEFnqaUrjV1JuUNi4QL1_6gfBQWyKl90mX7uxtJI"
+
+headers = {
+    "Authorization": f"Bearer {TEST_TOKEN}",
+    "Content-Type": "application/json"
+}
+
+def test_enhanced_service_types():
+    """확장된 서비스 타입 API 테스트"""
+    print("=== Enhanced Service Types API Test ===")
+    
+    # 서비스 타입 목록 조회
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/service-types", headers=headers)
+    print(f"GET /enhanced/service-types: {response.status_code}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Total service types: {data['total']}")
+        for service_type in data['service_types']:
+            print(f"  - {service_type['name']} ({service_type['code']}): {service_type['default_price']}원")
+        return data['service_types']
+    else:
+        print(f"Error: {response.text}")
+        return []
+
+def test_equipment_management():
+    """장비 관리 API 테스트"""
+    print("\n=== Equipment Management API Test ===")
+    
+    # 장비 목록 조회
+    response = requests.get(f"{BASE_URL}/api/v1/equipment/", headers=headers)
+    print(f"GET /equipment/: {response.status_code}")
+    
+    if response.status_code == 200:
+        equipment_list = response.json()
+        print(f"Total equipment: {len(equipment_list)}")
+        for equipment in equipment_list:
+            status = "Available" if equipment['is_available'] and not equipment['is_maintenance'] else "Unavailable"
+            print(f"  - {equipment['equipment_name']} ({equipment['equipment_code']}): {status}")
+    else:
+        print(f"Error: {response.text}")
+    
+    # 실시간 가용성 조회
+    response = requests.get(f"{BASE_URL}/api/v1/equipment/availability/realtime", headers=headers)
+    print(f"GET /equipment/availability/realtime: {response.status_code}")
+    
+    if response.status_code == 200:
+        availability = response.json()
+        print(f"Equipment availability:")
+        print(f"  Total: {availability['total_equipment']}")
+        print(f"  Available: {availability['available']}")
+        print(f"  In Use: {availability['in_use']}")
+        print(f"  Maintenance: {availability['maintenance']}")
+        
+        print(f"By service:")
+        for service, stats in availability['by_service'].items():
+            print(f"  {service}: {stats['available']}/{stats['total']} available")
+    else:
+        print(f"Error: {response.text}")
+
+def test_service_sessions():
+    """서비스 세션 API 테스트"""
+    print("\n=== Service Sessions API Test ===")
+    
+    # 세션 목록 조회
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/sessions", headers=headers)
+    print(f"GET /enhanced/sessions: {response.status_code}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Total sessions: {data['total']}")
+        for session in data['sessions'][:3]:  # 상위 3개만 표시
+            print(f"  - {session.get('customer_name', 'Unknown')} - {session.get('service_name', 'Unknown')} ({session['session_date']})")
+    else:
+        print(f"Error: {response.text}")
+
+def test_package_usage():
+    """패키지 사용량 API 테스트"""
+    print("\n=== Package Usage API Test ===")
+    
+    # 패키지 사용량 목록 조회
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/package-usage", headers=headers)
+    print(f"GET /enhanced/package-usage: {response.status_code}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Total package usages: {data['total']}")
+        for usage in data['package_usages'][:3]:  # 상위 3개만 표시
+            print(f"  - {usage.get('customer_name', 'Unknown')}: Status {usage['status']}")
+            print(f"    Brain: {usage['brain_remaining']}/{usage['brain_total']}")
+            print(f"    Pulse: {usage['pulse_remaining']}/{usage['pulse_total']}")
+    else:
+        print(f"Error: {response.text}")
+    
+    # 잔여 세션 부족 필터 테스트
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/package-usage?low_sessions_only=true", headers=headers)
+    print(f"GET /enhanced/package-usage?low_sessions_only=true: {response.status_code}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Low sessions packages: {data['total']}")
+
+def test_service_usage_stats():
+    """서비스 이용 통계 API 테스트"""
+    print("\n=== Service Usage Stats API Test ===")
+    
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/stats/service-usage", headers=headers)
+    print(f"GET /enhanced/stats/service-usage: {response.status_code}")
+    
+    if response.status_code == 200:
+        stats = response.json()
+        print("Service usage statistics:")
+        for stat in stats:
+            print(f"  - {stat['service_name']}: {stat['total_sessions']} sessions ({stat['usage_rate']}%)")
+    else:
+        print(f"Error: {response.text}")
+
+def test_realtime_dashboard():
+    """실시간 대시보드 API 테스트"""
+    print("\n=== Realtime Dashboard API Test ===")
+    
+    response = requests.get(f"{BASE_URL}/api/v1/enhanced/dashboard/realtime", headers=headers)
+    print(f"GET /enhanced/dashboard/realtime: {response.status_code}")
+    
+    if response.status_code == 200:
+        dashboard = response.json()
+        print(f"Current sessions: {len(dashboard['current_sessions'])}")
+        print(f"Available equipment: {len(dashboard['available_equipment'])}")
+        print(f"Session alerts: {len(dashboard['session_alerts'])}")
+        
+        if dashboard['session_alerts']:
+            print("Alerts:")
+            for alert in dashboard['session_alerts']:
+                print(f"  - {alert['type']}: {alert['message']}")
+    else:
+        print(f"Error: {response.text}")
+
+def test_equipment_stats():
+    """장비 사용 통계 API 테스트"""
+    print("\n=== Equipment Usage Stats API Test ===")
+    
+    response = requests.get(f"{BASE_URL}/api/v1/equipment/stats/usage", headers=headers)
+    print(f"GET /equipment/stats/usage: {response.status_code}")
+    
+    if response.status_code == 200:
+        stats = response.json()
+        print(f"Total equipment: {stats['total_equipment']}")
+        print("Equipment by type:")
+        for eq_type, type_stats in stats['by_type'].items():
+            print(f"  {eq_type}: {type_stats['available']}/{type_stats['count']} available")
+        
+        if stats['maintenance_due']:
+            print("Maintenance due:")
+            for equipment in stats['maintenance_due']:
+                print(f"  - {equipment['equipment_name']}: {equipment['days_until_due']} days")
+    else:
+        print(f"Error: {response.text}")
+
+def run_all_tests():
+    """모든 API 테스트 실행"""
+    print("Enhanced Service Management API Test Suite")
+    print("=" * 50)
+    
+    try:
+        test_enhanced_service_types()
+        test_equipment_management()
+        test_service_sessions()
+        test_package_usage()
+        test_service_usage_stats()
+        test_realtime_dashboard()
+        test_equipment_stats()
+        
+        print("\n" + "=" * 50)
+        print("✅ All API tests completed!")
+        
+    except Exception as e:
+        print(f"\n❌ Test failed with error: {e}")
+
+if __name__ == "__main__":
+    run_all_tests()

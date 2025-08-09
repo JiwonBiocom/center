@@ -1,0 +1,1667 @@
+{
+  "analysis_date": "2025-06-21T15:53:20.315785",
+  "database_path": "backend/aibio_center.db",
+  "tables": {
+    "audit_logs": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "log_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "action",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "entity_type",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "entity_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "details",
+          "type": "JSON",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "user_id",
+          "references_table": "users",
+          "references_column": "user_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "company_info": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "company_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "company_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "address",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR(100)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "business_hours",
+          "type": "JSON",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "holidays",
+          "type": "JSON",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": []
+    },
+    "customers": {
+      "record_count": 979,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "first_visit_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR(100)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "referral_source",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "health_concerns",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "assigned_staff",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": [
+        {
+          "customer_id": 1,
+          "name": "양지우",
+          "phone": "010-9438-3621",
+          "first_visit_date": "2021-05-02",
+          "region": null,
+          "referral_source": null,
+          "health_concerns": "당뇨, 대인커뮤니티, 전반적 건강",
+          "notes": null,
+          "assigned_staff": "직원",
+          "created_at": "2025-06-05 00:09:09",
+          "updated_at": "2025-06-05 00:09:09"
+        },
+        {
+          "customer_id": 2,
+          "name": "오경화",
+          "phone": "010-3238-6223",
+          "first_visit_date": "2021-05-05",
+          "region": null,
+          "referral_source": null,
+          "health_concerns": "정신적 질환, 비염, 전반적 건강",
+          "notes": null,
+          "assigned_staff": "직원",
+          "created_at": "2025-06-05 00:09:09",
+          "updated_at": "2025-06-05 00:09:09"
+        },
+        {
+          "customer_id": 3,
+          "name": "이주옥",
+          "phone": "010-7573-8668",
+          "first_visit_date": "2021-05-12",
+          "region": null,
+          "referral_source": null,
+          "health_concerns": "우울, 불안, 스트레스회복, 위장",
+          "notes": null,
+          "assigned_staff": "직원",
+          "created_at": "2025-06-05 00:09:09",
+          "updated_at": "2025-06-05 00:09:09"
+        }
+      ]
+    },
+    "kakao_message_logs": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "log_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "reservation_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "template_code",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "phone_number",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "message_type",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "message_id",
+          "type": "VARCHAR(100)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "content",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "variables_used",
+          "type": "JSON",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "sent_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "delivered_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "read_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "error_code",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "error_message",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "fallback_status",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "fallback_sent_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        },
+        {
+          "column": "reservation_id",
+          "references_table": "reservations",
+          "references_column": "reservation_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "kakao_templates": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "template_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "template_code",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "template_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "template_type",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "content",
+          "type": "TEXT",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "variables",
+          "type": "JSON",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "approved_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": []
+    },
+    "kit_management": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "kit_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "kit_type",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "serial_number",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "received_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "result_received_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "result_delivered_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "kit_type_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        },
+        {
+          "column": "kit_type_id",
+          "references_table": "kit_types",
+          "references_column": "kit_type_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "kit_types": {
+      "record_count": 5,
+      "columns": [
+        {
+          "name": "kit_type_id",
+          "type": "SERIAL",
+          "nullable": true,
+          "primary_key": true
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "code",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "price",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": [
+        {
+          "kit_type_id": null,
+          "name": "종합 대사기능 검사",
+          "code": "METABOLIC",
+          "description": "신체의 전반적인 대사 기능을 종합적으로 분석하는 검사",
+          "price": 350000,
+          "is_active": 1,
+          "created_at": "2025-06-04 23:42:47",
+          "updated_at": "2025-06-04 23:42:47"
+        },
+        {
+          "kit_type_id": null,
+          "name": "음식물 과민증 검사",
+          "code": "FOOD_SENSITIVITY",
+          "description": "특정 음식물에 대한 과민 반응을 검사하여 맞춤형 식단 제공",
+          "price": 280000,
+          "is_active": 1,
+          "created_at": "2025-06-04 23:42:47",
+          "updated_at": "2025-06-04 23:42:47"
+        },
+        {
+          "kit_type_id": null,
+          "name": "영양 중금속 검사",
+          "code": "NUTRIENT_HEAVY_METAL",
+          "description": "체내 영양소 상태와 중금속 축적도를 동시에 분석",
+          "price": 320000,
+          "is_active": 1,
+          "created_at": "2025-06-04 23:42:47",
+          "updated_at": "2025-06-04 23:42:47"
+        }
+      ]
+    },
+    "marketing_leads": {
+      "record_count": 176,
+      "columns": [
+        {
+          "name": "lead_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "lead_date",
+          "type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "channel",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "db_entry_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "phone_consult_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "visit_consult_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "registration_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "converted_customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "converted_customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        }
+      ],
+      "sample_data": [
+        {
+          "lead_id": 1,
+          "name": "한승연",
+          "phone": "010-4795-9651",
+          "lead_date": "2025-04-27",
+          "channel": "메타",
+          "db_entry_date": "2025-04-27",
+          "phone_consult_date": null,
+          "visit_consult_date": null,
+          "registration_date": null,
+          "status": "db_entered",
+          "converted_customer_id": null,
+          "created_at": "2025-06-05 00:09:10"
+        },
+        {
+          "lead_id": 2,
+          "name": "조성지",
+          "phone": "010-5590-2240",
+          "lead_date": "2023-04-13",
+          "channel": "검색",
+          "db_entry_date": "2023-04-13",
+          "phone_consult_date": null,
+          "visit_consult_date": "2025-04-26",
+          "registration_date": "2025-04-26",
+          "status": "converted",
+          "converted_customer_id": 443,
+          "created_at": "2025-06-05 00:09:10"
+        },
+        {
+          "lead_id": 3,
+          "name": "김태이",
+          "phone": "010-9466-1055",
+          "lead_date": "2024-05-04",
+          "channel": "당근",
+          "db_entry_date": "2024-05-04",
+          "phone_consult_date": null,
+          "visit_consult_date": "2025-05-09",
+          "registration_date": null,
+          "status": "visit_consulted",
+          "converted_customer_id": null,
+          "created_at": "2025-06-05 00:09:10"
+        }
+      ]
+    },
+    "notification_preferences": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "preference_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "notification_type",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "in_app",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "email",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "sms",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": []
+    },
+    "notification_settings": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "email_enabled",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "sms_enabled",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "push_enabled",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "package_alerts",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "appointment_reminders",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "payment_notifications",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "system_notifications",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "marketing_notifications",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "quiet_hours_enabled",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "quiet_hours_start",
+          "type": "VARCHAR(5)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "quiet_hours_end",
+          "type": "VARCHAR(5)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "user_id",
+          "references_table": "users",
+          "references_column": "user_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "notifications": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "notification_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "type",
+          "type": "VARCHAR(11)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR(200)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "message",
+          "type": "TEXT",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "is_read",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "is_sent",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "priority",
+          "type": "VARCHAR(6)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "action_url",
+          "type": "VARCHAR(500)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "related_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "read_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "scheduled_for",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "user_id",
+          "references_table": "users",
+          "references_column": "user_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "package_purchases": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "purchase_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "package_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "purchase_date",
+          "type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "expiry_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "total_sessions",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "used_sessions",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "remaining_sessions",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "package_id",
+          "references_table": "packages",
+          "references_column": "package_id"
+        },
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "packages": {
+      "record_count": 12,
+      "columns": [
+        {
+          "name": "package_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "package_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "total_sessions",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "price",
+          "type": "NUMERIC(10, 2)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "valid_days",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "description",
+          "type": "VARCHAR(500)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": [
+        {
+          "package_id": 1,
+          "package_name": "브레인 10회",
+          "total_sessions": 10,
+          "price": 500000,
+          "valid_days": 60,
+          "description": null,
+          "is_active": 1,
+          "created_at": "2025-06-05 00:03:19"
+        },
+        {
+          "package_id": 2,
+          "package_name": "펄스 10회",
+          "total_sessions": 10,
+          "price": 400000,
+          "valid_days": 60,
+          "description": null,
+          "is_active": 1,
+          "created_at": "2025-06-05 00:03:19"
+        },
+        {
+          "package_id": 3,
+          "package_name": "림프 10회",
+          "total_sessions": 10,
+          "price": 450000,
+          "valid_days": 60,
+          "description": null,
+          "is_active": 1,
+          "created_at": "2025-06-05 00:03:19"
+        }
+      ]
+    },
+    "payments": {
+      "record_count": 412,
+      "columns": [
+        {
+          "name": "payment_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "payment_date",
+          "type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "amount",
+          "type": "NUMERIC(10, 2)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "payment_method",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "card_holder_name",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "approval_number",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "payment_staff",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "purchase_type",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "purchase_order",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        }
+      ],
+      "sample_data": [
+        {
+          "payment_id": 1,
+          "customer_id": 618,
+          "payment_date": "2024-01-03",
+          "amount": 300000,
+          "payment_method": "카드",
+          "card_holder_name": null,
+          "approval_number": null,
+          "payment_staff": "직원",
+          "purchase_type": null,
+          "purchase_order": null,
+          "created_at": "2025-06-05 00:10:31"
+        },
+        {
+          "payment_id": 2,
+          "customer_id": 488,
+          "payment_date": "2024-01-03",
+          "amount": 150000,
+          "payment_method": "카드",
+          "card_holder_name": null,
+          "approval_number": null,
+          "payment_staff": "직원",
+          "purchase_type": null,
+          "purchase_order": null,
+          "created_at": "2025-06-05 00:10:31"
+        },
+        {
+          "payment_id": 3,
+          "customer_id": 951,
+          "payment_date": "2024-01-03",
+          "amount": 344000,
+          "payment_method": "카드",
+          "card_holder_name": null,
+          "approval_number": null,
+          "payment_staff": "직원",
+          "purchase_type": null,
+          "purchase_order": null,
+          "created_at": "2025-06-05 00:10:31"
+        }
+      ]
+    },
+    "reservation_slots": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "slot_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "staff_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "day_of_week",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "start_time",
+          "type": "TIME",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "end_time",
+          "type": "TIME",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "is_available",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "specific_date",
+          "type": "DATE",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "staff_id",
+          "references_table": "users",
+          "references_column": "user_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "reservations": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "reservation_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "service_type_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "staff_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "reservation_date",
+          "type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "reservation_time",
+          "type": "TIME",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "duration_minutes",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(9)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "customer_request",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "internal_memo",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "reminder_sent",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "confirmation_sent",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_by",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "cancelled_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "cancelled_by",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "cancel_reason",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "staff_id",
+          "references_table": "users",
+          "references_column": "user_id"
+        },
+        {
+          "column": "service_type_id",
+          "references_table": "service_types",
+          "references_column": "service_type_id"
+        },
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "service_types": {
+      "record_count": 5,
+      "columns": [
+        {
+          "name": "service_type_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "service_name",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": [
+        {
+          "service_type_id": 1,
+          "service_name": "바이오펄스 ",
+          "description": "PEMF 세포 운동"
+        },
+        {
+          "service_type_id": 2,
+          "service_name": "레드라이트",
+          "description": ""
+        },
+        {
+          "service_type_id": 3,
+          "service_name": "AI 바이크",
+          "description": ""
+        }
+      ]
+    },
+    "service_usage": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "usage_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "service_date",
+          "type": "DATE",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "service_type_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "package_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "session_details",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "session_number",
+          "type": "INTEGER",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_by",
+          "type": "VARCHAR(50)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "column": "package_id",
+          "references_table": "packages",
+          "references_column": "package_id"
+        },
+        {
+          "column": "service_type_id",
+          "references_table": "service_types",
+          "references_column": "service_type_id"
+        },
+        {
+          "column": "customer_id",
+          "references_table": "customers",
+          "references_column": "customer_id"
+        }
+      ],
+      "sample_data": []
+    },
+    "system_settings": {
+      "record_count": 0,
+      "columns": [
+        {
+          "name": "setting_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "setting_key",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "setting_value",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "setting_type",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": []
+    },
+    "users": {
+      "record_count": 1,
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "primary_key": true
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "password_hash",
+          "type": "VARCHAR(255)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "created_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        },
+        {
+          "name": "updated_at",
+          "type": "DATETIME",
+          "nullable": true,
+          "primary_key": false
+        }
+      ],
+      "foreign_keys": [],
+      "sample_data": [
+        {
+          "user_id": 1,
+          "email": "admin@aibio.com",
+          "password_hash": "$2b$12$o.eIqM20JGs2XpARolbHFeJzmb9UMYLJLbD/h1ZigcvNoYClDmFbe",
+          "name": "관리자",
+          "role": "admin",
+          "is_active": 1,
+          "created_at": "2025-06-04 23:30:29",
+          "updated_at": "2025-06-04 23:30:29"
+        }
+      ]
+    }
+  },
+  "total_records": 1590,
+  "total_tables": 20
+}

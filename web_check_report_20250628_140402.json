@@ -1,0 +1,1287 @@
+{
+  "timestamp": "2025-06-28T14:04:02.571439",
+  "base_url": "http://localhost:5173/customers",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 0,
+    "total_js_errors": 20,
+    "total_network_errors": 0
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "http://localhost:5173/customers/",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "고객 관리",
+      "url": "http://localhost:5173/customers/customers",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "결제 관리",
+      "url": "http://localhost:5173/customers/payments",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "예약 관리",
+      "url": "http://localhost:5173/customers/reservations",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "http://localhost:5173/customers/services",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "http://localhost:5173/customers/packages",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "리드 관리",
+      "url": "http://localhost:5173/customers/leads",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "키트 관리",
+      "url": "http://localhost:5173/customers/kits",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "설정",
+      "url": "http://localhost:5173/customers/settings",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    },
+    {
+      "page": "통계",
+      "url": "http://localhost:5173/customers/analytics",
+      "console_messages": 15,
+      "network_errors": 0,
+      "js_errors": 2,
+      "status": "has_issues"
+    }
+  ],
+  "js_errors": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.248729"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.249895"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799449"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799701"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336666"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336961"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859525"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859914"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396109"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396446"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930253"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930524"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.455233"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.456004"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.986511"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.987559"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.525952"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.528132"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.047888"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.048201"
+    }
+  ],
+  "network_errors": [],
+  "console_messages": [
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751086976277",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:56.278807"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:56.405612"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:56.405695"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:56.415018"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:56.417611"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.223506"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.223672"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:02:57.223Z",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.224656"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.242534"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:02:57.246Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/}",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.248633"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.248729"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:02:57.249Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/}",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.249793"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.249895"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.251438"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:02:57.252168"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751086983721",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.722546"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.723095"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.723194"
+    },
+    {
+      "page": "고객 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.762015"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.762132"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.778955"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.779069"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:03.778Z",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.779203"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.785790"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:03.798Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/customers}",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799305"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799449"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:03.799Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/customers}",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799590"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799701"
+    },
+    {
+      "page": "고객 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799815"
+    },
+    {
+      "page": "고객 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:03:03.799975"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751086990317",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.319449"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.320096"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.320357"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.324946"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.325142"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.328923"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.329061"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:10.325Z",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.329186"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.334691"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:10.336Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/payments}",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336533"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336666"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:10.336Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/payments}",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336847"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.336961"
+    },
+    {
+      "page": "결제 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.337106"
+    },
+    {
+      "page": "결제 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:03:10.337443"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751086996846",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.848493"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.849003"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.849176"
+    },
+    {
+      "page": "예약 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.852141"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.852325"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.855085"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.855185"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:16.852Z",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.855293"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.858537"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:16.859Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/reservations}",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859421"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859525"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:16.859Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/reservations}",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859796"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.859914"
+    },
+    {
+      "page": "예약 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.860202"
+    },
+    {
+      "page": "예약 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:03:16.860544"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087003377",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.379662"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.380316"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.380567"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.384825"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.385027"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.389192"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.389367"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:23.385Z",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.389517"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.394869"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:23.395Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/services}",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.395935"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396109"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:23.395Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/services}",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396298"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396446"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396685"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:03:23.396915"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087009915",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.916026"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.916957"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.917292"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.921251"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.921427"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.925206"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.925352"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:29.921Z",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.925490"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.929179"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:29.929Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/packages}",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930119"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930253"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:29.929Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/packages}",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930417"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930524"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930744"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:03:29.930964"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087016439",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.440067"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.440584"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.440737"
+    },
+    {
+      "page": "리드 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.447624"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.447768"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.449046"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.449163"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:36.446Z",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.449280"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.454309"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:36.454Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/leads}",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.455070"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.455233"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:36.454Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/leads}",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.455806"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.456004"
+    },
+    {
+      "page": "리드 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.456183"
+    },
+    {
+      "page": "리드 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:03:36.456388"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087022968",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.970111"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.970776"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.970939"
+    },
+    {
+      "page": "키트 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.975766"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.976001"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.979995"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.980151"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:42.975Z",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.980307"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.985001"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:42.985Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/kits}",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.986213"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.986511"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:42.986Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/kits}",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.986705"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.987559"
+    },
+    {
+      "page": "키트 관리",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.987720"
+    },
+    {
+      "page": "키트 관리",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:03:42.987988"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087029504",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.505976"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.506967"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.507277"
+    },
+    {
+      "page": "설정",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.513374"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.513612"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.518642"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.518873"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:49.513Z",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.519069"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.524631"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:49.525Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/settings}",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.525734"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.525952"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:49.525Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/settings}",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.527965"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.528132"
+    },
+    {
+      "page": "설정",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.528317"
+    },
+    {
+      "page": "설정",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:03:49.528582"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔄 앱 버전: 1751087036033",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.034266"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🚫 WebSocket 완전 차단 모드 활성화",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.034769"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "✅ WebSocket 차단 완료",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.035008"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.038615"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "🚫 WebSocket 연결 차단됨: ws://localhost:5173/?token=0dJ-H6-5ZjZ2",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.038763"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 API URL: http://localhost:8000",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.042594"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 Environment: development",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.042728"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "🔧 Build Time: 2025-06-28T05:03:56.038Z",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.042858"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "💡 개발자 도구에서 __errorLogger__.getLogs()로 에러 로그를 확인할 수 있습니다.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.046787"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:56.047Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/analytics}",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.047665"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.047888"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "[ErrorLogger] {type: console.error, message: Invalid hook call. Hooks can only be called inside…for tips about how to debug and fix this problem., timestamp: 2025-06-28T05:03:56.047Z, userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36, url: http://localhost:5173/customers/analytics}",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.048067"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.048201"
+    },
+    {
+      "page": "통계",
+      "type": "log",
+      "text": "[ErrorLogger] {type: error, message: Uncaught TypeError: Cannot read properties of null (reading 'useEffect'), stack: TypeError: Cannot read properties of null (reading…ite/deps/react-dom_client.js?v=344e740a:10711:13), source: http://localhost:5173/node_modules/.vite/deps/chunk-IYDKXRZQ.js?v=507c1f32, line: 920}",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.048337"
+    },
+    {
+      "page": "통계",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:03:56.048581"
+    }
+  ]
+}

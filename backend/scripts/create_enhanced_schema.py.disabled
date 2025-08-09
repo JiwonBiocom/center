@@ -1,0 +1,334 @@
+"""
+Enhanced Database Schema Creation Script
+새로운 PRD 요구사항에 맞는 확장된 데이터베이스 스키마 생성
+"""
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from sqlalchemy import create_engine, text
+from core.database import Base, engine, get_db
+from models.enhanced_service import (
+    EnhancedServiceType,
+    ServiceSession,
+    EnhancedPackageUsage,
+    CustomerServicePreference,
+    EquipmentManagement
+)
+
+def create_enhanced_tables():
+    """확장된 테이블들 생성"""
+    print("=== Enhanced Service Management Schema Creation ===")
+    print(f"Database URL: {engine.url}")
+    
+    try:
+        # 테이블 생성
+        print("\n1. Creating enhanced tables...")
+        Base.metadata.create_all(bind=engine, tables=[
+            EnhancedServiceType.__table__,
+            ServiceSession.__table__,
+            EnhancedPackageUsage.__table__,
+            CustomerServicePreference.__table__,
+            EquipmentManagement.__table__
+        ])
+        print("✅ Enhanced tables created successfully")
+        
+        # 기본 서비스 타입 데이터 생성
+        print("\n2. Creating default service types...")
+        create_default_service_types()
+        
+        # 기본 장비 데이터 생성
+        print("\n3. Creating default equipment...")
+        create_default_equipment()
+        
+        print("\n🎉 Enhanced schema creation completed successfully!")
+        
+    except Exception as e:
+        print(f"❌ Error creating enhanced schema: {e}")
+        raise
+
+def create_default_service_types():
+    """기본 서비스 타입 데이터 생성"""
+    db = next(get_db())
+    try:
+        service_types = [
+            {
+                "name": "브레인",
+                "code": "BRAIN",
+                "description": "뇌 최적화 프로그램 - 인지능력 향상 및 뇌 건강 개선",
+                "default_duration": 40,
+                "default_price": 80000,
+                "equipment_required": {
+                    "brain_device": {
+                        "type": "neurofeedback",
+                        "model": "Brain Optimizer Pro",
+                        "channels": 8
+                    }
+                },
+                "protocols": {
+                    "basic": {"frequency": "8-12Hz", "duration": 40},
+                    "intensive": {"frequency": "10-15Hz", "duration": 50},
+                    "relaxation": {"frequency": "6-10Hz", "duration": 35}
+                },
+                "intensity_levels": {
+                    "weak": {"power": 30, "description": "약한 강도"},
+                    "medium": {"power": 60, "description": "중간 강도"},
+                    "strong": {"power": 90, "description": "강한 강도"}
+                },
+                "sort_order": 1
+            },
+            {
+                "name": "펄스",
+                "code": "PULSE",
+                "description": "순환 개선 프로그램 - 혈액순환 촉진 및 혈관 건강 개선 (가장 인기 서비스)",
+                "default_duration": 30,
+                "default_price": 60000,
+                "equipment_required": {
+                    "pulse_device": {
+                        "type": "electromagnetic",
+                        "model": "Pulse Wave Generator",
+                        "frequency_range": "1-100Hz"
+                    }
+                },
+                "protocols": {
+                    "circulation": {"frequency": "10Hz", "duration": 30},
+                    "recovery": {"frequency": "20Hz", "duration": 25},
+                    "maintenance": {"frequency": "5Hz", "duration": 35}
+                },
+                "intensity_levels": {
+                    "weak": {"power": 25, "description": "약한 강도"},
+                    "medium": {"power": 50, "description": "중간 강도"},
+                    "strong": {"power": 75, "description": "강한 강도"}
+                },
+                "sort_order": 2
+            },
+            {
+                "name": "림프",
+                "code": "LYMPH",
+                "description": "림프 순환 개선 - 독소 배출 및 면역력 강화",
+                "default_duration": 35,
+                "default_price": 70000,
+                "equipment_required": {
+                    "lymph_device": {
+                        "type": "pressure_wave",
+                        "model": "Lymphatic Drainage System",
+                        "pressure_range": "10-80mmHg"
+                    }
+                },
+                "protocols": {
+                    "detox": {"pressure": "40mmHg", "duration": 35},
+                    "immune": {"pressure": "60mmHg", "duration": 30},
+                    "gentle": {"pressure": "20mmHg", "duration": 40}
+                },
+                "intensity_levels": {
+                    "weak": {"pressure": 20, "description": "약한 강도"},
+                    "medium": {"pressure": 40, "description": "중간 강도"},
+                    "strong": {"pressure": 60, "description": "강한 강도"}
+                },
+                "sort_order": 3
+            },
+            {
+                "name": "레드",
+                "code": "RED",
+                "description": "적외선 치료 - 세포 재생 및 근육 회복 촉진",
+                "default_duration": 25,
+                "default_price": 50000,
+                "equipment_required": {
+                    "red_light_device": {
+                        "type": "led_therapy",
+                        "model": "Red Light Therapy Panel",
+                        "wavelength": "660nm, 850nm"
+                    }
+                },
+                "protocols": {
+                    "recovery": {"wavelength": "850nm", "duration": 25},
+                    "skin": {"wavelength": "660nm", "duration": 20},
+                    "deep_tissue": {"wavelength": "850nm", "duration": 30}
+                },
+                "intensity_levels": {
+                    "weak": {"intensity": 30, "description": "약한 강도"},
+                    "medium": {"intensity": 60, "description": "중간 강도"},
+                    "strong": {"intensity": 100, "description": "강한 강도"}
+                },
+                "sort_order": 4
+            },
+            {
+                "name": "AI바이크",
+                "code": "AI_BIKE",
+                "description": "AI 기반 운동 프로그램 - 개인 맞춤형 유산소 및 근력 운동",
+                "default_duration": 45,
+                "default_price": 90000,
+                "equipment_required": {
+                    "ai_bike": {
+                        "type": "smart_exercise_bike",
+                        "model": "AI Fitness Bike Pro",
+                        "features": ["heart_rate_monitor", "resistance_control", "motion_tracking"]
+                    }
+                },
+                "protocols": {
+                    "cardio": {"resistance": "medium", "duration": 45},
+                    "strength": {"resistance": "high", "duration": 35},
+                    "rehabilitation": {"resistance": "low", "duration": 50}
+                },
+                "intensity_levels": {
+                    "weak": {"resistance": 3, "description": "약한 강도"},
+                    "medium": {"resistance": 6, "description": "중간 강도"},
+                    "strong": {"resistance": 9, "description": "강한 강도"}
+                },
+                "sort_order": 5
+            }
+        ]
+        
+        for service_data in service_types:
+            existing = db.query(EnhancedServiceType).filter(
+                EnhancedServiceType.code == service_data["code"]
+            ).first()
+            
+            if not existing:
+                service_type = EnhancedServiceType(**service_data)
+                db.add(service_type)
+                print(f"  ✅ Created service type: {service_data['name']} ({service_data['code']})")
+            else:
+                print(f"  ⚠️ Service type already exists: {service_data['name']}")
+        
+        db.commit()
+        print("✅ Default service types created successfully")
+        
+    except Exception as e:
+        print(f"❌ Error creating default service types: {e}")
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
+def create_default_equipment():
+    """기본 장비 데이터 생성"""
+    db = next(get_db())
+    try:
+        equipment_list = [
+            {
+                "equipment_name": "브레인 최적화 장비 #1",
+                "equipment_code": "BRAIN_001",
+                "equipment_type": "neurofeedback",
+                "supported_services": {"services": ["BRAIN"], "primary": "BRAIN"}
+            },
+            {
+                "equipment_name": "브레인 최적화 장비 #2",
+                "equipment_code": "BRAIN_002",
+                "equipment_type": "neurofeedback",
+                "supported_services": {"services": ["BRAIN"], "primary": "BRAIN"}
+            },
+            {
+                "equipment_name": "펄스 장비 #1",
+                "equipment_code": "PULSE_001",
+                "equipment_type": "electromagnetic",
+                "supported_services": {"services": ["PULSE"], "primary": "PULSE"}
+            },
+            {
+                "equipment_name": "펄스 장비 #2",
+                "equipment_code": "PULSE_002",
+                "equipment_type": "electromagnetic",
+                "supported_services": {"services": ["PULSE"], "primary": "PULSE"}
+            },
+            {
+                "equipment_name": "펄스 장비 #3",
+                "equipment_code": "PULSE_003",
+                "equipment_type": "electromagnetic",
+                "supported_services": {"services": ["PULSE"], "primary": "PULSE"}
+            },
+            {
+                "equipment_name": "림프 순환 장비 #1",
+                "equipment_code": "LYMPH_001",
+                "equipment_type": "pressure_wave",
+                "supported_services": {"services": ["LYMPH"], "primary": "LYMPH"}
+            },
+            {
+                "equipment_name": "림프 순환 장비 #2",
+                "equipment_code": "LYMPH_002",
+                "equipment_type": "pressure_wave",
+                "supported_services": {"services": ["LYMPH"], "primary": "LYMPH"}
+            },
+            {
+                "equipment_name": "레드 라이트 패널 #1",
+                "equipment_code": "RED_001",
+                "equipment_type": "led_therapy",
+                "supported_services": {"services": ["RED"], "primary": "RED"}
+            },
+            {
+                "equipment_name": "레드 라이트 패널 #2",
+                "equipment_code": "RED_002",
+                "equipment_type": "led_therapy",
+                "supported_services": {"services": ["RED"], "primary": "RED"}
+            },
+            {
+                "equipment_name": "레드 라이트 패널 #3",
+                "equipment_code": "RED_003",
+                "equipment_type": "led_therapy",
+                "supported_services": {"services": ["RED"], "primary": "RED"}
+            },
+            {
+                "equipment_name": "AI 바이크 #1",
+                "equipment_code": "AI_BIKE_001",
+                "equipment_type": "smart_exercise_bike",
+                "supported_services": {"services": ["AI_BIKE"], "primary": "AI_BIKE"}
+            },
+            {
+                "equipment_name": "AI 바이크 #2",
+                "equipment_code": "AI_BIKE_002",
+                "equipment_type": "smart_exercise_bike",
+                "supported_services": {"services": ["AI_BIKE"], "primary": "AI_BIKE"}
+            }
+        ]
+        
+        for equipment_data in equipment_list:
+            existing = db.query(EquipmentManagement).filter(
+                EquipmentManagement.equipment_code == equipment_data["equipment_code"]
+            ).first()
+            
+            if not existing:
+                equipment = EquipmentManagement(**equipment_data)
+                db.add(equipment)
+                print(f"  ✅ Created equipment: {equipment_data['equipment_name']}")
+            else:
+                print(f"  ⚠️ Equipment already exists: {equipment_data['equipment_name']}")
+        
+        db.commit()
+        print("✅ Default equipment created successfully")
+        
+    except Exception as e:
+        print(f"❌ Error creating default equipment: {e}")
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
+def verify_schema():
+    """스키마 생성 확인"""
+    print("\n=== Schema Verification ===")
+    
+    with engine.connect() as conn:
+        # 새로 생성된 테이블 확인
+        tables_to_check = [
+            'enhanced_service_types',
+            'service_sessions',
+            'enhanced_package_usage',
+            'customer_service_preferences',
+            'equipment_management'
+        ]
+        
+        for table_name in tables_to_check:
+            try:
+                result = conn.execute(text(f"SELECT COUNT(*) FROM {table_name}"))
+                count = result.scalar()
+                print(f"✅ Table '{table_name}': {count} records")
+            except Exception as e:
+                print(f"❌ Table '{table_name}': {e}")
+
+if __name__ == "__main__":
+    try:
+        create_enhanced_tables()
+        verify_schema()
+    except Exception as e:
+        print(f"❌ Fatal error: {e}")
+        exit(1)

@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-06-21T11:19:19.632919",
+  "base_url": "https://center-ten.vercel.app",
+  "pages": {
+    "/": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": false,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 1,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/customers": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/services": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/payments": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/packages": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/reports": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/notifications": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/leads": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    },
+    "/settings": {
+      "status": "healthy",
+      "response_code": 200,
+      "redirected": true,
+      "current_url": "https://center-ten.vercel.app/login",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "network_errors": 0,
+      "api_errors": 0,
+      "error_details": [],
+      "api_error_details": []
+    }
+  },
+  "summary": {
+    "total_pages": 9,
+    "healthy_pages": 9,
+    "pages_with_errors": 0,
+    "pages_with_warnings": 0,
+    "api_errors": []
+  }
+}

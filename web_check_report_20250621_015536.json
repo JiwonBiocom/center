@@ -1,0 +1,308 @@
+{
+  "timestamp": "2025-06-21T01:55:36.086068",
+  "base_url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 0,
+    "total_js_errors": 10,
+    "total_network_errors": 10
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "고객 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/customers",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "결제 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/payments",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "예약 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/reservations",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/services",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/packages",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "리드 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/leads",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "키트 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/kits",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "설정",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/settings",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "통계",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/analytics",
+      "console_messages": 1,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    }
+  ],
+  "js_errors": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:54:30.657897"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:54:37.207081"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:54:43.757706"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:54:50.306300"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:54:56.843898"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:55:03.376475"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:55:09.911464"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:55:16.447832"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:55:22.988630"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:55:29.532377"
+    }
+  ],
+  "network_errors": [
+    {
+      "page": "메인 대시보드",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:54:30.655481"
+    },
+    {
+      "page": "고객 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/customers",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:54:37.205959"
+    },
+    {
+      "page": "결제 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/payments",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:54:43.755729"
+    },
+    {
+      "page": "예약 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/reservations",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:54:50.305216"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/services",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:54:56.843047"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/packages",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:55:03.375894"
+    },
+    {
+      "page": "리드 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/leads",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:55:09.910934"
+    },
+    {
+      "page": "키트 관리",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/kits",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:55:16.446697"
+    },
+    {
+      "page": "설정",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/settings",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:55:22.987899"
+    },
+    {
+      "page": "통계",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/analytics",
+      "status": 404,
+      "method": "GET",
+      "timestamp": "2025-06-21T01:55:29.529977"
+    }
+  ],
+  "console_messages": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/",
+      "timestamp": "2025-06-21T01:54:30.657897"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/customers",
+      "timestamp": "2025-06-21T01:54:37.207081"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/payments",
+      "timestamp": "2025-06-21T01:54:43.757706"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/reservations",
+      "timestamp": "2025-06-21T01:54:50.306300"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/services",
+      "timestamp": "2025-06-21T01:54:56.843898"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/packages",
+      "timestamp": "2025-06-21T01:55:03.376475"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/leads",
+      "timestamp": "2025-06-21T01:55:09.911464"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/kits",
+      "timestamp": "2025-06-21T01:55:16.447832"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/settings",
+      "timestamp": "2025-06-21T01:55:22.988630"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://center-git-refactor-phase-1-utilities-vibetjs-projects.vercel.app/analytics",
+      "timestamp": "2025-06-21T01:55:29.532377"
+    }
+  ]
+}

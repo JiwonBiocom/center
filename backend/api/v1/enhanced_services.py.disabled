@@ -1,0 +1,629 @@
+"""
+Enhanced Services API
+새로운 PRD 요구사항에 맞는 확장된 서비스 관리 API
+"""
+
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import func, and_, or_, desc
+from typing import List, Optional, Dict, Any
+from datetime import date, datetime, time
+
+from core.database import get_db
+from core.auth import get_current_user
+from models.user import User
+from models.customer import Customer
+from models.enhanced_service import (
+    EnhancedServiceType,
+    ServiceSession,
+    EnhancedPackageUsage,
+    CustomerServicePreference,
+    EquipmentManagement
+)
+from schemas.enhanced_service import (
+    EnhancedServiceType as EnhancedServiceTypeSchema,
+    EnhancedServiceTypeCreate,
+    EnhancedServiceTypeUpdate,
+    EnhancedServiceTypeListResponse,
+    ServiceSession as ServiceSessionSchema,
+    ServiceSessionCreate,
+    ServiceSessionUpdate,
+    ServiceSessionWithDetails,
+    ServiceSessionListResponse,
+    EnhancedPackageUsage as EnhancedPackageUsageSchema,
+    EnhancedPackageUsageCreate,
+    EnhancedPackageUsageUpdate,
+    EnhancedPackageUsageWithDetails,
+    EnhancedPackageUsageListResponse,
+    ServiceUsageStats,
+    RealtimeSessionDashboard
+)
+
+router = APIRouter()
+
+# ===== 확장된 서비스 타입 관리 =====
+
+@router.get("/service-types", response_model=EnhancedServiceTypeListResponse)
+async def list_enhanced_service_types(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(100, ge=1, le=100),
+    is_active: Optional[bool] = None,
+    db: Session = Depends(get_db)
+):
+    """확장된 서비스 타입 목록 조회"""
+    query = db.query(EnhancedServiceType)
+    
+    if is_active is not None:
+        query = query.filter(EnhancedServiceType.is_active == is_active)
+    
+    query = query.order_by(EnhancedServiceType.sort_order, EnhancedServiceType.name)
+    total = query.count()
+    service_types = query.offset(skip).limit(limit).all()
+    
+    return {
+        "service_types": service_types,
+        "total": total
+    }
+
+@router.get("/service-types/{service_type_id}", response_model=EnhancedServiceTypeSchema)
+async def get_enhanced_service_type(
+    service_type_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """특정 확장된 서비스 타입 조회"""
+    service_type = db.query(EnhancedServiceType).filter(
+        EnhancedServiceType.service_type_id == service_type_id
+    ).first()
+    
+    if not service_type:
+        raise HTTPException(status_code=404, detail="Service type not found")
+    
+    return service_type
+
+@router.post("/service-types", response_model=EnhancedServiceTypeSchema)
+async def create_enhanced_service_type(
+    service_type: EnhancedServiceTypeCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """새로운 확장된 서비스 타입 생성"""
+    # 중복 코드 확인
+    existing = db.query(EnhancedServiceType).filter(
+        EnhancedServiceType.code == service_type.code
+    ).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Service type with this code already exists")
+    
+    db_service_type = EnhancedServiceType(**service_type.model_dump())
+    db.add(db_service_type)
+    db.commit()
+    db.refresh(db_service_type)
+    
+    return db_service_type
+
+@router.patch("/service-types/{service_type_id}", response_model=EnhancedServiceTypeSchema)
+async def update_enhanced_service_type(
+    service_type_id: int,
+    service_type: EnhancedServiceTypeUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """확장된 서비스 타입 수정"""
+    db_service_type = db.query(EnhancedServiceType).filter(
+        EnhancedServiceType.service_type_id == service_type_id
+    ).first()
+    
+    if not db_service_type:
+        raise HTTPException(status_code=404, detail="Service type not found")
+    
+    update_data = service_type.model_dump(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_service_type, key, value)
+    
+    db.commit()
+    db.refresh(db_service_type)
+    
+    return db_service_type
+
+# ===== 서비스 세션 관리 =====
+
+@router.get("/sessions", response_model=ServiceSessionListResponse)
+async def list_service_sessions(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    customer_id: Optional[int] = None,
+    service_type_id: Optional[int] = None,
+    session_date_from: Optional[date] = None,
+    session_date_to: Optional[date] = None,
+    is_completed: Optional[bool] = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """서비스 세션 목록 조회"""
+    query = db.query(ServiceSession).options(
+        joinedload(ServiceSession.customer),
+        joinedload(ServiceSession.service_type),
+        joinedload(ServiceSession.conducted_by_user)
+    )
+    
+    # 필터링
+    if customer_id:
+        query = query.filter(ServiceSession.customer_id == customer_id)
+    if service_type_id:
+        query = query.filter(ServiceSession.service_type_id == service_type_id)
+    if session_date_from:
+        query = query.filter(ServiceSession.session_date >= session_date_from)
+    if session_date_to:
+        query = query.filter(ServiceSession.session_date <= session_date_to)
+    if is_completed is not None:
+        query = query.filter(ServiceSession.is_completed == is_completed)
+    
+    # 정렬 및 페이지네이션
+    query = query.order_by(desc(ServiceSession.session_date), desc(ServiceSession.start_time))
+    total = query.count()
+    sessions = query.offset(skip).limit(limit).all()
+    
+    # 상세 정보 추가
+    sessions_with_details = []
+    for session in sessions:
+        session_dict = {
+            **session.__dict__,
+            "customer_name": session.customer.name if session.customer else None,
+            "service_name": session.service_type.name if session.service_type else None,
+            "conducted_by_name": session.conducted_by_user.name if session.conducted_by_user else None
+        }
+        sessions_with_details.append(session_dict)
+    
+    return {
+        "sessions": sessions_with_details,
+        "total": total,
+        "page": skip // limit + 1,
+        "page_size": limit
+    }
+
+@router.get("/sessions/{session_id}", response_model=ServiceSessionWithDetails)
+async def get_service_session(
+    session_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """특정 서비스 세션 조회"""
+    session = db.query(ServiceSession).options(
+        joinedload(ServiceSession.customer),
+        joinedload(ServiceSession.service_type),
+        joinedload(ServiceSession.conducted_by_user)
+    ).filter(ServiceSession.session_id == session_id).first()
+    
+    if not session:
+        raise HTTPException(status_code=404, detail="Service session not found")
+    
+    return {
+        **session.__dict__,
+        "customer_name": session.customer.name if session.customer else None,
+        "service_name": session.service_type.name if session.service_type else None,
+        "conducted_by_name": session.conducted_by_user.name if session.conducted_by_user else None
+    }
+
+@router.post("/sessions", response_model=ServiceSessionSchema)
+async def create_service_session(
+    session: ServiceSessionCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """새로운 서비스 세션 생성"""
+    # 고객 확인
+    customer = db.query(Customer).filter(Customer.customer_id == session.customer_id).first()
+    if not customer:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    
+    # 서비스 타입 확인
+    service_type = db.query(EnhancedServiceType).filter(
+        EnhancedServiceType.service_type_id == session.service_type_id
+    ).first()
+    if not service_type:
+        raise HTTPException(status_code=404, detail="Service type not found")
+    
+    # 패키지 사용량 처리
+    if session.package_usage_id:
+        package_usage = db.query(EnhancedPackageUsage).filter(
+            EnhancedPackageUsage.usage_id == session.package_usage_id,
+            EnhancedPackageUsage.customer_id == session.customer_id
+        ).first()
+        
+        if not package_usage:
+            raise HTTPException(status_code=404, detail="Package usage not found")
+        
+        # 서비스별 잔여 횟수 확인 및 차감
+        service_code = service_type.code.lower()
+        remaining_field = f"{service_code}_remaining"
+        used_field = f"{service_code}_used"
+        
+        current_remaining = getattr(package_usage, remaining_field, 0)
+        if current_remaining <= 0:
+            raise HTTPException(status_code=400, detail=f"No remaining sessions for {service_type.name}")
+        
+        # 잔여 횟수 차감
+        setattr(package_usage, remaining_field, current_remaining - 1)
+        setattr(package_usage, used_field, getattr(package_usage, used_field, 0) + 1)
+    
+    # 세션 생성
+    session_data = session.model_dump()
+    session_data["created_by"] = current_user.user_id
+    
+    db_session = ServiceSession(**session_data)
+    db.add(db_session)
+    db.commit()
+    db.refresh(db_session)
+    
+    return db_session
+
+@router.patch("/sessions/{session_id}", response_model=ServiceSessionSchema)
+async def update_service_session(
+    session_id: int,
+    session: ServiceSessionUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """서비스 세션 수정"""
+    db_session = db.query(ServiceSession).filter(ServiceSession.session_id == session_id).first()
+    
+    if not db_session:
+        raise HTTPException(status_code=404, detail="Service session not found")
+    
+    update_data = session.model_dump(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_session, key, value)
+    
+    db.commit()
+    db.refresh(db_session)
+    
+    return db_session
+
+# ===== 확장된 패키지 사용량 관리 =====
+
+@router.get("/package-usage", response_model=EnhancedPackageUsageListResponse)
+async def list_enhanced_package_usage(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    customer_id: Optional[int] = None,
+    status: Optional[str] = None,
+    low_sessions_only: Optional[bool] = False,
+    expiring_soon: Optional[bool] = False,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """확장된 패키지 사용량 목록 조회"""
+    query = db.query(EnhancedPackageUsage).options(
+        joinedload(EnhancedPackageUsage.customer),
+        joinedload(EnhancedPackageUsage.package)
+    )
+    
+    # 필터링
+    if customer_id:
+        query = query.filter(EnhancedPackageUsage.customer_id == customer_id)
+    if status:
+        query = query.filter(EnhancedPackageUsage.status == status)
+    
+    # 잔여 세션 적음 필터
+    if low_sessions_only:
+        query = query.filter(
+            or_(
+                EnhancedPackageUsage.brain_remaining <= 2,
+                EnhancedPackageUsage.pulse_remaining <= 2,
+                EnhancedPackageUsage.lymph_remaining <= 2,
+                EnhancedPackageUsage.red_remaining <= 2,
+                EnhancedPackageUsage.ai_bike_remaining <= 2
+            )
+        )
+    
+    # 곧 만료 필터 (2주 이내)
+    if expiring_soon:
+        from datetime import timedelta
+        soon = date.today() + timedelta(days=14)
+        query = query.filter(EnhancedPackageUsage.valid_until <= soon)
+    
+    query = query.order_by(desc(EnhancedPackageUsage.purchase_date))
+    total = query.count()
+    package_usages = query.offset(skip).limit(limit).all()
+    
+    # 상세 정보 추가
+    usages_with_details = []
+    for usage in package_usages:
+        usage_dict = {
+            **usage.__dict__,
+            "customer_name": usage.customer.name if usage.customer else None,
+            "package_name": usage.package.package_name if usage.package else None
+        }
+        usages_with_details.append(usage_dict)
+    
+    return {
+        "package_usages": usages_with_details,
+        "total": total,
+        "page": skip // limit + 1,
+        "page_size": limit
+    }
+
+@router.get("/package-usage/{usage_id}", response_model=EnhancedPackageUsageWithDetails)
+async def get_enhanced_package_usage(
+    usage_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """특정 확장된 패키지 사용량 조회"""
+    usage = db.query(EnhancedPackageUsage).options(
+        joinedload(EnhancedPackageUsage.customer),
+        joinedload(EnhancedPackageUsage.package)
+    ).filter(EnhancedPackageUsage.usage_id == usage_id).first()
+    
+    if not usage:
+        raise HTTPException(status_code=404, detail="Package usage not found")
+    
+    return {
+        **usage.__dict__,
+        "customer_name": usage.customer.name if usage.customer else None,
+        "package_name": usage.package.package_name if usage.package else None
+    }
+
+@router.post("/package-usage", response_model=EnhancedPackageUsageSchema)
+async def create_enhanced_package_usage(
+    usage: EnhancedPackageUsageCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """새로운 확장된 패키지 사용량 생성"""
+    # 고객 확인
+    customer = db.query(Customer).filter(Customer.customer_id == usage.customer_id).first()
+    if not customer:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    
+    # 패키지 확인
+    from models.package import Package
+    package = db.query(Package).filter(Package.package_id == usage.package_id).first()
+    if not package:
+        raise HTTPException(status_code=404, detail="Package not found")
+    
+    # 사용량 데이터 생성 (잔여 횟수는 총 횟수와 동일하게 초기화)
+    usage_data = usage.model_dump()
+    usage_data["brain_remaining"] = usage_data["brain_total"]
+    usage_data["pulse_remaining"] = usage_data["pulse_total"]
+    usage_data["lymph_remaining"] = usage_data["lymph_total"]
+    usage_data["red_remaining"] = usage_data["red_total"]
+    usage_data["ai_bike_remaining"] = usage_data["ai_bike_total"]
+    
+    db_usage = EnhancedPackageUsage(**usage_data)
+    db.add(db_usage)
+    db.commit()
+    db.refresh(db_usage)
+    
+    return db_usage
+
+# ===== 통계 및 대시보드 =====
+
+@router.get("/stats/service-usage", response_model=List[ServiceUsageStats])
+async def get_service_usage_stats(
+    date_from: Optional[date] = None,
+    date_to: Optional[date] = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """서비스별 이용 통계"""
+    query = db.query(
+        EnhancedServiceType.name.label('service_name'),
+        func.count(ServiceSession.session_id).label('total_sessions'),
+        func.sum(ServiceSession.duration_minutes).label('total_duration'),
+        func.avg(ServiceSession.duration_minutes).label('average_duration')
+    ).join(
+        ServiceSession, ServiceSession.service_type_id == EnhancedServiceType.service_type_id
+    ).group_by(EnhancedServiceType.name, EnhancedServiceType.sort_order)
+    
+    if date_from:
+        query = query.filter(ServiceSession.session_date >= date_from)
+    if date_to:
+        query = query.filter(ServiceSession.session_date <= date_to)
+    
+    query = query.order_by(EnhancedServiceType.sort_order)
+    
+    results = query.all()
+    total_all_sessions = sum(result.total_sessions for result in results)
+    
+    stats = []
+    for result in results:
+        usage_rate = (result.total_sessions / total_all_sessions * 100) if total_all_sessions > 0 else 0
+        stats.append({
+            "service_name": result.service_name,
+            "total_sessions": result.total_sessions,
+            "total_duration": result.total_duration or 0,
+            "average_duration": float(result.average_duration or 0),
+            "usage_rate": round(usage_rate, 1)
+        })
+    
+    return stats
+
+@router.get("/dashboard/realtime", response_model=RealtimeSessionDashboard)
+async def get_realtime_dashboard(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """실시간 세션 대시보드"""
+    today = date.today()
+    
+    # 오늘 진행 중인 세션
+    current_sessions_query = db.query(ServiceSession).options(
+        joinedload(ServiceSession.customer),
+        joinedload(ServiceSession.service_type)
+    ).filter(
+        ServiceSession.session_date == today,
+        ServiceSession.is_completed == False
+    ).order_by(ServiceSession.start_time)
+    
+    current_sessions = []
+    for session in current_sessions_query.all():
+        current_sessions.append({
+            **session.__dict__,
+            "customer_name": session.customer.name if session.customer else None,
+            "service_name": session.service_type.name if session.service_type else None
+        })
+    
+    # 사용 가능한 장비
+    available_equipment = db.query(EquipmentManagement).filter(
+        EquipmentManagement.is_available == True,
+        EquipmentManagement.is_maintenance == False
+    ).all()
+    
+    # 향후 예약 (예약 시스템과 연동 필요)
+    upcoming_reservations = []  # TODO: 예약 시스템 연동
+    
+    # 세션 알림
+    session_alerts = []
+    
+    # 잔여 세션 부족 알림
+    low_session_usages = db.query(EnhancedPackageUsage).options(
+        joinedload(EnhancedPackageUsage.customer)
+    ).filter(
+        EnhancedPackageUsage.status == "active",
+        or_(
+            EnhancedPackageUsage.brain_remaining <= 2,
+            EnhancedPackageUsage.pulse_remaining <= 2,
+            EnhancedPackageUsage.lymph_remaining <= 2,
+            EnhancedPackageUsage.red_remaining <= 2,
+            EnhancedPackageUsage.ai_bike_remaining <= 2
+        )
+    ).all()
+    
+    for usage in low_session_usages:
+        services_low = []
+        if usage.brain_remaining <= 2 and usage.brain_total > 0:
+            services_low.append(f"브레인 {usage.brain_remaining}회")
+        if usage.pulse_remaining <= 2 and usage.pulse_total > 0:
+            services_low.append(f"펄스 {usage.pulse_remaining}회")
+        if usage.lymph_remaining <= 2 and usage.lymph_total > 0:
+            services_low.append(f"림프 {usage.lymph_remaining}회")
+        if usage.red_remaining <= 2 and usage.red_total > 0:
+            services_low.append(f"레드 {usage.red_remaining}회")
+        if usage.ai_bike_remaining <= 2 and usage.ai_bike_total > 0:
+            services_low.append(f"AI바이크 {usage.ai_bike_remaining}회")
+        
+        if services_low:
+            session_alerts.append({
+                "type": "low_sessions",
+                "customer_name": usage.customer.name if usage.customer else "Unknown",
+                "message": f"잔여 세션 부족: {', '.join(services_low)}",
+                "priority": "medium"
+            })
+    
+    return {
+        "current_sessions": current_sessions,
+        "available_equipment": available_equipment,
+        "upcoming_reservations": upcoming_reservations,
+        "session_alerts": session_alerts
+    }
+
+# ===== 누락된 엔드포인트 추가 (인증 없음) =====
+
+@router.get("/sessions/active")
+def get_active_sessions():
+    """현재 진행 중인 세션 목록 조회"""
+    try:
+        from core.database import SessionLocal
+        db = SessionLocal()
+        try:
+            active_sessions = db.query(ServiceSession)\
+                .filter(ServiceSession.is_completed == False)\
+                .order_by(desc(ServiceSession.start_time))\
+                .all()
+            
+            result = []
+            for session in active_sessions:
+                # 고객 정보 조회
+                customer = db.query(Customer).filter(Customer.customer_id == session.customer_id).first()
+                service_type = db.query(EnhancedServiceType).filter(EnhancedServiceType.service_type_id == session.service_type_id).first()
+                
+                result.append({
+                    "id": session.session_id,
+                    "customer_name": customer.name if customer else "Unknown",
+                    "service_type_name": service_type.name if service_type else "Unknown",
+                    "status": "in_progress" if not session.is_completed else "completed",
+                    "start_time": session.start_time.isoformat() if session.start_time else None,
+                    "expected_end_time": session.end_time.isoformat() if session.end_time else None,
+                    "actual_end_time": session.end_time.isoformat() if session.is_completed and session.end_time else None,
+                    "equipment_settings": session.equipment_settings or {}
+                })
+            
+            return result
+        finally:
+            db.close()
+    except Exception as e:
+        print(f"Error in get_active_sessions: {e}")
+        return []
+
+@router.get("/test")
+def test_endpoint():
+    """테스트 엔드포인트 - 인증 없음"""
+    return {"message": "test endpoint working"}
+
+@router.get("/stats/today")
+def get_today_stats(
+    db: Session = Depends(get_db)
+):
+    """오늘의 통계 정보"""
+    try:
+        today = date.today()
+        
+        # 오늘 총 세션 수 (session_date로 필터링)
+        total_sessions_today = db.query(ServiceSession)\
+            .filter(ServiceSession.session_date == today)\
+            .count()
+        
+        # 현재 활성 세션 수
+        active_sessions = db.query(ServiceSession)\
+            .filter(ServiceSession.is_completed == False)\
+            .count()
+        
+        # 오늘 매출 (임시로 세션당 평균 5만원으로 계산)
+        total_revenue_today = total_sessions_today * 50000
+        
+        # 장비 사용률 (임시로 활성 세션 기반 계산)
+        total_equipment = db.query(EquipmentManagement).count()
+        if total_equipment == 0:
+            equipment_utilization = 0
+        else:
+            equipment_utilization = (active_sessions / total_equipment) * 100
+            equipment_utilization = min(equipment_utilization, 100)  # 100% 초과 방지
+        
+        return {
+            "total_sessions_today": total_sessions_today,
+            "active_sessions": active_sessions,
+            "total_revenue_today": int(total_revenue_today),
+            "equipment_utilization": round(equipment_utilization, 1)
+        }
+    except Exception as e:
+        print(f"Error in get_today_stats: {e}")
+        # 기본값 반환
+        return {
+            "total_sessions_today": 0,
+            "active_sessions": 0,
+            "total_revenue_today": 0,
+            "equipment_utilization": 0
+        }
+
+@router.post("/sessions/{session_id}/end")
+async def end_session(
+    session_id: int,
+    db: Session = Depends(get_db)
+):
+    """세션 종료"""
+    session = db.query(ServiceSession).filter(ServiceSession.session_id == session_id).first()
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    if session.is_completed:
+        raise HTTPException(status_code=400, detail="Session is already completed")
+    
+    session.is_completed = True
+    session.end_time = datetime.now().time()
+    
+    db.commit()
+    db.refresh(session)
+    
+    return {"message": "Session ended successfully", "session_id": session_id}

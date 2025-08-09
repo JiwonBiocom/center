@@ -1,0 +1,88 @@
+name: Schema Drift Detection
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'backend/models/**'
+      - 'backend/alembic/**'
+      - 'supabase/migrations/**'
+
+jobs:
+  schema-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      
+      - name: Install Dependencies
+        run: |
+          pip install psycopg2-binary
+      
+      - name: Check Schema Drift
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          # 스키마 차이 감지
+          echo "🔍 Checking for schema drift..."
+          
+          # Python 스크립트 실행
+          python scripts/check_db_schema_diff.py > schema_diff.sql
+          
+          # 차이가 있으면 자동 수정
+          if [ -s schema_diff.sql ]; then
+            echo "⚠️ Schema drift detected!"
+            echo "📝 Generated fix SQL:"
+            cat schema_diff.sql
+            
+            # PR 코멘트로 알림
+            if [ "${{ github.event_name }}" == "pull_request" ]; then
+              gh pr comment ${{ github.event.pull_request.number }} --body "## 🚨 Schema Drift Detected
+              
+              The following SQL needs to be executed in Supabase:
+              
+              \`\`\`sql
+              $(cat schema_diff.sql)
+              \`\`\`
+              
+              Please run this in Supabase SQL Editor before merging."
+            fi
+            
+            # 실패로 표시하여 머지 방지
+            exit 1
+          else
+            echo "✅ No schema drift detected"
+          fi
+      
+      - name: Auto-fix Schema (Production)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          SUPABASE_DB_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          # 메인 브랜치에 푸시된 경우 자동 수정 시도
+          if [ -s schema_diff.sql ]; then
+            echo "🔧 Attempting automatic fix..."
+            
+            # 안전한 변경사항만 자동 적용 (ADD COLUMN만)
+            if grep -q "ALTER TABLE.*ADD COLUMN" schema_diff.sql && ! grep -q "DROP\|DELETE\|TRUNCATE" schema_diff.sql; then
+              echo "✅ Safe changes detected, applying..."
+              # 여기서 실제 적용하려면 Supabase API 사용
+              # supabase db push 또는 직접 SQL 실행
+            else
+              echo "⚠️ Unsafe changes detected, manual intervention required"
+              
+              # Slack/Discord 알림 (webhook URL 필요)
+              # curl -X POST ${{ secrets.SLACK_WEBHOOK }} -d '{"text":"Schema drift requires manual fix"}'
+            fi
+          fi

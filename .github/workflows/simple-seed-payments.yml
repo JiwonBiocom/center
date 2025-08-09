@@ -1,0 +1,79 @@
+name: 🚀 Simple Seed Payments
+
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          
+      - name: Install Dependencies
+        run: pip install psycopg2-binary
+          
+      - name: Seed Payments
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python - << 'EOF'
+          import csv
+          import psycopg2
+          import os
+          
+          # 간단한 변환 함수
+          def convert_method(m):
+              return {"카드": "card", "이체": "transfer", "현금": "cash"}.get(m, "card")
+          
+          # DB 연결
+          conn = psycopg2.connect(os.environ['DATABASE_URL'])
+          cursor = conn.cursor()
+          
+          # 현재 상태 확인
+          cursor.execute("SELECT COUNT(*) FROM payments")
+          before = cursor.fetchone()[0]
+          print(f"현재: {before}건")
+          
+          # CSV 읽고 삽입
+          with open('backend/seed/payments_real.csv', 'r', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              count = 0
+              
+              for row in reader:
+                  try:
+                      cursor.execute("""
+                          INSERT INTO payments (customer_id, payment_date, amount, payment_method, created_at)
+                          VALUES (%s, %s, %s, %s, %s)
+                          ON CONFLICT DO NOTHING
+                      """, (
+                          int(row['customer_id']),
+                          row['payment_date'],
+                          float(row['amount']),
+                          convert_method(row['payment_method']),
+                          row['created_at']
+                      ))
+                      count += 1
+                      if count % 50 == 0:
+                          conn.commit()
+                          print(f"진행: {count}건")
+                  except Exception as e:
+                      print(f"오류: {e}")
+                      continue
+              
+              conn.commit()
+              
+              # 최종 확인
+              cursor.execute("SELECT COUNT(*) FROM payments")
+              after = cursor.fetchone()[0]
+              print(f"완료! 이전: {before}건 → 이후: {after}건 (추가: {after-before}건)")
+              
+              cursor.close()
+              conn.close()
+          EOF

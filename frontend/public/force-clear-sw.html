@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Worker 강제 제거</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>🔥 Service Worker 강제 제거</h1>
+    <p>다른 AI 권장 방법으로 잔류 Service Worker 완전 제거</p>
+    <div id="status">진행 중...</div>
+    
+    <script>
+    (async function() {
+        const statusDiv = document.getElementById('status');
+        
+        function log(message) {
+            console.log(message);
+            statusDiv.innerHTML += '<div>' + message + '</div>';
+        }
+        
+        try {
+            log('🔍 Service Worker 등록 확인 중...');
+            
+            if ('serviceWorker' in navigator) {
+                // 다른 AI 권장: 정확한 완전 제거 방법
+                const regs = await navigator.serviceWorker.getRegistrations();
+                log(`📋 발견된 Service Worker: ${regs.length}개`);
+                
+                if (regs.length > 0) {
+                    // 모든 등록 해제
+                    await Promise.all(regs.map(async (reg) => {
+                        const result = await reg.unregister();
+                        log(`${result ? '✅' : '❌'} Service Worker 제거: ${reg.scope}`);
+                        return result;
+                    }));
+                    
+                    log('🧹 모든 Service Worker 제거 완료');
+                } else {
+                    log('ℹ️ 등록된 Service Worker 없음');
+                }
+                
+                // 추가 정리
+                log('🗑️ 추가 캐시 정리 중...');
+                
+                // 모든 캐시 삭제
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => {
+                        log(`🗂️ 캐시 삭제: ${name}`);
+                        return caches.delete(name);
+                    }));
+                }
+                
+                // 저장소 정리
+                localStorage.clear();
+                sessionStorage.clear();
+                log('🧽 localStorage, sessionStorage 정리 완료');
+                
+                // IndexedDB 정리
+                if ('indexedDB' in window) {
+                    try {
+                        const databases = await indexedDB.databases();
+                        await Promise.all(databases.map(db => {
+                            log(`🗄️ IndexedDB 삭제: ${db.name}`);
+                            return new Promise((resolve) => {
+                                const deleteReq = indexedDB.deleteDatabase(db.name);
+                                deleteReq.onsuccess = () => resolve();
+                                deleteReq.onerror = () => resolve(); // 에러 무시
+                            });
+                        }));
+                    } catch(e) {
+                        log('ℹ️ IndexedDB 정리 건너뜀');
+                    }
+                }
+                
+                log('✅ 모든 정리 작업 완료');
+                log('⚠️ 이제 브라우저를 강제 새로고침하세요: Ctrl+Shift+R (또는 Cmd+Shift+R)');
+                
+                // 3초 후 강제 리다이렉트
+                setTimeout(() => {
+                    log('🔄 메인 페이지로 강제 리다이렉트...');
+                    // 캐시 버스팅으로 완전 새로고침
+                    window.location.replace(`/?clear=${Date.now()}&force=true`);
+                }, 3000);
+                
+            } else {
+                log('❌ 이 브라우저는 Service Worker를 지원하지 않습니다');
+            }
+            
+        } catch (error) {
+            log(`❌ 에러 발생: ${error.message}`);
+            console.error('Service Worker 제거 중 에러:', error);
+        }
+    })();
+    </script>
+    
+    <p><strong>참고:</strong> chrome://serviceworker-internals 에서 zombie SW 확인 가능</p>
+</body>
+</html>

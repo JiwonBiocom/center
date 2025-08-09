@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTPS Debug</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .warning {
+            color: orange;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AIBIO Center - HTTPS Debug Tool</h1>
+        
+        <h2>Environment Information</h2>
+        <div id="env-info"></div>
+        
+        <h2>Mixed Content Check</h2>
+        <div id="mixed-content"></div>
+        
+        <h2>API Configuration</h2>
+        <div id="api-config"></div>
+        
+        <h2>Test API Calls</h2>
+        <div id="api-tests"></div>
+    </div>
+
+    <script>
+        // Environment Info
+        const envInfo = {
+            protocol: window.location.protocol,
+            hostname: window.location.hostname,
+            port: window.location.port,
+            href: window.location.href,
+            userAgent: navigator.userAgent,
+            isSecureContext: window.isSecureContext,
+            timestamp: new Date().toISOString()
+        };
+        
+        document.getElementById('env-info').innerHTML = `<pre>${JSON.stringify(envInfo, null, 2)}</pre>`;
+        
+        // Mixed Content Check
+        const mixedContentDiv = document.getElementById('mixed-content');
+        
+        if (window.location.protocol === 'https:' && window.location.hostname.includes('railway.app')) {
+            mixedContentDiv.innerHTML = '<p class="success">✅ Site is correctly loaded over HTTPS</p>';
+        } else if (window.location.protocol === 'http:' && window.location.hostname.includes('railway.app')) {
+            mixedContentDiv.innerHTML = '<p class="error">❌ CRITICAL: Production site is loaded over HTTP!</p>';
+        } else {
+            mixedContentDiv.innerHTML = '<p class="warning">⚠️ Not on production domain</p>';
+        }
+        
+        // Check for Vite env variables
+        const apiConfigDiv = document.getElementById('api-config');
+        
+        try {
+            // These won't be available in plain HTML, but we can check localStorage
+            const config = {
+                localStorage_token: localStorage.getItem('access_token') ? 'present' : 'none',
+                localStorage_refresh: localStorage.getItem('refresh_token') ? 'present' : 'none',
+                cookies: document.cookie || 'none'
+            };
+            
+            apiConfigDiv.innerHTML = `<pre>${JSON.stringify(config, null, 2)}</pre>`;
+        } catch (e) {
+            apiConfigDiv.innerHTML = `<p class="error">Error: ${e.message}</p>`;
+        }
+        
+        // Test API calls
+        const apiTestsDiv = document.getElementById('api-tests');
+        
+        async function testAPICall(url, description) {
+            const result = {
+                description,
+                url,
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'include'
+                });
+                
+                result.status = response.status;
+                result.statusText = response.statusText;
+                result.headers = {};
+                
+                response.headers.forEach((value, key) => {
+                    result.headers[key] = value;
+                });
+                
+                if (response.status === 200) {
+                    result.success = true;
+                    result.message = '✅ Success';
+                } else {
+                    result.success = false;
+                    result.message = `❌ HTTP ${response.status}`;
+                }
+            } catch (error) {
+                result.success = false;
+                result.error = error.message;
+                result.message = `❌ ${error.message}`;
+                
+                // Check for mixed content error
+                if (error.message.includes('Mixed Content') || 
+                    error.message.includes('Failed to fetch')) {
+                    result.isMixedContent = true;
+                }
+            }
+            
+            return result;
+        }
+        
+        // Run tests
+        (async () => {
+            const tests = [
+                {
+                    url: 'https://center-production-1421.up.railway.app/api/v1/health',
+                    description: 'HTTPS API Health Check'
+                },
+                {
+                    url: 'http://center-production-1421.up.railway.app/api/v1/health',
+                    description: 'HTTP API Health Check (should fail on HTTPS site)'
+                }
+            ];
+            
+            const results = [];
+            
+            for (const test of tests) {
+                const result = await testAPICall(test.url, test.description);
+                results.push(result);
+            }
+            
+            let html = '<h3>Test Results:</h3>';
+            results.forEach(result => {
+                const className = result.success ? 'success' : 'error';
+                html += `
+                    <div style="margin-bottom: 20px;">
+                        <p class="${className}">${result.message} - ${result.description}</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+            });
+            
+            apiTestsDiv.innerHTML = html;
+            
+            // Final diagnosis
+            const hasMixedContent = results.some(r => r.isMixedContent);
+            if (hasMixedContent) {
+                apiTestsDiv.innerHTML += `
+                    <div style="margin-top: 30px; padding: 20px; background: #fee; border: 2px solid red; border-radius: 8px;">
+                        <h3 class="error">🚨 Mixed Content Detected!</h3>
+                        <p>The application is trying to make HTTP requests from an HTTPS page.</p>
+                        <p><strong>Solution:</strong> Ensure all API URLs use HTTPS in production.</p>
+                    </div>
+                `;
+            }
+        })();
+    </script>
+</body>
+</html>

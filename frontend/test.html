@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <h1>Test Page</h1>
+    <script>
+        fetch('http://localhost:5173/')
+            .then(res => res.text())
+            .then(html => {
+                console.log('HTML loaded');
+                return fetch('http://localhost:5173/src/main.tsx');
+            })
+            .then(res => res.text())
+            .then(js => {
+                console.log('JS loaded');
+            })
+            .catch(err => console.error('Error:', err));
+    </script>
+</body>
+</html>

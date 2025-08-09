@@ -1,0 +1,235 @@
+"""
+Enhanced Service Models for Multi-Service Session Management
+새로운 PRD 요구사항에 맞는 확장된 서비스 관리 모델
+"""
+
+from sqlalchemy import Column, Integer, String, Text, DateTime, Date, Time, Boolean, DECIMAL, JSON, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime, date, time
+
+from core.database import Base
+
+class EnhancedServiceType(Base):
+    """
+    확장된 서비스 타입 모델
+    PRD 요구사항: 브레인, 펄스, 림프, 레드, AI바이크 등 5가지 서비스 타입
+    """
+    __tablename__ = "enhanced_service_types"
+    
+    service_type_id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50), nullable=False, comment="서비스명 (브레인, 펄스, 림프, 레드, AI바이크)")
+    code = Column(String(20), unique=True, nullable=False, comment="서비스 코드 (BRAIN, PULSE, LYMPH, RED, AI_BIKE)")
+    description = Column(Text, comment="서비스 설명")
+    
+    # 기본 설정
+    default_duration = Column(Integer, nullable=False, default=30, comment="기본 소요시간(분)")
+    default_price = Column(DECIMAL(10, 2), nullable=False, comment="기본 가격")
+    
+    # 장비 및 프로토콜 정보
+    equipment_required = Column(JSON, comment="필요한 장비 정보 JSON")
+    protocols = Column(JSON, comment="표준 프로토콜들 JSON")
+    intensity_levels = Column(JSON, comment="강도 레벨 설정 JSON")
+    
+    # 상태 관리
+    is_active = Column(Boolean, default=True, comment="활성 상태")
+    sort_order = Column(Integer, default=0, comment="정렬 순서")
+    
+    # 메타데이터
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # 관계
+    service_sessions = relationship("ServiceSession", back_populates="service_type")
+
+
+class ServiceSession(Base):
+    """
+    서비스 세션 기록 모델 - 핵심 테이블
+    PRD 요구사항: 상세한 세션 기록, 장비 설정, 프로토콜 등
+    """
+    __tablename__ = "service_sessions"
+    
+    session_id = Column(Integer, primary_key=True, index=True)
+    
+    # 기본 연결 정보
+    customer_id = Column(Integer, ForeignKey("customers.customer_id"), nullable=False)
+    service_type_id = Column(Integer, ForeignKey("enhanced_service_types.service_type_id"), nullable=False)
+    package_usage_id = Column(Integer, ForeignKey("enhanced_package_usage.usage_id"), nullable=True, comment="패키지 사용 연결")
+    
+    # 세션 일정 정보
+    session_date = Column(Date, nullable=False, comment="세션 날짜")
+    start_time = Column(Time, nullable=False, comment="시작 시간")
+    end_time = Column(Time, nullable=True, comment="종료 시간")
+    duration_minutes = Column(Integer, nullable=False, comment="지속 시간(분)")
+    
+    # 장비 및 설정 정보
+    equipment_settings = Column(JSON, comment="장비별 강도, 프로토콜 등 JSON")
+    protocol_used = Column(String(100), comment="사용된 프로토콜")
+    intensity_level = Column(String(20), comment="강도 레벨 (약, 중, 강)")
+    
+    # 세션 상세 기록
+    session_notes = Column(Text, comment="세션 중 특이사항")
+    customer_condition = Column(Text, comment="고객 컨디션")
+    staff_notes = Column(Text, comment="직원 코멘트")
+    customer_feedback = Column(Text, comment="고객 피드백")
+    
+    # 세션 상태
+    is_completed = Column(Boolean, default=False, comment="완료 여부")
+    is_partial = Column(Boolean, default=False, comment="중간에 중단된 세션")
+    completion_rate = Column(Integer, default=100, comment="완료율 (%)")
+    
+    # 관리 정보
+    conducted_by = Column(Integer, ForeignKey("users.user_id"), nullable=True, comment="담당 직원")
+    created_by = Column(Integer, ForeignKey("users.user_id"), nullable=True, comment="기록 작성자")
+    
+    # 예약 연결
+    reservation_id = Column(Integer, ForeignKey("reservations.reservation_id"), nullable=True, comment="연결된 예약")
+    
+    # 메타데이터
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # 관계
+    customer = relationship("Customer", back_populates="service_sessions")
+    service_type = relationship("EnhancedServiceType", back_populates="service_sessions")
+    package_usage = relationship("EnhancedPackageUsage", back_populates="service_sessions")
+    conducted_by_user = relationship("User", foreign_keys=[conducted_by])
+    created_by_user = relationship("User", foreign_keys=[created_by])
+
+
+class EnhancedPackageUsage(Base):
+    """
+    확장된 패키지 사용량 추적 모델
+    PRD 요구사항: 서비스별 잔여 횟수 추적, 실시간 업데이트
+    """
+    __tablename__ = "enhanced_package_usage"
+    
+    usage_id = Column(Integer, primary_key=True, index=True)
+    customer_id = Column(Integer, ForeignKey("customers.customer_id"), nullable=False)
+    package_id = Column(Integer, ForeignKey("packages.package_id"), nullable=False)
+    
+    # 구매 정보
+    purchase_date = Column(Date, nullable=False, comment="구매일")
+    valid_until = Column(Date, nullable=False, comment="유효기간")
+    total_amount = Column(DECIMAL(10, 2), nullable=False, comment="총 결제 금액")
+    
+    # 서비스별 할당 및 사용량 (5가지 서비스)
+    brain_total = Column(Integer, default=0, comment="브레인 총 횟수")
+    brain_used = Column(Integer, default=0, comment="브레인 사용 횟수")
+    brain_remaining = Column(Integer, default=0, comment="브레인 잔여 횟수")
+    
+    pulse_total = Column(Integer, default=0, comment="펄스 총 횟수")
+    pulse_used = Column(Integer, default=0, comment="펄스 사용 횟수")
+    pulse_remaining = Column(Integer, default=0, comment="펄스 잔여 횟수")
+    
+    lymph_total = Column(Integer, default=0, comment="림프 총 횟수")
+    lymph_used = Column(Integer, default=0, comment="림프 사용 횟수")
+    lymph_remaining = Column(Integer, default=0, comment="림프 잔여 횟수")
+    
+    red_total = Column(Integer, default=0, comment="레드 총 횟수")
+    red_used = Column(Integer, default=0, comment="레드 사용 횟수")
+    red_remaining = Column(Integer, default=0, comment="레드 잔여 횟수")
+    
+    ai_bike_total = Column(Integer, default=0, comment="AI바이크 총 횟수")
+    ai_bike_used = Column(Integer, default=0, comment="AI바이크 사용 횟수")
+    ai_bike_remaining = Column(Integer, default=0, comment="AI바이크 잔여 횟수")
+    
+    # 패키지 상태 관리
+    status = Column(String(20), default="active", comment="상태: active, expired, suspended")
+    auto_renewal = Column(Boolean, default=False, comment="자동 갱신 여부")
+    
+    # 알림 설정
+    low_session_alert_sent = Column(Boolean, default=False, comment="잔여 2회 이하 알림 발송 여부")
+    expiry_alert_sent = Column(Boolean, default=False, comment="만료 예정 알림 발송 여부")
+    
+    # 메타데이터
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # 관계
+    customer = relationship("Customer", back_populates="enhanced_package_usages")
+    package = relationship("Package", back_populates="enhanced_package_usages")
+    service_sessions = relationship("ServiceSession", back_populates="package_usage")
+
+
+class CustomerServicePreference(Base):
+    """
+    고객 서비스 선호도 모델
+    PRD 요구사항: 고객별 서비스 선호도 분석, 맞춤 추천
+    """
+    __tablename__ = "customer_service_preferences"
+    
+    preference_id = Column(Integer, primary_key=True, index=True)
+    customer_id = Column(Integer, ForeignKey("customers.customer_id"), nullable=False)
+    
+    # 선호 서비스
+    preferred_services = Column(JSON, comment="선호 서비스 목록 JSON")
+    preferred_time_slots = Column(JSON, comment="선호 시간대 JSON")
+    preferred_intensity = Column(String(20), comment="선호 강도 (약, 중, 강)")
+    
+    # 방문 패턴
+    average_visit_interval = Column(Integer, comment="평균 재방문 간격(일)")
+    preferred_session_duration = Column(Integer, comment="선호 세션 시간(분)")
+    
+    # 건강 목표
+    health_goals = Column(JSON, comment="건강 개선 목표 JSON")
+    target_completion_date = Column(Date, comment="목표 달성 예정일")
+    
+    # 추천 알고리즘 데이터
+    service_effectiveness_scores = Column(JSON, comment="서비스별 효과 점수 JSON")
+    last_recommendation_date = Column(Date, comment="마지막 추천일")
+    
+    # 메타데이터
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # 관계
+    customer = relationship("Customer", back_populates="service_preferences")
+
+
+class EquipmentManagement(Base):
+    """
+    장비 관리 모델
+    PRD 요구사항: 실시간 장비 가용성, 사용 현황 추적
+    """
+    __tablename__ = "equipment_management"
+    
+    equipment_id = Column(Integer, primary_key=True, index=True)
+    
+    # 장비 기본 정보
+    equipment_name = Column(String(100), nullable=False, comment="장비명")
+    equipment_code = Column(String(20), unique=True, nullable=False, comment="장비 코드")
+    equipment_type = Column(String(50), nullable=False, comment="장비 타입")
+    
+    # 서비스 연결
+    supported_services = Column(JSON, comment="지원 서비스 목록 JSON")
+    
+    # 장비 상태
+    is_available = Column(Boolean, default=True, comment="사용 가능 여부")
+    is_maintenance = Column(Boolean, default=False, comment="정비 중 여부")
+    current_session_id = Column(Integer, ForeignKey("service_sessions.session_id"), nullable=True, comment="현재 사용 중인 세션")
+    
+    # 사용 통계
+    total_usage_hours = Column(DECIMAL(10, 2), default=0, comment="총 사용 시간")
+    maintenance_due_date = Column(Date, comment="정비 예정일")
+    last_maintenance_date = Column(Date, comment="마지막 정비일")
+    
+    # 메타데이터
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+# Customer 모델에 관계 추가를 위한 확장 (실제로는 models/customer.py에서 추가)
+"""
+Customer 모델에 추가될 관계:
+- service_sessions = relationship("ServiceSession", back_populates="customer")
+- enhanced_package_usages = relationship("EnhancedPackageUsage", back_populates="customer")
+- service_preferences = relationship("CustomerServicePreference", back_populates="customer")
+"""
+
+# Package 모델에 관계 추가를 위한 확장 (실제로는 models/package.py에서 추가)
+"""
+Package 모델에 추가될 관계:
+- enhanced_package_usages = relationship("EnhancedPackageUsage", back_populates="package")
+"""

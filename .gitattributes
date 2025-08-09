@@ -1,0 +1,6 @@
+# Git LFS tracking for large files
+backend/seed/*.xlsx filter=lfs diff=lfs merge=lfs -text
+backend/seed/*.xls filter=lfs diff=lfs merge=lfs -text
+backend/seed/*.csv filter=lfs diff=lfs merge=lfs -text
+docs/**/*.xlsx filter=lfs diff=lfs merge=lfs -text
+docs/**/*.xls filter=lfs diff=lfs merge=lfs -text

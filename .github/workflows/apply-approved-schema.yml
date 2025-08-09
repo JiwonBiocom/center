@@ -1,0 +1,110 @@
+name: Apply Approved Schema Changes
+
+on:
+  workflow_dispatch:
+    inputs:
+      sql_hash:
+        description: 'SQL file hash to apply (leave empty for all safe SQLs)'
+        required: false
+        type: string
+  
+  # auto-fix-schema.yml에서 트리거
+  workflow_run:
+    workflows: ["Auto Fix Schema Drift"]
+    types:
+      - completed
+
+jobs:
+  apply-schema:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      
+      - name: Process Safe SQLs
+        id: process
+        run: |
+          python scripts/safe_schema_applier.py
+      
+      - name: Setup Supabase CLI
+        if: steps.process.outputs.has_safe_sql == 'true'
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      
+      - name: Apply Safe Schema Changes
+        if: steps.process.outputs.has_safe_sql == 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🚀 Applying approved schema changes..."
+          
+          # Supabase 직접 연결 URL 설정
+          export DIRECT_URL=$(echo $SUPABASE_DB_URL | sed 's/:6543/:5432/g')
+          
+          # 승인된 SQL 파일들 적용
+          for sql_file in schema_fixes/pending/*.sql; do
+            if [ -f "$sql_file" ]; then
+              echo "Applying $sql_file..."
+              
+              # psql을 사용한 직접 실행
+              psql $DIRECT_URL -f $sql_file
+              
+              if [ $? -eq 0 ]; then
+                echo "✅ Successfully applied $sql_file"
+                mv $sql_file schema_fixes/completed/
+              else
+                echo "❌ Failed to apply $sql_file"
+                mv $sql_file schema_fixes/rejected/
+              fi
+            fi
+          done
+      
+      - name: Commit Applied Changes
+        if: steps.process.outputs.has_safe_sql == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add schema_fixes/
+          git add .github/schema_approvals.json
+          
+          git commit -m "chore: move applied schema fixes to completed folder [skip ci]" || echo "No changes to commit"
+          git push
+      
+      - name: Create Summary Comment
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const summary = `## ✅ Schema Application Complete
+            
+            Applied ${steps.process.outputs.safe_sql_count || 0} safe SQL changes.
+            
+            Check the [completed folder](https://github.com/${{ github.repository }}/tree/main/schema_fixes/completed) for applied changes.`;
+            
+            // 최근 PR에 코멘트
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              sort: 'created',
+              direction: 'desc',
+              per_page: 1
+            });
+            
+            if (pulls.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pulls[0].number,
+                body: summary
+              });
+            }

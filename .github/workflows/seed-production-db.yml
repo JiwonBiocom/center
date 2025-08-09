@@ -1,0 +1,110 @@
+name: Seed Production Database
+
+on:
+  # 수동 실행
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '시드할 테이블 선택'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - marketing_leads
+          - kit_receipts
+  
+  # 시드 파일 변경 시 자동 실행
+  push:
+    branches: [main]
+    paths:
+      - 'backend/seed/**'
+      - 'scripts/import_*.py'
+
+jobs:
+  seed-database:
+    name: Seed Production Database
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          lfs: true  # Git LFS 파일 다운로드
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: |
+          pip install pandas psycopg2-binary openpyxl
+      
+      - name: Check seed files
+        run: |
+          echo "📁 시드 파일 확인:"
+          ls -la backend/seed/
+      
+      - name: Seed marketing_leads
+        if: github.event.inputs.target == 'all' || github.event.inputs.target == 'marketing_leads'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🌱 유입고객 데이터 시드 중..."
+          python scripts/import_marketing_leads.py
+      
+      - name: Seed kit_receipts
+        if: github.event.inputs.target == 'all' || github.event.inputs.target == 'kit_receipts'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🌱 검사키트 수령 데이터 시드 중..."
+          python scripts/import_kit_receipts.py
+      
+      - name: Verify seeding
+        if: always()
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "📊 시드 결과 확인:"
+          python -c "
+          import psycopg2
+          from urllib.parse import urlparse
+          import os
+          
+          url = urlparse(os.environ['DATABASE_URL'])
+          conn = psycopg2.connect(
+              host=url.hostname,
+              port=url.port,
+              database=url.path[1:],
+              user=url.username,
+              password=url.password,
+              sslmode='require'
+          )
+          cur = conn.cursor()
+          
+          tables = ['marketing_leads', 'kit_management']
+          for table in tables:
+              try:
+                  cur.execute(f'SELECT COUNT(*) FROM {table}')
+                  count = cur.fetchone()[0]
+                  print(f'  - {table}: {count:,} 레코드')
+              except Exception as e:
+                  print(f'  - {table}: 확인 불가 ({e})')
+          
+          cur.close()
+          conn.close()
+          "
+      
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ 프로덕션 DB 시드 실패! 로그를 확인하세요.'
+            })

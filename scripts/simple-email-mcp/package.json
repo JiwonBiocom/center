@@ -1,0 +1,12 @@
+{
+  "name": "simple-email-mcp-server",
+  "version": "1.0.0",
+  "description": "Simple Email MCP Server for Claude Desktop",
+  "main": "server.py",
+  "scripts": {
+    "start": "python3 server.py"
+  },
+  "keywords": ["mcp", "email", "claude"],
+  "author": "AIBIO Center",
+  "license": "MIT"
+}

@@ -1,0 +1,448 @@
+{
+  "timestamp": "2025-06-28T09:53:53.001962",
+  "base_url": "http://localhost:5173",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 0,
+    "total_js_errors": 10,
+    "total_network_errors": 10
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "http://localhost:5173/",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "고객 관리",
+      "url": "http://localhost:5173/customers",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "결제 관리",
+      "url": "http://localhost:5173/payments",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "예약 관리",
+      "url": "http://localhost:5173/reservations",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "http://localhost:5173/services",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "http://localhost:5173/packages",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "리드 관리",
+      "url": "http://localhost:5173/leads",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "키트 관리",
+      "url": "http://localhost:5173/kits",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "설정",
+      "url": "http://localhost:5173/settings",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "통계",
+      "url": "http://localhost:5173/analytics",
+      "console_messages": 3,
+      "network_errors": 1,
+      "js_errors": 1,
+      "status": "has_issues"
+    }
+  ],
+  "js_errors": [
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/",
+      "timestamp": "2025-06-28T09:52:47.702299"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/customers",
+      "timestamp": "2025-06-28T09:52:54.245190"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/payments",
+      "timestamp": "2025-06-28T09:53:00.772133"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/reservations",
+      "timestamp": "2025-06-28T09:53:07.306793"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/services",
+      "timestamp": "2025-06-28T09:53:13.831081"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/packages",
+      "timestamp": "2025-06-28T09:53:20.352755"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/leads",
+      "timestamp": "2025-06-28T09:53:26.884968"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/kits",
+      "timestamp": "2025-06-28T09:53:33.409490"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/settings",
+      "timestamp": "2025-06-28T09:53:39.929718"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/analytics",
+      "timestamp": "2025-06-28T09:53:46.458725"
+    }
+  ],
+  "network_errors": [
+    {
+      "page": "메인 대시보드",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:52:47.702227"
+    },
+    {
+      "page": "고객 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:52:54.245139"
+    },
+    {
+      "page": "결제 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:00.772071"
+    },
+    {
+      "page": "예약 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:07.306697"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:13.831012"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:20.352687"
+    },
+    {
+      "page": "리드 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:26.884838"
+    },
+    {
+      "page": "키트 관리",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:33.409411"
+    },
+    {
+      "page": "설정",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:39.929573"
+    },
+    {
+      "page": "통계",
+      "url": "http://localhost:5173/src/index.css",
+      "status": 500,
+      "method": "GET",
+      "timestamp": "2025-06-28T09:53:46.458578"
+    }
+  ],
+  "console_messages": [
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/",
+      "timestamp": "2025-06-28T09:52:47.698625"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/",
+      "timestamp": "2025-06-28T09:52:47.702299"
+    },
+    {
+      "page": "메인 대시보드",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/",
+      "timestamp": "2025-06-28T09:52:47.705038"
+    },
+    {
+      "page": "고객 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/customers",
+      "timestamp": "2025-06-28T09:52:54.242576"
+    },
+    {
+      "page": "고객 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/customers",
+      "timestamp": "2025-06-28T09:52:54.243525"
+    },
+    {
+      "page": "고객 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/customers",
+      "timestamp": "2025-06-28T09:52:54.245190"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/payments",
+      "timestamp": "2025-06-28T09:53:00.771103"
+    },
+    {
+      "page": "결제 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/payments",
+      "timestamp": "2025-06-28T09:53:00.771908"
+    },
+    {
+      "page": "결제 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/payments",
+      "timestamp": "2025-06-28T09:53:00.772133"
+    },
+    {
+      "page": "예약 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/reservations",
+      "timestamp": "2025-06-28T09:53:07.304878"
+    },
+    {
+      "page": "예약 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/reservations",
+      "timestamp": "2025-06-28T09:53:07.306435"
+    },
+    {
+      "page": "예약 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/reservations",
+      "timestamp": "2025-06-28T09:53:07.306793"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/services",
+      "timestamp": "2025-06-28T09:53:13.830133"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/services",
+      "timestamp": "2025-06-28T09:53:13.831081"
+    },
+    {
+      "page": "서비스 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/services",
+      "timestamp": "2025-06-28T09:53:13.831957"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/packages",
+      "timestamp": "2025-06-28T09:53:20.352546"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/packages",
+      "timestamp": "2025-06-28T09:53:20.352755"
+    },
+    {
+      "page": "패키지 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/packages",
+      "timestamp": "2025-06-28T09:53:20.353423"
+    },
+    {
+      "page": "리드 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/leads",
+      "timestamp": "2025-06-28T09:53:26.883519"
+    },
+    {
+      "page": "리드 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/leads",
+      "timestamp": "2025-06-28T09:53:26.884968"
+    },
+    {
+      "page": "리드 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/leads",
+      "timestamp": "2025-06-28T09:53:26.885546"
+    },
+    {
+      "page": "키트 관리",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/kits",
+      "timestamp": "2025-06-28T09:53:33.408138"
+    },
+    {
+      "page": "키트 관리",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/kits",
+      "timestamp": "2025-06-28T09:53:33.409220"
+    },
+    {
+      "page": "키트 관리",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/kits",
+      "timestamp": "2025-06-28T09:53:33.409490"
+    },
+    {
+      "page": "설정",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/settings",
+      "timestamp": "2025-06-28T09:53:39.928623"
+    },
+    {
+      "page": "설정",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/settings",
+      "timestamp": "2025-06-28T09:53:39.929718"
+    },
+    {
+      "page": "설정",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/settings",
+      "timestamp": "2025-06-28T09:53:39.930292"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:5173/analytics",
+      "timestamp": "2025-06-28T09:53:46.456861"
+    },
+    {
+      "page": "통계",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:5173/analytics",
+      "timestamp": "2025-06-28T09:53:46.458283"
+    },
+    {
+      "page": "통계",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "url": "http://localhost:5173/analytics",
+      "timestamp": "2025-06-28T09:53:46.458725"
+    }
+  ]
+}

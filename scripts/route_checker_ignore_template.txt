@@ -1,0 +1,121 @@
+# API Route Checker 화이트리스트 템플릿
+#
+# 이 파일에 나열된 경로는 route checker에서 무시됩니다.
+# 실제로 사용하지 않는 경로는 주석 처리하지 말고 프론트엔드 코드에서 제거하세요.
+#
+# 사용법:
+# 1. 이 파일을 route_checker_ignore.txt로 복사
+# 2. 실제로 필요한 경로만 주석 해제
+# 3. 나머지는 프론트엔드에서 제거
+
+# === 동적 경로 패턴 (백엔드에 있지만 패턴이 다른 경우) ===
+# GET /customers/?search=${searchTerm}  # 백엔드: GET /customers
+# POST /customers/  # 백엔드: POST /customers (trailing slash)
+
+# === 개발 중/계획된 API ===
+# POST /settings/backup/create
+# POST /notifications/test
+# GET /settings/kakao/keys
+
+# === 삭제 예정 (레거시) ===
+
+# DELETE /customer-leads/${leadId}
+# DELETE /customer-leads/${leadId}/consultations/${consultationId}
+# DELETE /customer-leads/campaigns/${campaignId}
+# DELETE /inbody/${recordId}
+# DELETE /kits/${kit.kit_id}
+# DELETE /notifications/${notificationId}
+# DELETE /payments/${paymentId}
+# DELETE /settings/service-types/${serviceTypeId}
+# GET /customer-leads/${leadId}
+# GET /customer-leads/${leadId}/consultations
+# GET /customer-leads/campaigns/${campaign.campaign_id}/targets
+# GET /customer-leads/campaigns/stats
+# GET /customer-leads/stats
+# GET /customers/${customerId}/analytics
+# GET /customers/${customerId}/detail
+# GET /customers/${customerId}/packages
+# GET /customers/${customerId}/recommendations
+# GET /dashboard/monthly-revenue
+# GET /dashboard/revenue-trend
+# GET /dashboard/service-usage-stats
+# GET /docs/algorithm/${path}
+# GET /kits/kit-types
+# GET /kits/stats/summary
+# GET /membership/criteria
+# GET /membership/status-descriptions
+# GET /notifications/
+# GET /notifications/stats/
+# GET /packages/available
+# GET /packages/customer/${reservation.customer_id}/active
+# GET /packages/purchases/stats
+# GET /payments/stats/summary
+# GET /questionnaire/customers/${customerId}/responses
+# GET /questionnaire/responses/${respId}/progress
+# GET /reports/export/${type}
+# GET /services/customer/${formData.customer_id}/packages
+# GET /services/stats
+# GET /services/types
+# GET /services/usage
+# GET /services/usage/export/excel
+# GET /settings/backup/list
+# GET /settings/kakao/templates
+# GET /settings/notifications/preferences
+# GET /settings/service-types
+# GET /settings/system/company
+# GET /settings/users
+# GET /sms/remain
+# GET /test-enhanced/service-types
+# GET /test-enhanced/sessions/active
+# GET /test-enhanced/stats/today
+# GET /users/
+# PATCH /kits/${editingKit.kit_id}
+# PATCH /notifications/${notificationId}
+# POST /customer-leads/
+# POST /customer-leads/${leadId}/consultations
+# POST /customer-leads/assign-staff
+# POST /customer-leads/bulk-import
+# POST /customer-leads/experiences
+# POST /customers
+# POST /enhanced/sessions/${sessionId}/end
+# POST /inbody/
+# POST /inbody/records
+# POST /kits/
+# POST /kits/import/excel
+# POST /membership/update-all-customers
+# POST /notifications/mark-all-read
+# POST /packages
+# POST /payments
+# POST /questionnaire/responses/${responseId}/answers
+# POST /questionnaire/responses/${responseId}/complete
+# POST /questionnaire/start
+# POST /reservations
+# POST /reservations/${reservation.reservation_id}/cancel
+# POST /reservations/${reservation.reservation_id}/complete
+# POST /services/usage
+# POST /settings/kakao/test
+# POST /settings/password/change
+# POST /settings/service-types
+# POST /settings/users
+# POST /sms/send
+# POST /sms/send-leads
+# POST /sms/send-leads-template
+# POST /sms/send-template
+# PUT /customer-leads/${leadData.lead_id}
+# PUT /customer-leads/${leadId}/consultations/${consultationData.consultation_id}
+# PUT /customer-leads/campaigns/${campaign?.campaign_id}/targets/${targetId}
+# PUT /customer-leads/campaigns/${campaignData.campaign_id}
+# PUT /customer-leads/experiences/${experienceData.experience_id}
+# PUT /customers/${customerId}/detail
+# PUT /inbody/${editingRecord.record_id}
+# PUT /membership/criteria
+# PUT /packages/${packageData.package_id}
+# PUT /reservations/${id}
+# PUT /settings/kakao/keys
+# PUT /settings/kakao/templates/${templateId}
+# PUT /settings/notifications/preferences
+# PUT /settings/profile
+# PUT /settings/service-types/${editingService.service_type_id}
+# PUT /settings/system/company
+# PUT /settings/users/${user.user_id}
+# PUT /settings/users/${userId}

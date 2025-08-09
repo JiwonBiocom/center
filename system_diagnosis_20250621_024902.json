@@ -1,0 +1,235 @@
+{
+  "timestamp": "2025-06-21T02:48:58.090394",
+  "backend_status": {
+    "basic_connection": {
+      "status": 200,
+      "response_time": 0.288298,
+      "content": {
+        "message": "AIBIO Center Management API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "redoc": "/redoc"
+      }
+    },
+    "api_docs": {
+      "status": 200,
+      "available": true
+    },
+    "total_endpoints": 139
+  },
+  "database_status": {
+    "tables": [
+      "answers",
+      "audit_logs",
+      "campaign_targets",
+      "company_info",
+      "customer_analytics",
+      "customer_preferences",
+      "customers",
+      "inbody_records",
+      "kakao_message_logs",
+      "kakao_templates",
+      "kit_management",
+      "kit_receipts",
+      "kit_types",
+      "lead_consultation_history",
+      "marketing_leads",
+      "notification_preferences",
+      "notification_settings",
+      "notifications",
+      "package_purchases",
+      "packages",
+      "payments",
+      "questionnaire_analyses",
+      "questionnaire_responses",
+      "questionnaire_templates",
+      "questions",
+      "reregistration_campaigns",
+      "reservation_slots",
+      "reservations",
+      "service_types",
+      "service_usage",
+      "service_usages",
+      "staff_schedules",
+      "system_settings",
+      "users"
+    ],
+    "table_counts": {
+      "answers": 0,
+      "audit_logs": 0,
+      "campaign_targets": 0,
+      "company_info": 0,
+      "customer_analytics": 0,
+      "customer_preferences": 0,
+      "customers": 918,
+      "inbody_records": 0,
+      "kakao_message_logs": 0,
+      "kakao_templates": 0,
+      "kit_management": 0,
+      "kit_receipts": 0,
+      "kit_types": 0,
+      "lead_consultation_history": 0,
+      "marketing_leads": 0,
+      "notification_preferences": 0,
+      "notification_settings": 0,
+      "notifications": 0,
+      "package_purchases": 0,
+      "packages": 0,
+      "payments": 0,
+      "questionnaire_analyses": 0,
+      "questionnaire_responses": 0,
+      "questionnaire_templates": 0,
+      "questions": 0,
+      "reregistration_campaigns": 0,
+      "reservation_slots": 0,
+      "reservations": 0,
+      "service_types": 7,
+      "service_usage": 0,
+      "service_usages": 0,
+      "staff_schedules": 1,
+      "system_settings": 0,
+      "users": 1
+    },
+    "customers_schema": [
+      "customer_id:integer",
+      "name:character varying",
+      "phone:character varying",
+      "first_visit_date:date",
+      "region:character varying",
+      "referral_source:character varying",
+      "health_concerns:text",
+      "notes:text",
+      "assigned_staff:character varying",
+      "birth_year:integer",
+      "gender:character varying",
+      "email:character varying",
+      "address:text",
+      "emergency_contact:character varying",
+      "occupation:character varying",
+      "membership_level:USER-DEFINED",
+      "customer_status:USER-DEFINED",
+      "preferred_time_slots:jsonb",
+      "health_goals:text",
+      "last_visit_date:date",
+      "total_visits:integer",
+      "average_visit_interval:integer",
+      "total_revenue:numeric",
+      "average_satisfaction:numeric",
+      "created_at:timestamp without time zone",
+      "updated_at:timestamp without time zone"
+    ],
+    "payments_schema": [
+      "payment_id:integer",
+      "customer_id:integer",
+      "payment_date:date",
+      "amount:integer",
+      "payment_method:USER-DEFINED",
+      "payment_type:USER-DEFINED",
+      "payment_status:USER-DEFINED",
+      "transaction_id:character varying",
+      "reference_id:integer",
+      "reference_type:character varying",
+      "notes:text",
+      "created_at:timestamp without time zone",
+      "updated_at:timestamp without time zone"
+    ],
+    "packages_schema": [
+      "package_id:integer",
+      "package_name:character varying",
+      "total_sessions:integer",
+      "valid_months:integer",
+      "base_price:integer",
+      "is_active:boolean",
+      "description:text",
+      "created_at:timestamp without time zone",
+      "updated_at:timestamp without time zone"
+    ],
+    "service_types_schema": [
+      "service_type_id:integer",
+      "service_name:character varying",
+      "service_color:character varying",
+      "default_duration:integer",
+      "default_price:integer",
+      "is_active:boolean",
+      "created_at:timestamp without time zone",
+      "updated_at:timestamp without time zone"
+    ]
+  },
+  "frontend_status": {
+    "status": 200,
+    "response_time": 0.044718,
+    "content_length": 1365
+  },
+  "api_endpoints": {
+    "/api/v1/auth/login": {
+      "status": 401,
+      "response_time": 0.52541,
+      "content_length": 40,
+      "response_data": {
+        "detail": "Incorrect email or password"
+      }
+    },
+    "/api/v1/customers/": {
+      "status": 500,
+      "response_time": 0.731901,
+      "content_length": 34
+    },
+    "/api/v1/customers/count": {
+      "status": 200,
+      "response_time": 0.525231,
+      "content_length": 13,
+      "response_data": {
+        "count": 918
+      }
+    },
+    "/api/v1/payments/": {
+      "status": 500,
+      "response_time": 0.655836,
+      "content_length": 34
+    },
+    "/api/v1/packages/": {
+      "status": 500,
+      "response_time": 0.533051,
+      "content_length": 34
+    },
+    "/api/v1/services/": {
+      "status": 200,
+      "response_time": 0.275652,
+      "content_length": 199,
+      "response_data": {
+        "message": "Services API",
+        "available_endpoints": [
+          "/types - 서비스 타입 목록",
+          "/usage - 서비스 이용 내역",
+          "/calendar - 서비스 이용 캘린더",
+          "/export/excel - 엑셀 내보내기"
+        ]
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "API_SERVER",
+      "issue": "3개 API 엔드포인트에서 500 에러",
+      "action": "API 서버 내부 오류 수정 필요",
+      "endpoints": [
+        "/api/v1/customers/",
+        "/api/v1/payments/",
+        "/api/v1/packages/"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "category": "AUTHENTICATION",
+      "issue": "로그인 API 401 에러",
+      "action": "관리자 계정 생성 또는 기존 계정 패스워드 확인 필요"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "DATA_MIGRATION",
+      "issue": "고객 데이터만 있고 결제/패키지 데이터 없음",
+      "action": "완전한 데이터 마이그레이션 필요"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+name: 🚀 Seed Payments to Supabase Prod
+
+on:
+  workflow_dispatch:  # 수동 실행
+    inputs:
+      force_seed:
+        description: '강제로 시드 실행 (기존 데이터 무시)'
+        required: false
+        default: 'false'
+        type: boolean
+  schedule:
+    - cron: '0 21 * * 0'   # 매주 일요일 06:00 KST (21:00 UTC)
+
+jobs:
+  seed-payments:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+          
+      - name: 📊 Check Current Payment Count
+        id: check-payments
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+        run: |
+          # 현재 payments 테이블 레코드 수 확인
+          count=$(supabase db remote exec -c "SELECT COUNT(*) FROM payments;" | tail -1 | tr -d ' ')
+          echo "현재 payments 레코드 수: $count"
+          echo "payment_count=$count" >> $GITHUB_OUTPUT
+          
+      - name: 🚀 Load Payments Data
+        if: ${{ steps.check-payments.outputs.payment_count == '0' || github.event.inputs.force_seed == 'true' }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+        run: |
+          echo "📝 결제 데이터 로딩 시작..."
+          cat backend/seed/payments.csv | supabase db remote exec -f sql/load_payments.sql
+          echo "✅ 결제 데이터 로딩 완료"
+          
+      - name: 🧪 API Smoke Test
+        run: |
+          echo "🔍 API 테스트 시작..."
+          
+          # Railway API 테스트
+          API_URL="https://center-production-1421.up.railway.app"
+          
+          # Payments API 테스트
+          response=$(curl -s -w "%{http_code}" "$API_URL/api/v1/payments/?limit=5" -o /tmp/payments_response.json)
+          
+          if [ "$response" = "200" ]; then
+            echo "✅ Payments API 정상 응답 (HTTP 200)"
+            
+            # 응답 데이터 개수 확인
+            count=$(jq '. | length' /tmp/payments_response.json)
+            echo "📊 API 응답 데이터 개수: $count"
+            
+            if [ "$count" -gt "0" ]; then
+              echo "✅ 결제 데이터가 정상적으로 반환됨"
+              echo "📋 샘플 데이터:"
+              jq -r '.[:3] | .[] | "  - ID:\(.payment_id) | \(.payment_date) | ₩\(.amount) | \(.payment_method)"' /tmp/payments_response.json
+            else
+              echo "⚠️ API는 정상이지만 데이터가 없음"
+              exit 1
+            fi
+          else
+            echo "❌ API 에러: HTTP $response"
+            cat /tmp/payments_response.json
+            exit 1
+          fi
+          
+      - name: 📊 Final Statistics
+        if: success()
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+        run: |
+          echo "📈 최종 통계:"
+          supabase db remote exec -c "
+            SELECT 
+              COUNT(*) as total_payments,
+              COUNT(DISTINCT customer_id) as customers_with_payments,
+              SUM(amount) as total_revenue,
+              MIN(payment_date) as earliest_payment,
+              MAX(payment_date) as latest_payment
+            FROM payments;
+          "
+          
+      - name: 🎉 Success Notification
+        if: success()
+        run: |
+          echo "🎉 결제 데이터 시딩 완료!"
+          echo "💡 다음에서 확인 가능:"
+          echo "   - API: https://center-production-1421.up.railway.app/api/v1/payments/"
+          echo "   - UI: https://center-ten.vercel.app/payments"
+          
+      - name: ❌ Failure Notification
+        if: failure()
+        run: |
+          echo "❌ 결제 데이터 시딩 실패!"
+          echo "🔍 로그를 확인하여 문제를 진단하세요."

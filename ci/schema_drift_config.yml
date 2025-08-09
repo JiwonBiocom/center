@@ -1,0 +1,76 @@
+# 🔧 Schema Drift Detection 설정
+# TJ님 제안에 따른 예외 규칙 및 검사 설정
+
+# 드리프트 검사에서 제외할 테이블 패턴
+ignore_tables:
+  # 임시/스테이징 테이블
+  - "^staging_.*"                    # staging으로 시작하는 모든 테이블
+  - "^temp_.*"                      # 임시 테이블들
+  
+  # 백업/아카이브 테이블  
+  - ".*_backup$"                    # _backup으로 끝나는 모든 테이블
+  - "^.*_additional_backup$"        # 추가 백업 테이블들
+  - "^archive_.*"                   # 아카이브 테이블들
+  
+  # 로그/변경 추적 테이블
+  - "^payment_staff_changes$"       # 결제 담당자 변경 로그
+  - "^.*_changes$"                  # 변경 로그 테이블들
+  - "^.*_history$"                  # 히스토리 테이블들
+  - "^.*_audit$"                    # 감사 테이블들
+  
+  # 마이그레이션 관련
+  - "^migration_.*"                 # 마이그레이션 임시 테이블
+  - "^alembic_version$"             # Alembic 버전 테이블
+
+# 드리프트 검사 옵션
+options:
+  # 컬럼 타입 변경 감지 여부
+  check_column_types: true
+  
+  # 인덱스 변경 감지 여부  
+  check_indexes: false
+  
+  # Foreign Key 제약조건 변경 감지 여부
+  check_foreign_keys: true
+  
+  # 알림 설정
+  email_alerts: true
+  
+  # 자동 베이스라인 업데이트 (주의: 프로덕션에서는 false 권장)
+  auto_update_baseline: false
+
+# 비즈니스 크리티컬 테이블 (반드시 모니터링)
+critical_tables:
+  - "customers"
+  - "payments" 
+  - "reservations"
+  - "services"
+  - "service_types"
+  - "packages"
+  - "users"
+
+# 알림 수신자
+alert_recipients:
+  - "dev-team@company.com"
+  - "dba@company.com"
+
+# 검사 예외 승인자 (수동 승인 필요시)
+approval_required_for:
+  - "critical_table_changes"
+  - "column_removals"
+  - "foreign_key_changes"
+
+# 환경별 설정
+environments:
+  development:
+    auto_update_baseline: true
+    email_alerts: false
+    
+  staging: 
+    auto_update_baseline: true
+    email_alerts: true
+    
+  production:
+    auto_update_baseline: false
+    email_alerts: true
+    strict_mode: true

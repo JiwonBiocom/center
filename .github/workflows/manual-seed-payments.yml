@@ -1,0 +1,22 @@
+name: Manual Seed Payments
+
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Show CSV Content
+        run: |
+          echo "📊 결제 데이터 CSV 확인:"
+          head -10 backend/seed/payments.csv
+          
+      - name: Test API
+        run: |
+          echo "🔍 API 테스트:"
+          curl -s https://center-production-1421.up.railway.app/api/v1/payments/ | head -c 200

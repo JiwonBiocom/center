@@ -1,0 +1,123 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 데이터베이스
+  postgres:
+    image: postgres:17-alpine
+    container_name: aibio_postgres
+    environment:
+      POSTGRES_DB: aibio_center
+      POSTGRES_USER: aibio_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aibio_user -d aibio_center"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis 캐시
+  redis:
+    image: redis:7-alpine
+    container_name: aibio_redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # 백엔드 API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aibio_backend
+    environment:
+      DATABASE_URL: postgresql://aibio_user:${DB_PASSWORD:-changeme}@postgres:5432/aibio_center
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+    volumes:
+      - ./backend:/app
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # 프론트엔드
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    container_name: aibio_frontend
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Nginx 리버스 프록시 (옵션)
+  nginx:
+    image: nginx:alpine
+    container_name: aibio_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/dist:/usr/share/nginx/html
+      - ./ssl:/etc/nginx/ssl
+    ports:
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+  # 백업 서비스 (크론잡)
+  backup:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backup
+    container_name: aibio_backup
+    environment:
+      DATABASE_URL: postgresql://aibio_user:${DB_PASSWORD:-changeme}@postgres:5432/aibio_center
+      BACKUP_PATH: /backups
+      BACKUP_RETENTION_DAYS: 30
+    volumes:
+      - ./backups:/backups
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    name: aibio_network

@@ -1,0 +1,267 @@
+"""
+Enhanced Service Sample Data Creation
+확장된 서비스 관리 시스템 샘플 데이터 생성
+"""
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from datetime import date, time, datetime, timedelta
+from decimal import Decimal
+from core.database import get_db
+from models.enhanced_service import (
+    EnhancedServiceType,
+    ServiceSession,
+    EnhancedPackageUsage
+)
+from models.customer import Customer
+from models.package import Package
+
+def create_sample_enhanced_package_usages():
+    """샘플 확장된 패키지 사용량 생성"""
+    print("=== Creating Enhanced Package Usage Sample Data ===")
+    
+    db = next(get_db())
+    try:
+        # 기존 고객 및 패키지 확인
+        customers = db.query(Customer).limit(10).all()
+        packages = db.query(Package).limit(5).all()
+        
+        if not customers or not packages:
+            print("❌ Need customers and packages first")
+            return
+        
+        sample_usages = [
+            {
+                "customer_id": customers[0].customer_id,
+                "package_id": packages[0].package_id,
+                "purchase_date": date.today() - timedelta(days=30),
+                "valid_until": date.today() + timedelta(days=335),  # 1년 패키지
+                "total_amount": Decimal("500000"),
+                # 종합 패키지 (각 서비스 10회씩)
+                "brain_total": 10,
+                "pulse_total": 10,
+                "lymph_total": 10,
+                "red_total": 10,
+                "ai_bike_total": 10,
+                # 사용 현황 (일부 사용됨)
+                "brain_used": 3,
+                "brain_remaining": 7,
+                "pulse_used": 7,  # 펄스가 가장 많이 사용됨
+                "pulse_remaining": 3,
+                "lymph_used": 2,
+                "lymph_remaining": 8,
+                "red_used": 9,  # 레드가 거의 소진
+                "red_remaining": 1,
+                "ai_bike_used": 1,
+                "ai_bike_remaining": 9,
+                "status": "active"
+            },
+            {
+                "customer_id": customers[1].customer_id,
+                "package_id": packages[1].package_id,
+                "purchase_date": date.today() - timedelta(days=60),
+                "valid_until": date.today() + timedelta(days=305),
+                "total_amount": Decimal("300000"),
+                # 펄스 집중 패키지
+                "brain_total": 5,
+                "pulse_total": 20,  # 펄스 중심
+                "lymph_total": 5,
+                "red_total": 15,
+                "ai_bike_total": 0,
+                # 사용 현황
+                "brain_used": 4,
+                "brain_remaining": 1,
+                "pulse_used": 15,
+                "pulse_remaining": 5,
+                "lymph_used": 3,
+                "lymph_remaining": 2,
+                "red_used": 12,
+                "red_remaining": 3,
+                "ai_bike_used": 0,
+                "ai_bike_remaining": 0,
+                "status": "active"
+            },
+            {
+                "customer_id": customers[2].customer_id,
+                "package_id": packages[2].package_id,
+                "purchase_date": date.today() - timedelta(days=15),
+                "valid_until": date.today() + timedelta(days=350),
+                "total_amount": Decimal("800000"),
+                # 프리미엄 패키지
+                "brain_total": 15,
+                "pulse_total": 15,
+                "lymph_total": 15,
+                "red_total": 15,
+                "ai_bike_total": 15,
+                # 거의 사용 안함 (신규)
+                "brain_used": 1,
+                "brain_remaining": 14,
+                "pulse_used": 2,
+                "pulse_remaining": 13,
+                "lymph_used": 0,
+                "lymph_remaining": 15,
+                "red_used": 1,
+                "red_remaining": 14,
+                "ai_bike_used": 0,
+                "ai_bike_remaining": 15,
+                "status": "active"
+            }
+        ]
+        
+        for usage_data in sample_usages:
+            existing = db.query(EnhancedPackageUsage).filter(
+                EnhancedPackageUsage.customer_id == usage_data["customer_id"],
+                EnhancedPackageUsage.package_id == usage_data["package_id"]
+            ).first()
+            
+            if not existing:
+                usage = EnhancedPackageUsage(**usage_data)
+                db.add(usage)
+                print(f"  ✅ Created package usage for customer {usage_data['customer_id']}")
+            else:
+                print(f"  ⚠️ Package usage already exists for customer {usage_data['customer_id']}")
+        
+        db.commit()
+        print("✅ Enhanced package usage sample data created")
+        
+    except Exception as e:
+        print(f"❌ Error creating enhanced package usage: {e}")
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
+def create_sample_service_sessions():
+    """샘플 서비스 세션 생성"""
+    print("\n=== Creating Service Session Sample Data ===")
+    
+    db = next(get_db())
+    try:
+        # 필요한 데이터 확인
+        customers = db.query(Customer).limit(5).all()
+        service_types = db.query(EnhancedServiceType).all()
+        package_usages = db.query(EnhancedPackageUsage).all()
+        
+        if not customers or not service_types:
+            print("❌ Need customers and service types first")
+            return
+        
+        # 서비스 타입 ID 매핑
+        service_type_map = {st.code: st.service_type_id for st in service_types}
+        
+        # 최근 7일간의 샘플 세션 생성
+        sample_sessions = []
+        
+        for i in range(7):  # 7일간
+            session_date = date.today() - timedelta(days=i)
+            
+            # 하루에 3-5개 세션
+            for j in range(3, 6):
+                customer = customers[j % len(customers)]
+                service_codes = ["PULSE", "BRAIN", "RED", "LYMPH", "AI_BIKE"]
+                service_code = service_codes[j % len(service_codes)]
+                
+                session_time = time(9 + j * 2, 0)  # 9시, 11시, 13시, 15시, 17시
+                
+                session_data = {
+                    "customer_id": customer.customer_id,
+                    "service_type_id": service_type_map[service_code],
+                    "package_usage_id": package_usages[0].usage_id if package_usages else None,
+                    "session_date": session_date,
+                    "start_time": session_time,
+                    "end_time": time(session_time.hour + 1, session_time.minute),
+                    "duration_minutes": 60,
+                    "equipment_settings": {
+                        "equipment_code": f"{service_code}_001",
+                        "intensity": "medium",
+                        "protocol": "standard",
+                        "temperature": 36.5 if service_code == "RED" else None,
+                        "pressure": 40 if service_code == "LYMPH" else None
+                    },
+                    "protocol_used": "standard",
+                    "intensity_level": "medium",
+                    "session_notes": f"정상적인 {service_code} 세션 진행",
+                    "customer_condition": "양호",
+                    "staff_notes": "고객 만족도 높음",
+                    "is_completed": True,
+                    "completion_rate": 100,
+                    "conducted_by": 1  # 관리자 ID
+                }
+                
+                sample_sessions.append(session_data)
+        
+        # 세션 생성
+        for session_data in sample_sessions:
+            existing = db.query(ServiceSession).filter(
+                ServiceSession.customer_id == session_data["customer_id"],
+                ServiceSession.session_date == session_data["session_date"],
+                ServiceSession.start_time == session_data["start_time"]
+            ).first()
+            
+            if not existing:
+                session = ServiceSession(**session_data)
+                db.add(session)
+        
+        db.commit()
+        
+        # 생성된 세션 수 확인
+        total_sessions = db.query(ServiceSession).count()
+        print(f"✅ Service sessions created. Total sessions: {total_sessions}")
+        
+    except Exception as e:
+        print(f"❌ Error creating service sessions: {e}")
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
+def verify_sample_data():
+    """샘플 데이터 생성 확인"""
+    print("\n=== Sample Data Verification ===")
+    
+    db = next(get_db())
+    try:
+        # 테이블별 데이터 수 확인
+        service_types_count = db.query(EnhancedServiceType).count()
+        sessions_count = db.query(ServiceSession).count()
+        package_usages_count = db.query(EnhancedPackageUsage).count()
+        
+        print(f"✅ Enhanced Service Types: {service_types_count}")
+        print(f"✅ Service Sessions: {sessions_count}")
+        print(f"✅ Enhanced Package Usages: {package_usages_count}")
+        
+        # 최근 세션 확인
+        recent_sessions = db.query(ServiceSession).order_by(
+            ServiceSession.session_date.desc(),
+            ServiceSession.start_time.desc()
+        ).limit(5).all()
+        
+        print(f"\nRecent sessions:")
+        for session in recent_sessions:
+            print(f"  - Session {session.session_id}: {session.session_date} {session.start_time}")
+        
+        # 패키지 사용량 확인
+        active_usages = db.query(EnhancedPackageUsage).filter(
+            EnhancedPackageUsage.status == "active"
+        ).all()
+        
+        print(f"\nActive package usages:")
+        for usage in active_usages:
+            print(f"  - Customer {usage.customer_id}: Pulse {usage.pulse_remaining}/{usage.pulse_total}")
+        
+    except Exception as e:
+        print(f"❌ Error verifying sample data: {e}")
+    finally:
+        db.close()
+
+if __name__ == "__main__":
+    try:
+        create_sample_enhanced_package_usages()
+        create_sample_service_sessions()
+        verify_sample_data()
+        print("\n🎉 Enhanced service sample data creation completed!")
+    except Exception as e:
+        print(f"❌ Fatal error: {e}")
+        exit(1)

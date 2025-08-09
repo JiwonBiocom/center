@@ -1,0 +1,151 @@
+name: 🚀 Seed Local Payments Data
+
+on:
+  workflow_dispatch:  # 수동 실행
+
+jobs:
+  seed-payments:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          pip install psycopg2-binary python-dotenv
+          
+      - name: 🔍 Check CSV File
+        run: |
+          echo "📊 로컬 결제 데이터 확인:"
+          echo "파일 크기: $(du -h backend/seed/payments_real.csv)"
+          echo "데이터 수: $(wc -l backend/seed/payments_real.csv)"
+          echo ""
+          echo "샘플 데이터 (처음 5줄):"
+          head -5 backend/seed/payments_real.csv
+          
+      - name: 🚀 Upload Payments to Supabase
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python - << 'EOF'
+          import csv
+          import psycopg2
+          import os
+          from datetime import datetime
+          
+          def convert_payment_method(method):
+              method_map = {
+                  "카드": "card",
+                  "이체": "transfer",
+                  "현금": "cash"
+              }
+              return method_map.get(method, method.lower())
+          
+          # 데이터베이스 연결
+          database_url = os.environ.get('DATABASE_URL')
+          if not database_url:
+              print("❌ DATABASE_URL not found")
+              exit(1)
+          
+          print(f"🔗 데이터베이스 연결 중...")
+          print(f"   URL: {database_url[:30]}...")  # URL 일부만 표시
+          
+          conn = psycopg2.connect(database_url)
+          cursor = conn.cursor()
+          
+          # 현재 데이터 확인
+          cursor.execute("SELECT COUNT(*) FROM payments")
+          before_count = cursor.fetchone()[0]
+          print(f"📊 현재 결제 데이터: {before_count}건")
+          
+          # payment_type 컬럼 존재 여부 확인
+          cursor.execute("""
+              SELECT column_name 
+              FROM information_schema.columns 
+              WHERE table_name = 'payments' AND column_name = 'payment_type'
+          """)
+          has_payment_type = cursor.fetchone() is not None
+          
+          # CSV 데이터 읽기
+          with open('backend/seed/payments_real.csv', 'r', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              
+              success_count = 0
+              skip_count = 0
+              
+              for row in reader:
+                  try:
+                      # 중복 확인
+                      cursor.execute("""
+                          SELECT payment_id FROM payments 
+                          WHERE customer_id = %s AND payment_date = %s AND amount = %s
+                      """, (row['customer_id'], row['payment_date'], row['amount']))
+                      
+                      if cursor.fetchone():
+                          skip_count += 1
+                          continue
+                      
+                      # 데이터 삽입
+                      if has_payment_type:
+                          cursor.execute("""
+                              INSERT INTO payments (customer_id, payment_date, amount, payment_method, payment_type, payment_status, created_at)
+                              VALUES (%s, %s, %s, %s, %s, %s, %s)
+                          """, (
+                              int(row['customer_id']),
+                              row['payment_date'],
+                              float(row['amount']),
+                              convert_payment_method(row['payment_method']),
+                              'regular',  # 또는 다른 유효한 enum 값
+                              'completed',
+                              row['created_at'] or datetime.now().isoformat()
+                          ))
+                      else:
+                          cursor.execute("""
+                              INSERT INTO payments (customer_id, payment_date, amount, payment_method, created_at)
+                              VALUES (%s, %s, %s, %s, %s)
+                          """, (
+                              int(row['customer_id']),
+                              row['payment_date'],
+                              float(row['amount']),
+                              convert_payment_method(row['payment_method']),
+                              row['created_at'] or datetime.now().isoformat()
+                          ))
+                      
+                      success_count += 1
+                      
+                      if success_count % 50 == 0:
+                          print(f"  진행중... {success_count}건 추가")
+                          conn.commit()
+                          
+                  except Exception as e:
+                      print(f"  ⚠️ 오류: {e}")
+                      continue
+              
+              # 최종 커밋
+              conn.commit()
+              
+              print(f"\n✅ 업로드 완료!")
+              print(f"  - 추가: {success_count}건")
+              print(f"  - 중복 스킵: {skip_count}건")
+              
+              # 최종 통계
+              cursor.execute("SELECT COUNT(*) FROM payments")
+              after_count = cursor.fetchone()[0]
+              print(f"\n📈 최종 결제 데이터: {after_count}건 (증가: {after_count - before_count}건)")
+              
+          cursor.close()
+          conn.close()
+          EOF
+          
+      - name: 🎉 Success Notification
+        if: success()
+        run: |
+          echo "🎉 로컬 결제 데이터 마이그레이션 완료!"
+          echo "💡 확인:"
+          echo "   - https://center-ten.vercel.app/payments"

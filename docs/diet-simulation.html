@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIBIO 센터 - 다이어트 프로그램 시뮬레이션</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .diet-card {
+            background: linear-gradient(135deg, #f0fff4 0%, #dcffe4 100%);
+            border: 2px solid #4ade80;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        
+        .keto-meal {
+            background: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .weight-loss-prediction {
+            background: #ffe4e6;
+            border: 2px solid #f87171;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .phase-card {
+            background: #f3f4f6;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .exercise-plan {
+            background: #e0e7ff;
+            border: 2px solid #6366f1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .progress-tracker {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .week-box {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .week-box.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #2563eb;
+        }
+        
+        .weight-display {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ef4444;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .meal-timing {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .calculation-box {
+            background: #f8fafc;
+            border: 2px dashed #94a3b8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        h1 { color: white; margin: 0; font-size: 2.5em; }
+        h2 { color: #ef4444; margin-top: 40px; }
+        h3 { color: #374151; margin-top: 30px; }
+        
+        .tag {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+        
+        .success-tag {
+            background: #10b981;
+        }
+        
+        .warning-tag {
+            background: #f59e0b;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .alert {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success-alert {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔥 AIBIO 다이어트 인텐시브 프로그램</h1>
+        <p style="font-size: 1.2em; margin-top: 20px;">체력 수준별 맞춤형 체중 감량 전략</p>
+    </div>
+
+    <div class="container">
+        <h2>📊 초기 평가 결과 - 다이어트 목표 고객</h2>
+        
+        <div class="diet-card">
+            <h3>👤 고객 프로필 예시</h3>
+            <table>
+                <tr>
+                    <th>항목</th>
+                    <th>측정값</th>
+                    <th>목표값</th>
+                </tr>
+                <tr>
+                    <td>현재 체중</td>
+                    <td><strong>75kg</strong></td>
+                    <td>65kg (-10kg)</td>
+                </tr>
+                <tr>
+                    <td>체지방률</td>
+                    <td><strong>32%</strong></td>
+                    <td>22% (-10%)</td>
+                </tr>
+                <tr>
+                    <td>근육량</td>
+                    <td>23kg</td>
+                    <td>25kg (+2kg)</td>
+                </tr>
+                <tr>
+                    <td>기초대사량</td>
+                    <td>1,350 kcal</td>
+                    <td>1,450 kcal</td>
+                </tr>
+                <tr>
+                    <td>내장지방 레벨</td>
+                    <td><strong>12</strong></td>
+                    <td>8 이하</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>🏃 체력 수준별 프로그램 분기</h2>
+        
+        <div class="phase-card">
+            <h3>Case A: 체력 및 활력이 충분한 경우 (점수 70점 이상)</h3>
+            <div class="tag success-tag">즉시 인텐시브 모드 시작</div>
+            
+            <div class="exercise-plan">
+                <h4>🚴 AI 바이크 병행 프로그램</h4>
+                <ul>
+                    <li><strong>1-2주차:</strong> AI 바이크 주 3회, 30분 (중강도)</li>
+                    <li><strong>3-4주차:</strong> AI 바이크 주 4회, 40분 (고강도 인터벌)</li>
+                    <li><strong>5주차~:</strong> AI 바이크 주 5회, 45분 (HIIT 프로토콜)</li>
+                </ul>
+                
+                <div class="weight-loss-prediction">
+                    <h4>예상 감량 속도</h4>
+                    <div class="weight-display">주당 1.5~2.0kg 감량</div>
+                    <p>12주 총 예상 감량: <strong>18~24kg</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="phase-card">
+            <h3>Case B: 체력 및 활력이 부족한 경우 (점수 70점 미만)</h3>
+            <div class="tag warning-tag">단계적 접근 필요</div>
+            
+            <div class="progress-tracker">
+                <div class="week-box active">
+                    <h5>1-3주차</h5>
+                    <strong>체력 향상기</strong><br>
+                    펄스, 림프<br>
+                    가벼운 스트레칭
+                </div>
+                <div class="week-box">
+                    <h5>4-6주차</h5>
+                    <strong>전환기</strong><br>
+                    AI 바이크 도입<br>
+                    주 2-3회, 20분
+                </div>
+                <div class="week-box">
+                    <h5>7주차~</h5>
+                    <strong>인텐시브</strong><br>
+                    본격 다이어트<br>
+                    주 4-5회, 40분
+                </div>
+            </div>
+            
+            <div class="weight-loss-prediction">
+                <h4>단계별 예상 감량</h4>
+                <ul style="text-align: left;">
+                    <li><strong>1-3주:</strong> 주당 0.5~0.8kg (체력 회복 중점)</li>
+                    <li><strong>4-6주:</strong> 주당 1.0~1.3kg (운동 적응기)</li>
+                    <li><strong>7주차~:</strong> 주당 1.5~2.0kg (인텐시브)</li>
+                </ul>
+                <p>12주 총 예상 감량: <strong>12~15kg</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🥗 키토제닉 식단 프로그램</h2>
+        
+        <div class="keto-meal">
+            <h3>🍱 팀키토 키토제닉 도시락</h3>
+            <div class="tag">오리지날 8종</div>
+            <div class="tag">시그니처 6종</div>
+            <div class="tag">저탄수화물 고단백</div>
+            
+            <h4>추천 메뉴 구성</h4>
+            
+            <div class="meal-timing">
+                <strong>🌅 아침 (8:00)</strong><br>
+                <strong>[오리지날] 훈제오리</strong><br>
+                훈제오리 130g + 컬리플라워 라이스 70g + 들깨소스<br>
+                <em>칼로리: 380kcal | 단백질: 28g | 탄수화물: 8g</em>
+            </div>
+            
+            <div class="meal-timing">
+                <strong>☀️ 점심 (12:30)</strong><br>
+                <strong>[오리지날] 오파 (우삼겹 알리오올리오)</strong><br>
+                우삼겹 130g + 두부면 100g + 알리오올리오소스<br>
+                <em>칼로리: 520kcal | 단백질: 35g | 탄수화물: 6g</em>
+            </div>
+            
+            <div class="meal-timing">
+                <strong>🌙 저녁 (18:00)</strong><br>
+                <strong>[시그니처] 닭목살</strong><br>
+                닭목살 140g + 현미밥 50g + 호랑이소스 + 야채무침<br>
+                <em>칼로리: 450kcal | 단백질: 32g | 탄수화물: 25g</em>
+            </div>
+            
+            <div class="alert">
+                💡 <strong>일일 총계:</strong> 1,350kcal | 단백질 95g | 탄수화물 39g<br>
+                <strong>특징:</strong> 컬리플라워 라이스와 두부면으로 탄수화물 최소화
+            </div>
+            
+            <h4>주간 로테이션 추천</h4>
+            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <strong>월/수/금:</strong> 오리지날 라인 (초저탄수)<br>
+                <strong>화/목:</strong> 시그니처 라인 (적당한 탄수화물)<br>
+                <strong>주말:</strong> 자유식 또는 제로밥상 키토모드
+            </div>
+        </div>
+        
+        <div class="keto-meal">
+            <h3>🥘 제로밥상 키토모드</h3>
+            <div class="tag">밥 제외</div>
+            <div class="tag">계란 추가</div>
+            <div class="tag success-tag">단백질 강화</div>
+            
+            <p style="margin-bottom: 20px; font-style: italic; color: #666;">"설탕을 단 한 톨도 쓰지 않는 '설탕 없이 완벽한 한 끼-제로밥상'은 클린한 재료로 만든 저당 한식을 개인 맞춤형으로 즐길 수 있는 K-푸드 브랜드입니다."</p>
+            
+            <h4>주문 커스터마이징</h4>
+            <ul>
+                <li>✅ 밥 → 계란 2개로 대체</li>
+                <li>✅ 채소 추가 (브로컬리, 시금치)</li>
+                <li>❌ 감자, 고구마 제외</li>
+                <li>❌ 당근, 양파 최소화</li>
+                <li>❌ 설탕 사용 메뉴 제외</li>
+            </ul>
+            
+            <div class="success-alert">
+                🥚 <strong>계란 추가 효과:</strong> 단백질 12g 추가, 포만감 30% 상승
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📈 감량 예측 알고리즘</h2>
+        
+        <div class="calculation-box">
+            <h3>🧮 주간 감량 계산식</h3>
+            <pre>
+기초 감량 = (칼로리 적자 × 7) ÷ 7,700kcal
+운동 보너스 = AI바이크 시간 × 0.15kg
+케톤 보너스 = 키토 준수율 × 0.3kg
+스트레스 페널티 = 스트레스 점수 × (-0.1kg)
+
+<strong>주간 예상 감량 = 기초 + 운동 + 케톤 - 페널티</strong>
+            </pre>
+        </div>
+        
+        <div class="diet-card">
+            <h3>📊 시나리오별 감량 예측</h3>
+            
+            <table>
+                <tr>
+                    <th>시나리오</th>
+                    <th>식단 준수</th>
+                    <th>운동 준수</th>
+                    <th>주간 감량</th>
+                    <th>12주 감량</th>
+                </tr>
+                <tr style="background: #d1fae5;">
+                    <td><strong>완벽 준수</strong></td>
+                    <td>95%+</td>
+                    <td>95%+</td>
+                    <td>2.0-2.5kg</td>
+                    <td>24-30kg</td>
+                </tr>
+                <tr>
+                    <td>평균 준수</td>
+                    <td>80%</td>
+                    <td>80%</td>
+                    <td>1.3-1.7kg</td>
+                    <td>15-20kg</td>
+                </tr>
+                <tr>
+                    <td>최소 준수</td>
+                    <td>60%</td>
+                    <td>60%</td>
+                    <td>0.8-1.2kg</td>
+                    <td>10-14kg</td>
+                </tr>
+                <tr style="background: #fee2e2;">
+                    <td>미준수</td>
+                    <td>40%↓</td>
+                    <td>40%↓</td>
+                    <td>0.3-0.5kg</td>
+                    <td>4-6kg</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="weight-loss-prediction">
+            <h3>🎯 목표 달성 시뮬레이션</h3>
+            <div style="text-align: left;">
+                <strong>고객 목표:</strong> 75kg → 65kg (-10kg)<br>
+                <strong>권장 프로그램:</strong> 8주 집중 코스<br><br>
+                
+                <div class="progress-tracker">
+                    <div class="week-box">
+                        <strong>2주차</strong><br>
+                        72.5kg<br>
+                        <span style="color: #10b981;">-2.5kg</span>
+                    </div>
+                    <div class="week-box">
+                        <strong>4주차</strong><br>
+                        69.5kg<br>
+                        <span style="color: #10b981;">-5.5kg</span>
+                    </div>
+                    <div class="week-box">
+                        <strong>6주차</strong><br>
+                        67kg<br>
+                        <span style="color: #10b981;">-8kg</span>
+                    </div>
+                    <div class="week-box active">
+                        <strong>8주차</strong><br>
+                        65kg<br>
+                        <span style="color: #10b981;">-10kg ✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>💊 다이어트 보조 영양제</h2>
+        
+        <div class="phase-card">
+            <h3>체력 충분 시 (Case A)</h3>
+            <ol>
+                <li><strong>끝판왕 혈당 영양제</strong> - 혈당 안정화</li>
+                <li><strong>Adipo-Leptin Benefits™</strong> - 지방 연소 촉진</li>
+                <li><strong>CoQ10-DMG 300/300</strong> - 에너지 대사 지원</li>
+            </ol>
+        </div>
+        
+        <div class="phase-card">
+            <h3>체력 부족 시 (Case B)</h3>
+            <strong>1-3주차 (체력 회복기)</strong>
+            <ol>
+                <li><strong>바이오 밸런스</strong> - 기초 체력 향상</li>
+                <li><strong>슈퍼슬로우 & 화이트샷</strong> - 항산화, 피로 회복</li>
+            </ol>
+            
+            <strong>4주차부터 (다이어트 모드)</strong>
+            <ol>
+                <li><strong>끝판왕 혈당 영양제</strong> 추가</li>
+                <li><strong>Adipo-Leptin Benefits™</strong> 추가</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>⚠️ 주의사항 및 모니터링</h2>
+        
+        <div class="alert">
+            <h4>🔍 주간 체크 항목</h4>
+            <ul>
+                <li>케톤 수치 측정 (케톤 스틱)</li>
+                <li>체중 및 체지방률 변화</li>
+                <li>에너지 레벨 및 수면 질</li>
+                <li>운동 후 회복 시간</li>
+                <li>배변 활동 및 수분 섭취량</li>
+            </ul>
+        </div>
+        
+        <div class="success-alert">
+            <h4>✅ 성공 팁</h4>
+            <ul>
+                <li><strong>수분 섭취:</strong> 하루 3L 이상 (케톤 생성 시 필수)</li>
+                <li><strong>전해질 보충:</strong> 마그네슘, 칼륨, 나트륨</li>
+                <li><strong>간헐적 단식:</strong> 16:8 병행 시 효과 극대화</li>
+                <li><strong>수면 관리:</strong> 7시간 이상 숙면 (지방 연소 호르몬)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container" style="text-align: center; background: #ef4444; color: white;">
+        <h2 style="color: white;">🚀 당신의 다이어트 성공을 보장합니다!</h2>
+        <p style="font-size: 1.2em;">
+            과학적 접근 + AI 최적화 + 맞춤형 관리<br>
+            = <strong>확실한 체중 감량</strong>
+        </p>
+        <div class="weight-display" style="color: white; margin: 30px 0;">
+            8주 -10kg 달성률 92%
+        </div>
+        <p>
+            <strong>AIBIO Center</strong><br>
+            건강한 다이어트의 새로운 기준
+        </p>
+    </div>
+</body>
+</html>

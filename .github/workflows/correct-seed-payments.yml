@@ -1,0 +1,107 @@
+name: 🚀 Correct Seed Payments
+
+on:
+  workflow_dispatch:
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          
+      - name: Install Dependencies
+        run: pip install psycopg2-binary
+          
+      - name: Seed Payments with Correct Enum
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python - << 'EOF'
+          import csv
+          import psycopg2
+          import os
+          
+          # 결제 방법 변환
+          def convert_method(m):
+              return {"카드": "card", "이체": "transfer", "현금": "cash"}.get(m, "card")
+          
+          # DB 연결
+          conn = psycopg2.connect(os.environ['DATABASE_URL'])
+          cursor = conn.cursor()
+          
+          # 현재 상태 확인
+          cursor.execute("SELECT COUNT(*) FROM payments")
+          before = cursor.fetchone()[0]
+          print(f"🔍 현재 결제 데이터: {before}건")
+          
+          # CSV 읽고 삽입
+          with open('backend/seed/payments_real.csv', 'r', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              success = 0
+              failed = 0
+              
+              for row in reader:
+                  try:
+                      # payment_type을 'single' (단일 결제)로 설정
+                      cursor.execute("""
+                          INSERT INTO payments (
+                              customer_id, payment_date, amount, 
+                              payment_method, payment_type, payment_status, 
+                              created_at
+                          )
+                          VALUES (%s, %s, %s, %s, %s, %s, %s)
+                      """, (
+                          int(row['customer_id']),
+                          row['payment_date'],
+                          int(float(row['amount'])),  # amount가 integer 타입
+                          convert_method(row['payment_method']),
+                          'single',  # 올바른 enum 값
+                          'completed',
+                          row['created_at']
+                      ))
+                      success += 1
+                      
+                      if success % 50 == 0:
+                          conn.commit()
+                          print(f"✅ 진행: {success}건 삽입")
+                          
+                  except Exception as e:
+                      failed += 1
+                      print(f"❌ 오류 (행 {reader.line_num}): {e}")
+                      conn.rollback()
+                      continue
+              
+              # 최종 커밋
+              conn.commit()
+              
+              # 최종 확인
+              cursor.execute("SELECT COUNT(*) FROM payments")
+              after = cursor.fetchone()[0]
+              
+              print(f"\n🎉 완료!")
+              print(f"  - 성공: {success}건")
+              print(f"  - 실패: {failed}건")
+              print(f"  - 총 결제 데이터: {before}건 → {after}건 (추가: {after-before}건)")
+              
+              # 샘플 데이터 표시
+              if after > 0:
+                  cursor.execute("""
+                      SELECT payment_id, customer_id, payment_date, amount 
+                      FROM payments 
+                      ORDER BY payment_id DESC 
+                      LIMIT 3
+                  """)
+                  print(f"\n📋 최근 데이터:")
+                  for row in cursor.fetchall():
+                      print(f"  - ID:{row[0]} | 고객:{row[1]} | {row[2]} | ₩{row[3]:,}")
+              
+              cursor.close()
+              conn.close()
+          EOF

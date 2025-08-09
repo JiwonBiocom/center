@@ -1,0 +1,156 @@
+{
+  "timestamp": "2025-06-28T14:01:39.202098",
+  "base_url": "http://localhost:5173/customers",
+  "summary": {
+    "total_pages": 10,
+    "success_pages": 0,
+    "total_js_errors": 10,
+    "total_network_errors": 0
+  },
+  "page_results": [
+    {
+      "page": "메인 대시보드",
+      "url": "http://localhost:5173/customers/",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "고객 관리",
+      "url": "http://localhost:5173/customers/customers",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "결제 관리",
+      "url": "http://localhost:5173/customers/payments",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "예약 관리",
+      "url": "http://localhost:5173/customers/reservations",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "서비스 관리",
+      "url": "http://localhost:5173/customers/services",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "패키지 관리",
+      "url": "http://localhost:5173/customers/packages",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "리드 관리",
+      "url": "http://localhost:5173/customers/leads",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "키트 관리",
+      "url": "http://localhost:5173/customers/kits",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "설정",
+      "url": "http://localhost:5173/customers/settings",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    },
+    {
+      "page": "통계",
+      "url": "http://localhost:5173/customers/analytics",
+      "console_messages": 0,
+      "network_errors": 0,
+      "js_errors": 1,
+      "status": "has_issues"
+    }
+  ],
+  "js_errors": [
+    {
+      "page": "메인 대시보드",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/\nCall log:\n  - navigating to \"http://localhost:5173/customers/\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/",
+      "timestamp": "2025-06-28T14:01:29.136495"
+    },
+    {
+      "page": "고객 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/customers\nCall log:\n  - navigating to \"http://localhost:5173/customers/customers\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/customers",
+      "timestamp": "2025-06-28T14:01:30.141646"
+    },
+    {
+      "page": "결제 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/payments\nCall log:\n  - navigating to \"http://localhost:5173/customers/payments\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/payments",
+      "timestamp": "2025-06-28T14:01:31.146196"
+    },
+    {
+      "page": "예약 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/reservations\nCall log:\n  - navigating to \"http://localhost:5173/customers/reservations\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/reservations",
+      "timestamp": "2025-06-28T14:01:32.151448"
+    },
+    {
+      "page": "서비스 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/services\nCall log:\n  - navigating to \"http://localhost:5173/customers/services\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/services",
+      "timestamp": "2025-06-28T14:01:33.155721"
+    },
+    {
+      "page": "패키지 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/packages\nCall log:\n  - navigating to \"http://localhost:5173/customers/packages\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/packages",
+      "timestamp": "2025-06-28T14:01:34.159229"
+    },
+    {
+      "page": "리드 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/leads\nCall log:\n  - navigating to \"http://localhost:5173/customers/leads\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/leads",
+      "timestamp": "2025-06-28T14:01:35.163987"
+    },
+    {
+      "page": "키트 관리",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/kits\nCall log:\n  - navigating to \"http://localhost:5173/customers/kits\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/kits",
+      "timestamp": "2025-06-28T14:01:36.168867"
+    },
+    {
+      "page": "설정",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/settings\nCall log:\n  - navigating to \"http://localhost:5173/customers/settings\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/settings",
+      "timestamp": "2025-06-28T14:01:37.173868"
+    },
+    {
+      "page": "통계",
+      "error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/customers/analytics\nCall log:\n  - navigating to \"http://localhost:5173/customers/analytics\", waiting until \"networkidle\"\n",
+      "url": "http://localhost:5173/customers/analytics",
+      "timestamp": "2025-06-28T14:01:38.179105"
+    }
+  ],
+  "network_errors": [],
+  "console_messages": []
+}

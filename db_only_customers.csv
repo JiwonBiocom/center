@@ -1,0 +1,8 @@
+﻿name,phone,first_visit_date,region,referral_source,health_concerns,notes,assigned_staff,birth_year,gender,email,address,emergency_contact,occupation,membership_level,customer_status,preferred_time_slots,health_goals,customer_id,created_at,updated_at,last_visit_date,total_visits,average_visit_interval,total_revenue,average_satisfaction,phone_cleaned,created_date
+김형기,,,,엑셀업로드,,엑셀 업로드 (2025-06-25),,,,,,,,basic,active,,,1140,2025-06-25T05:08:47.486999,2025-06-25T05:08:47.486999,,0,,0.00,,,2025-06-25
+유정희,,,,엑셀업로드,,엑셀 업로드 (2025-06-25),,,,,,,,basic,active,,,1137,2025-06-25T05:08:47.486999,2025-06-25T05:08:47.486999,,0,,0.00,,,2025-06-25
+허아인,,,,NaN,,엑셀 업로드 (2025-06-25),,,,,,,,basic,active,,,1130,2025-06-25T05:08:47.486999,2025-06-25T05:08:47.486999,,0,,0.00,,,2025-06-25
+김라현,,,,엑셀업로드,,엑셀 업로드 (2025-06-25),,,,,,,,basic,active,,,1125,2025-06-25T05:08:47.486999,2025-06-25T05:08:47.486999,,0,,0.00,,,2025-06-25
+엄미나,,,,유튜브,,엑셀 업로드 (2025-06-25),,,,,,,,basic,active,,,1129,2025-06-25T05:08:47.486999,2025-06-25T05:08:47.486999,,0,,0.00,,,2025-06-25
+이은정,,,,,,,,,,,,,,basic,active,,,1092,2025-06-21T13:08:21.007682,2025-06-21T13:08:21.007682,,0,,0.00,,,2025-06-21
+테스트 수정,010-9438-3621,2021-05-02,,,"당뇨, 대인커뮤니티, 전반적 건강",,직원,,,,,,,basic,dormant,,,1,2025-06-05T00:09:09,2025-06-28T03:05:01.529563,2021-05-02,0,,0.00,,01094383621,2025-06-05

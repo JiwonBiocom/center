@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InBody 기능 테스트</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>InBody 기능 테스트</h1>
+    <p>이 페이지는 InBody 기능이 정상적으로 작동하는지 테스트합니다.</p>
+
+    <div id="results"></div>
+
+    <button onclick="testLogin()">1. 로그인 테스트</button>
+    <button onclick="testCustomerDetail()">2. 고객 상세 조회</button>
+    <button onclick="testInBodyAPI()">3. InBody API 테스트</button>
+    <button onclick="testCreateInBody()">4. InBody 생성 테스트</button>
+    <button onclick="runAllTests()">전체 테스트 실행</button>
+
+    <script>
+        let authToken = '';
+        const apiBase = 'http://localhost:8000/api/v1';
+        const customerId = 4752;
+
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            resultDiv.innerHTML = message;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        async function testLogin() {
+            try {
+                addResult('로그인 테스트 시작...', 'info');
+                
+                const response = await fetch(`${apiBase}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'username=admin@aibio.com&password=admin123'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    authToken = data.access_token;
+                    addResult('✅ 로그인 성공', 'success');
+                    return true;
+                } else {
+                    addResult('❌ 로그인 실패: ' + response.statusText, 'error');
+                    return false;
+                }
+            } catch (error) {
+                addResult('❌ 로그인 오류: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        async function testCustomerDetail() {
+            if (!authToken) {
+                addResult('⚠️ 먼저 로그인을 해주세요.', 'error');
+                return false;
+            }
+
+            try {
+                addResult('고객 상세 정보 조회 테스트 시작...', 'info');
+                
+                const response = await fetch(`${apiBase}/customers/${customerId}/detail`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const inbodyCount = data.inbodyRecords ? data.inbodyRecords.length : 0;
+                    addResult(`✅ 고객 정보 조회 성공 - InBody 기록: ${inbodyCount}개`, 'success');
+                    addResult(`<pre>${JSON.stringify(data.inbodyRecords || [], null, 2)}</pre>`, 'info');
+                    return true;
+                } else {
+                    addResult('❌ 고객 정보 조회 실패: ' + response.statusText, 'error');
+                    return false;
+                }
+            } catch (error) {
+                addResult('❌ 고객 정보 조회 오류: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        async function testInBodyAPI() {
+            if (!authToken) {
+                addResult('⚠️ 먼저 로그인을 해주세요.', 'error');
+                return false;
+            }
+
+            try {
+                addResult('InBody API 테스트 시작...', 'info');
+                
+                const response = await fetch(`${apiBase}/inbody/customer/${customerId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const recordCount = data.data.records.length;
+                    addResult(`✅ InBody API 조회 성공 - 기록 수: ${recordCount}개`, 'success');
+                    addResult(`<pre>${JSON.stringify(data.data.summary, null, 2)}</pre>`, 'info');
+                    return true;
+                } else {
+                    addResult('❌ InBody API 조회 실패: ' + response.statusText, 'error');
+                    return false;
+                }
+            } catch (error) {
+                addResult('❌ InBody API 오류: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        async function testCreateInBody() {
+            if (!authToken) {
+                addResult('⚠️ 먼저 로그인을 해주세요.', 'error');
+                return false;
+            }
+
+            try {
+                addResult('InBody 생성 테스트 시작...', 'info');
+                
+                const testData = {
+                    customer_id: customerId,
+                    measurement_date: new Date().toISOString(),
+                    weight: 67.2,
+                    body_fat_percentage: 17.5,
+                    skeletal_muscle_mass: 29.5,
+                    notes: '브라우저 테스트 측정'
+                };
+
+                const response = await fetch(`${apiBase}/inbody/`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult('✅ InBody 기록 생성 성공', 'success');
+                    addResult(`<pre>${JSON.stringify(data.data, null, 2)}</pre>`, 'info');
+                    return true;
+                } else {
+                    addResult('❌ InBody 기록 생성 실패: ' + response.statusText, 'error');
+                    return false;
+                }
+            } catch (error) {
+                addResult('❌ InBody 기록 생성 오류: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        async function runAllTests() {
+            document.getElementById('results').innerHTML = '';
+            addResult('=== 전체 테스트 시작 ===', 'info');
+            
+            const loginSuccess = await testLogin();
+            if (!loginSuccess) return;
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testCustomerDetail();
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testInBodyAPI();
+            
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testCreateInBody();
+            
+            addResult('=== 전체 테스트 완료 ===', 'info');
+        }
+    </script>
+</body>
+</html>

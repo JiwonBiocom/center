@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AIBIO 센터 관리</title>
+    
+    <!-- PWA 메타 태그 -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4F46E5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AIBIO" />
+    
+    <!-- iOS 아이콘 -->
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    
+    <!-- 모바일 최적화 -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 캐시 버스팅 -->
+    <script>
+      window.__APP_VERSION__ = Date.now();
+      console.log('🔄 앱 버전:', window.__APP_VERSION__);
+    </script>
+    <!-- WebSocket 완전 차단 스크립트 (개발 환경) -->
+    <script src="/disable-ws.js?v=2"></script>
+    <script type="module" src="/src/main.tsx?v=2"></script>
+  </body>
+</html>

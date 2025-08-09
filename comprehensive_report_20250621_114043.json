@@ -1,0 +1,131 @@
+{
+  "timestamp": "2025-06-21T11:40:03.603934",
+  "pages": {
+    "/": {
+      "name": "대시보드",
+      "path": "/",
+      "priority": 1,
+      "current_url": "https://center-ten.vercel.app/",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 8,
+      "status": "정상"
+    },
+    "/customers": {
+      "name": "고객관리",
+      "path": "/customers",
+      "priority": 1,
+      "current_url": "https://center-ten.vercel.app/customers",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 3,
+      "status": "정상"
+    },
+    "/services": {
+      "name": "서비스관리",
+      "path": "/services",
+      "priority": 1,
+      "current_url": "https://center-ten.vercel.app/services",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 4,
+      "status": "정상"
+    },
+    "/payments": {
+      "name": "결제관리",
+      "path": "/payments",
+      "priority": 1,
+      "current_url": "https://center-ten.vercel.app/payments",
+      "console_errors": 4,
+      "console_warnings": 0,
+      "api_404_count": 1,
+      "api_500_count": 0,
+      "total_api_calls": 3,
+      "status": "문제있음"
+    },
+    "/packages": {
+      "name": "패키지관리",
+      "path": "/packages",
+      "priority": 2,
+      "current_url": "https://center-ten.vercel.app/packages",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 2,
+      "status": "정상"
+    },
+    "/reports": {
+      "name": "리포트",
+      "path": "/reports",
+      "priority": 2,
+      "current_url": "https://center-ten.vercel.app/reports",
+      "console_errors": 4,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 1,
+      "total_api_calls": 6,
+      "status": "문제있음"
+    },
+    "/notifications": {
+      "name": "알림",
+      "path": "/notifications",
+      "priority": 3,
+      "current_url": "https://center-ten.vercel.app/notifications",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 1,
+      "status": "정상"
+    },
+    "/leads": {
+      "name": "유입고객",
+      "path": "/leads",
+      "priority": 2,
+      "current_url": "https://center-ten.vercel.app/leads",
+      "console_errors": 0,
+      "console_warnings": 0,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 3,
+      "status": "정상"
+    },
+    "/settings": {
+      "name": "설정",
+      "path": "/settings",
+      "priority": 3,
+      "current_url": "https://center-ten.vercel.app/settings",
+      "console_errors": 0,
+      "console_warnings": 1,
+      "api_404_count": 0,
+      "api_500_count": 0,
+      "total_api_calls": 1,
+      "status": "정상"
+    }
+  },
+  "issues": [
+    {
+      "page": "결제관리",
+      "type": "API_404",
+      "endpoint": "/api/v1/payments?limit=100",
+      "priority": 1
+    }
+  ],
+  "development_plan": [
+    {
+      "priority": "긴급",
+      "task": "/api/v1/payments?limit=100 엔드포인트 수정",
+      "affected_pages": [
+        "결제관리"
+      ],
+      "type": "API_404"
+    }
+  ]
+}

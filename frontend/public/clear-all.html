@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🧹 Safari 완전 캐시 정리</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>🧹 Safari 완전 캐시 정리</h1>
+    <p>Safari의 모든 캐시를 강제로 정리합니다</p>
+    <div id="status">진행 중...</div>
+    
+    <script>
+    (async function() {
+        const statusDiv = document.getElementById('status');
+        
+        function log(message) {
+            console.log(message);
+            statusDiv.innerHTML += '<div>' + message + '</div>';
+        }
+        
+        try {
+            log('🔍 Safari 캐시 정리 시작...');
+            
+            // Service Worker 정리
+            if ('serviceWorker' in navigator) {
+                const regs = await navigator.serviceWorker.getRegistrations();
+                log(`📋 Service Worker: ${regs.length}개 발견`);
+                
+                for (const reg of regs) {
+                    await reg.unregister();
+                    log(`✅ Service Worker 제거: ${reg.scope}`);
+                }
+            }
+            
+            // 모든 캐시 정리
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                log(`📦 캐시: ${cacheNames.length}개 발견`);
+                
+                for (const name of cacheNames) {
+                    await caches.delete(name);
+                    log(`🗑️ 캐시 삭제: ${name}`);
+                }
+            }
+            
+            // 저장소 정리
+            localStorage.clear();
+            sessionStorage.clear();
+            log('🧽 localStorage, sessionStorage 정리 완료');
+            
+            // IndexedDB 정리
+            if ('indexedDB' in window) {
+                try {
+                    const databases = await indexedDB.databases();
+                    for (const db of databases) {
+                        const deleteReq = indexedDB.deleteDatabase(db.name);
+                        log(`🗄️ IndexedDB 삭제: ${db.name}`);
+                    }
+                } catch(e) {
+                    log('ℹ️ IndexedDB 정리 건너뜀');
+                }
+            }
+            
+            log('✅ 모든 정리 작업 완료!');
+            log('⚠️ 이제 Safari를 완전히 종료한 후 다시 열어주세요');
+            
+            // 3초 후 메인 페이지로 리다이렉트
+            setTimeout(() => {
+                log('🔄 메인 페이지로 이동...');
+                window.location.replace(`/?safari-clear=${Date.now()}`);
+            }, 3000);
+            
+        } catch (error) {
+            log(`❌ 에러 발생: ${error.message}`);
+            console.error('Safari 캐시 정리 중 에러:', error);
+        }
+    })();
+    </script>
+    
+    <p><strong>참고:</strong> Safari의 캐시는 매우 강력하므로 완전한 정리를 위해 Safari를 완전히 종료한 후 다시 열어주세요.</p>
+</body>
+</html>
