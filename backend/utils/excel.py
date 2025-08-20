@@ -64,8 +64,15 @@ class ExcelHandler:
 
         # 문자열 날짜 처리
         if isinstance(date_value, str):
-            # 공백 제거
+            # 공백 제거 및 정규화
             date_value = date_value.strip()
+            
+            # 한글 제거 및 정규화
+            date_value = date_value.replace('년', '-').replace('월', '-').replace('일', '')
+            date_value = date_value.replace('.', '-').replace('/', '-')
+            # 연속된 구분자 제거
+            date_value = re.sub(r'-+', '-', date_value)
+            date_value = date_value.strip('-')
 
             # 더 많은 날짜 형식 지원
             date_formats = [
@@ -108,13 +115,19 @@ class ExcelHandler:
                 except ValueError:
                     continue
 
-        # pandas의 to_datetime 함수로 최종 시도
+        # pandas의 to_datetime 함수로 최종 시도 (더 유연한 옵션 사용)
         try:
-            result = pd.to_datetime(date_value)
+            result = pd.to_datetime(date_value, dayfirst=False, yearfirst=True)
             if pd.notna(result):
                 return result.to_pydatetime() if hasattr(result, 'to_pydatetime') else result
         except:
-            pass
+            # dayfirst=True로 재시도
+            try:
+                result = pd.to_datetime(date_value, dayfirst=True, yearfirst=False)
+                if pd.notna(result):
+                    return result.to_pydatetime() if hasattr(result, 'to_pydatetime') else result
+            except:
+                pass
 
         return None
 
