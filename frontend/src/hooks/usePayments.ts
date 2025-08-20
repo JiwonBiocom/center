@@ -48,6 +48,7 @@ export function usePayments() {
         limit: itemsPerPage,
         skip: (page - 1) * itemsPerPage
       };
+      if (searchTerm) params.search = searchTerm;
       if (dateFrom) params.date_from = dateFrom;
       if (dateTo) params.date_to = dateTo;
       if (paymentMethod) params.payment_method = paymentMethod;
@@ -68,7 +69,7 @@ export function usePayments() {
     } finally {
       setLoading(false);
     }
-  }, [dateFrom, dateTo, paymentMethod, paymentStatus]);
+  }, [searchTerm, dateFrom, dateTo, paymentMethod, paymentStatus]);
 
   const fetchSummary = useCallback(async () => {
     try {
