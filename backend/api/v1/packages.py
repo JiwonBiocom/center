@@ -189,7 +189,7 @@ async def purchase_package(
 
 @router.get("/", response_model=List[Package])
 def get_packages(
-    is_active: bool = True,
+    is_active: Optional[bool] = Query(None),
     db: Session = Depends(get_db)
 ):
     """패키지 목록 조회"""
@@ -208,7 +208,7 @@ def get_packages(
         # 빈 리스트 반환하여 서버가 죽지 않도록
         return []
 
-@router.post("/", response_model=Package)
+@router.post("", response_model=Package)
 def create_package(
     package: PackageCreate,
     db: Session = Depends(get_db)
@@ -220,7 +220,7 @@ def create_package(
     db.refresh(db_package)
     return db_package
 
-@router.put("/{package_id}", response_model=Package)
+@router.put("/{package_id}/", response_model=Package)
 def update_package(
     package_id: int,
     package: PackageCreate,
