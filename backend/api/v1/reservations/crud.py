@@ -242,6 +242,7 @@ def create_reservation(
     )
 
 @router.put("/{reservation_id}", response_model=ReservationResponse)
+@router.put("/{reservation_id}/", response_model=ReservationResponse)  # trailing slash 버전 추가
 def update_reservation(
     reservation_id: int,
     reservation_update: ReservationUpdate,
@@ -334,6 +335,7 @@ def update_reservation(
     )
 
 @router.post("/{reservation_id}/cancel")
+@router.post("/{reservation_id}/cancel/")  # trailing slash 버전 추가
 def cancel_reservation(
     reservation_id: int,
     cancel_data: ReservationCancel,
@@ -359,6 +361,7 @@ def cancel_reservation(
     return {"message": "예약이 취소되었습니다"}
 
 @router.post("/{reservation_id}/confirm")
+@router.post("/{reservation_id}/confirm/")  # trailing slash 버전 추가
 def confirm_reservation(
     reservation_id: int,
     send_confirmation: bool = True,
@@ -416,6 +419,7 @@ def confirm_reservation(
     return {"message": "예약이 확정되었습니다"}
 
 @router.delete("/{reservation_id}")
+@router.delete("/{reservation_id}/")  # trailing slash 버전 추가
 def delete_reservation(
     reservation_id: int,
     db: Session = Depends(get_db),
@@ -456,6 +460,7 @@ def delete_reservation(
     return {"message": "예약이 삭제되었습니다"}
 
 @router.post("/{reservation_id}/complete")
+@router.post("/{reservation_id}/complete/")  # trailing slash 버전 추가
 def complete_reservation(
     reservation_id: int,
     package_id: Optional[int] = None,
