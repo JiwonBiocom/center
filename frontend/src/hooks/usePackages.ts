@@ -19,9 +19,14 @@ export function usePackages() {
 
   const fetchPackages = useCallback(async () => {
     try {
-      const response = await api.get('/packages/', {
-        params: { is_active: !showInactive ? true : undefined }
-      });
+      const params: any = {};
+      // showInactive가 true면 모든 패키지를 보여줘야 하므로 is_active 파라미터를 보내지 않음
+      // showInactive가 false면 활성 패키지만 보여줘야 하므로 is_active=true
+      if (!showInactive) {
+        params.is_active = true;
+      }
+      
+      const response = await api.get('/packages/', { params });
       setPackages(response.data);
     } catch (error) {
       console.error('Failed to fetch packages:', error);
