@@ -107,7 +107,7 @@ def create_schedule(
 
     return StaffScheduleResponse(**schedule_dict)
 
-@router.put("/{schedule_id}", response_model=StaffScheduleResponse)
+@router.put("/{schedule_id}/", response_model=StaffScheduleResponse)
 def update_schedule(
     schedule_id: int,
     schedule_update: StaffScheduleUpdate,
