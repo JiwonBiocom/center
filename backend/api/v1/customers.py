@@ -479,6 +479,8 @@ async def import_customers_from_excel(
         '최초방문일': '첫방문일자',  # 다른 표현
         '최초 방문일': '첫방문일자',
         '첫방문': '첫방문일자',
+        '등록일': '첫방문일자',  # 등록일도 첫방문일로 매핑
+        '가입일': '첫방문일자',  # 가입일도 지원
         '호소문제': '건강고민'
     }
 
@@ -488,8 +490,12 @@ async def import_customers_from_excel(
     # 디버깅: 엑셀 컬럼명 확인
     print(f"엑셀 파일 컬럼: {list(df.columns)}")
     print(f"첫방문일자 컬럼 존재 여부: {'첫방문일자' in df.columns}")
+    print(f"등록일 컬럼 존재 여부: {'등록일' in df.columns}")
+    
     if '첫방문일자' in df.columns:
         print(f"첫방문일자 샘플 데이터 (처음 5개): {df['첫방문일자'].head().tolist()}")
+    elif '등록일' in df.columns:
+        print(f"등록일 샘플 데이터 (처음 5개): {df['등록일'].head().tolist()}")
 
     # 필수 컬럼 검증
     required_columns = ['이름', '전화번호']
@@ -536,8 +542,8 @@ async def import_customers_from_excel(
         if index > 0 and index % 10 == 0:
             print(f"진행 중... {index}/{total_rows} ({index/total_rows*100:.1f}%)")
         try:
-            # 데이터 정제
-            first_visit_raw = row.get('첫방문일자')
+            # 데이터 정제 - 첫방문일자 또는 등록일 컬럼 사용
+            first_visit_raw = row.get('첫방문일자') or row.get('등록일')
             first_visit_parsed = ExcelHandler.parse_date(first_visit_raw)
 
             # 디버깅 로그 (첫방문일 파싱 확인)
