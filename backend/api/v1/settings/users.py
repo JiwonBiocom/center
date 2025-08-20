@@ -34,6 +34,7 @@ def get_users(
     return users
 
 @router.post("", response_model=UserResponse)
+@router.post("/", response_model=UserResponse)  # trailing slash 버전 추가
 def create_user(
     user_data: UserCreate,
     db: Session = Depends(get_db),
@@ -69,6 +70,7 @@ def create_user(
     return new_user
 
 @router.put("/{user_id}")
+@router.put("/{user_id}/")  # trailing slash 버전 추가
 def update_user(
     user_id: int,
     user_update: UserUpdate,
@@ -105,6 +107,7 @@ def update_user(
     return {"message": "사용자 정보가 업데이트되었습니다.", "user": user}
 
 @router.delete("/{user_id}")
+@router.delete("/{user_id}/")  # trailing slash 버전 추가
 def delete_user(
     user_id: int,
     db: Session = Depends(get_db),
