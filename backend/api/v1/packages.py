@@ -27,6 +27,15 @@ class PackagePurchaseRequest(BaseModel):
     start_date: str
     end_date: str
 
+class PackageUpdateRequest(BaseModel):
+    """Request model that matches what frontend sends"""
+    package_name: Optional[str] = None
+    total_sessions: Optional[int] = None
+    price: Optional[int] = None  # Frontend sends 'price' not 'base_price'
+    valid_days: Optional[int] = None  # Frontend sends 'valid_days' not 'valid_months'
+    description: Optional[str] = None
+    is_active: Optional[bool] = None
+
 router = APIRouter()
 
 @router.get("/available")
@@ -58,7 +67,7 @@ async def get_available_packages(
                 "package_id": row.package_id,
                 "package_name": row.package_name,
                 "price": row.price,
-                "valid_days": row.valid_months * 30,  # Convert months to days
+                "valid_days": row.valid_days,
                 "total_sessions": row.total_sessions or 0,
                 "description": row.description
             })
@@ -187,7 +196,7 @@ async def purchase_package(
             detail=f"패키지 구매 처리 중 오류가 발생했습니다: {str(e)}"
         )
 
-@router.get("/", response_model=List[Package])
+@router.get("/")
 def get_packages(
     is_active: Optional[bool] = Query(None),
     db: Session = Depends(get_db)
@@ -201,7 +210,22 @@ def get_packages(
         query = query.order_by(PackageModel.package_id)
 
         result = db.execute(query)
-        return result.scalars().all()
+        packages = result.scalars().all()
+        
+        # Convert to frontend format
+        return [
+            {
+                "package_id": pkg.package_id,
+                "package_name": pkg.package_name,
+                "total_sessions": pkg.total_sessions,
+                "price": pkg.base_price,  # Map base_price to price
+                "valid_days": pkg.valid_months * 30 if pkg.valid_months else None,
+                "description": pkg.description,
+                "is_active": pkg.is_active,
+                "created_at": pkg.created_at
+            }
+            for pkg in packages
+        ]
     except Exception as e:
         print(f"패키지 조회 에러 상세: {str(e)}")
         print(f"에러 타입: {type(e)}")
@@ -209,23 +233,46 @@ def get_packages(
         return []
 
 # @router.post("/", response_model=Package)
-@router.post("", response_model=Package)
+@router.post("")
 def create_package(
     package: PackageCreate,
     db: Session = Depends(get_db)
 ):
     """패키지 생성"""
-    db_package = PackageModel(**package.model_dump())
+    # Map frontend fields to database fields
+    package_data = package.model_dump()
+    
+    # Create package with correct field mapping
+    db_package = PackageModel(
+        package_name=package_data.get('package_name'),
+        total_sessions=package_data.get('total_sessions'),
+        base_price=package_data.get('price'),  # Map price to base_price
+        valid_months=round(package_data.get('valid_days', 0) / 30) if package_data.get('valid_days') else None,
+        description=package_data.get('description'),
+        is_active=package_data.get('is_active', True)
+    )
+    
     db.add(db_package)
     db.commit()
     db.refresh(db_package)
-    return db_package
+    
+    # Return in frontend format
+    return {
+        "package_id": db_package.package_id,
+        "package_name": db_package.package_name,
+        "total_sessions": db_package.total_sessions,
+        "price": db_package.base_price,
+        "valid_days": db_package.valid_months * 30 if db_package.valid_months else None,
+        "description": db_package.description,
+        "is_active": db_package.is_active,
+        "created_at": db_package.created_at
+    }
 
 # @router.put("/{package_id}", response_model=Package)
-@router.put("/{package_id}/", response_model=Package)
+@router.put("/{package_id}/")
 def update_package(
     package_id: int,
-    package: PackageCreate,
+    package_update: PackageUpdateRequest,  # Use the new request model
     db: Session = Depends(get_db)
 ):
     """패키지 수정"""
@@ -236,12 +283,37 @@ def update_package(
     if not db_package:
         raise HTTPException(status_code=404, detail="패키지를 찾을 수 없습니다.")
 
-    for key, value in package.model_dump().items():
-        setattr(db_package, key, value)
+    # Map frontend fields to database fields
+    update_data = package_update.model_dump(exclude_unset=True)
+    
+    for key, value in update_data.items():
+        if key == 'price':
+            # Frontend 'price' maps to database 'base_price'
+            if value is not None:
+                db_package.base_price = value
+        elif key == 'valid_days':
+            # Frontend 'valid_days' maps to database 'valid_months'
+            if value is not None:
+                db_package.valid_months = round(value / 30)  # Convert days to months
+        else:
+            # Other fields map directly
+            if hasattr(db_package, key):
+                setattr(db_package, key, value)
 
     db.commit()
     db.refresh(db_package)
-    return db_package
+    
+    # Return in frontend-expected format
+    return {
+        "package_id": db_package.package_id,
+        "package_name": db_package.package_name,
+        "total_sessions": db_package.total_sessions,
+        "price": db_package.base_price,  # Map base_price back to price
+        "valid_days": db_package.valid_months * 30 if db_package.valid_months else None,
+        "description": db_package.description,
+        "is_active": db_package.is_active,
+        "created_at": db_package.created_at
+    }
 
 @router.delete("/{package_id}")
 def delete_package(
