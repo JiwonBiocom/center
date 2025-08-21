@@ -127,7 +127,7 @@ def create_reservation(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    """새 예약 생성"""
+    """새 예약 생성 - 등록된 고객 또는 게스트 고객 모두 가능"""
     # 중복 예약 확인 - 같은 서비스 타입끼리만 체크
     existing = db.query(Reservation).filter(
         and_(
@@ -161,10 +161,38 @@ def create_reservation(
                 detail="해당 직원은 이미 다른 예약이 있습니다"
             )
 
-    # 고객과 서비스 타입 확인
-    customer = db.query(Customer).filter(Customer.customer_id == reservation.customer_id).first()
-    if not customer:
-        raise HTTPException(status_code=404, detail="고객을 찾을 수 없습니다")
+    # 고객 처리: customer_id가 있으면 기존 고객, 없으면 게스트 고객 생성
+    if reservation.customer_id:
+        # 기존 고객
+        customer = db.query(Customer).filter(Customer.customer_id == reservation.customer_id).first()
+        if not customer:
+            raise HTTPException(status_code=404, detail="고객을 찾을 수 없습니다")
+    elif reservation.customer_name:
+        # 게스트 고객 - 먼저 같은 이름과 전화번호로 기존 고객 검색
+        if reservation.customer_phone:
+            customer = db.query(Customer).filter(
+                Customer.name == reservation.customer_name,
+                Customer.phone == reservation.customer_phone
+            ).first()
+        else:
+            customer = None
+        
+        # 기존 고객이 없으면 새로 생성
+        if not customer:
+            customer = Customer(
+                name=reservation.customer_name,
+                phone=reservation.customer_phone,
+                membership_level='basic',
+                customer_status='active',
+                memo=f"예약 시 자동 생성 ({reservation.reservation_date})"
+            )
+            db.add(customer)
+            db.flush()  # customer_id를 얻기 위해 flush
+    else:
+        raise HTTPException(
+            status_code=400, 
+            detail="고객 ID 또는 고객 이름을 입력해주세요"
+        )
 
     service_type = db.query(ServiceType).filter(ServiceType.service_type_id == reservation.service_type_id).first()
     if not service_type:
@@ -172,7 +200,7 @@ def create_reservation(
 
     # 예약 생성
     db_reservation = Reservation(
-        customer_id=reservation.customer_id,
+        customer_id=customer.customer_id,
         service_type_id=reservation.service_type_id,
         staff_id=reservation.staff_id,
         reservation_date=reservation.reservation_date,
