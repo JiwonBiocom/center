@@ -27,15 +27,6 @@ class PackagePurchaseRequest(BaseModel):
     start_date: str
     end_date: str
 
-class PackageUpdateRequest(BaseModel):
-    """Frontend-compatible package update model"""
-    package_name: Optional[str] = None
-    total_sessions: Optional[int] = None
-    price: Optional[int] = None  # Frontend uses 'price'
-    valid_days: Optional[int] = None  # Frontend uses 'valid_days'
-    description: Optional[str] = None
-    is_active: Optional[bool] = None
-
 router = APIRouter()
 
 @router.get("/available")
@@ -231,10 +222,10 @@ def create_package(
     return db_package
 
 # @router.put("/{package_id}", response_model=Package)
-@router.put("/{package_id}/")
+@router.put("/{package_id}/", response_model=Package)
 def update_package(
     package_id: int,
-    package_update: PackageUpdateRequest,
+    package: PackageCreate,
     db: Session = Depends(get_db)
 ):
     """패키지 수정"""
@@ -245,34 +236,12 @@ def update_package(
     if not db_package:
         raise HTTPException(status_code=404, detail="패키지를 찾을 수 없습니다.")
 
-    # Update fields with proper mapping
-    update_data = package_update.model_dump(exclude_unset=True)
-    
-    for key, value in update_data.items():
-        if key == 'price' and value is not None:
-            # Map 'price' to 'base_price'
-            db_package.base_price = value
-        elif key == 'valid_days' and value is not None:
-            # Convert days to months and map to 'valid_months'
-            db_package.valid_months = value // 30
-        elif hasattr(db_package, key):
-            # Other fields can be set directly
-            setattr(db_package, key, value)
+    for key, value in package.model_dump().items():
+        setattr(db_package, key, value)
 
     db.commit()
     db.refresh(db_package)
-    
-    # Return response in frontend-compatible format
-    return {
-        "package_id": db_package.package_id,
-        "package_name": db_package.package_name,
-        "total_sessions": db_package.total_sessions,
-        "price": db_package.base_price,  # Map base_price to price
-        "valid_days": db_package.valid_months * 30 if db_package.valid_months else None,  # Convert months to days
-        "description": db_package.description,
-        "is_active": db_package.is_active,
-        "created_at": db_package.created_at
-    }
+    return db_package
 
 @router.delete("/{package_id}")
 def delete_package(
