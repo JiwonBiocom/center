@@ -48,9 +48,9 @@ const InBodyTab: React.FC<InBodyTabProps> = ({
   const handleSaveRecord = async (data: InBodyRecordCreate | InBodyRecordUpdate) => {
     try {
       if (modalMode === 'create') {
-        await api.post('/inbody/', data);
+        await api.post('inbody/', data);
       } else if (editingRecord) {
-        await api.put(`/inbody/${editingRecord.record_id}`, data);
+        await api.put(`inbody/${editingRecord.record_id}`, data);
       }
       onRefresh();
       setIsModalOpen(false);
