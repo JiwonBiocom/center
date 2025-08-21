@@ -122,7 +122,18 @@ def get_reservation(
         staff_name=reservation.staff.name if reservation.staff else None
     )
 
+@router.post("/guest", response_model=ReservationResponse)
+def create_guest_reservation(
+    reservation: ReservationCreate,
+    send_confirmation: bool = True,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """게스트 예약 생성 - 별도 엔드포인트"""
+    return create_reservation(reservation, send_confirmation, db, current_user)
+
 @router.post("/", response_model=ReservationResponse)
+@router.post("", response_model=ReservationResponse)  # Add without trailing slash
 def create_reservation(
     reservation: ReservationCreate,
     send_confirmation: bool = True,
