@@ -58,7 +58,7 @@ async def get_available_packages(
                 "package_id": row.package_id,
                 "package_name": row.package_name,
                 "price": row.price,
-                "valid_days": row.valid_days,
+                "valid_days": row.valid_months * 30,  # 월별에서 일별로 변환
                 "total_sessions": row.total_sessions or 0,
                 "description": row.description
             })
