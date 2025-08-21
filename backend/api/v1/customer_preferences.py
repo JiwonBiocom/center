@@ -107,54 +107,74 @@ async def update_customer_preferences(
     current_user: User = Depends(get_current_user)
 ):
     """고객 선호도 수정"""
-    # 기존 선호도 확인
-    existing = db.query(CustomerPreference).filter(
-        CustomerPreference.customer_id == customer_id
-    ).first()
-    
-    if not existing:
-        # 선호도가 없으면 새로 생성
-        new_preference = CustomerPreference(
-            customer_id=customer_id,
-            preferred_services=preferences.preferred_services or [],
-            preferred_time=preferences.preferred_time,
-            preferred_intensity=preferences.preferred_intensity,
-            health_interests=preferences.health_interests or [],
-            communication_preference=preferences.communication_preference,
-            marketing_consent=preferences.marketing_consent or False
-        )
-        db.add(new_preference)
-        db.commit()
-        db.refresh(new_preference)
+    try:
+        # 기존 선호도 확인
+        existing = db.query(CustomerPreference).filter(
+            CustomerPreference.customer_id == customer_id
+        ).first()
         
-        return {
-            "message": "선호도가 성공적으로 생성되었습니다.",
-            "data": {"preference_id": new_preference.preference_id}
-        }
+        if not existing:
+            # 선호도가 없으면 새로 생성
+            new_preference = CustomerPreference(
+                customer_id=customer_id,
+                preferred_services=preferences.preferred_services or [],
+                preferred_time=preferences.preferred_time,
+                preferred_intensity=preferences.preferred_intensity,
+                health_interests=preferences.health_interests or [],
+                communication_preference=preferences.communication_preference,
+                marketing_consent=preferences.marketing_consent or False
+            )
+            db.add(new_preference)
+            db.commit()
+            db.refresh(new_preference)
+            
+            return {
+                "message": "선호도가 성공적으로 생성되었습니다.",
+                "data": {"preference_id": new_preference.preference_id}
+            }
+    except Exception as e:
+        import traceback
+        print(f"Error creating preference: {str(e)}")
+        print(traceback.format_exc())
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to create preference: {str(e)}"
+        )
     
     # 기존 선호도 업데이트
-    if preferences.preferred_services is not None:
-        existing.preferred_services = preferences.preferred_services
-    
-    if preferences.preferred_time is not None:
-        existing.preferred_time = preferences.preferred_time
-    
-    if preferences.preferred_intensity is not None:
-        existing.preferred_intensity = preferences.preferred_intensity
-    
-    if preferences.health_interests is not None:
-        existing.health_interests = preferences.health_interests
-    
-    if preferences.communication_preference is not None:
-        existing.communication_preference = preferences.communication_preference
-    
-    if preferences.marketing_consent is not None:
-        existing.marketing_consent = preferences.marketing_consent
-    
-    db.commit()
-    db.refresh(existing)
-    
-    return {
-        "message": "선호도가 성공적으로 업데이트되었습니다.",
-        "data": {"preference_id": existing.preference_id}
-    }
+    try:
+        if preferences.preferred_services is not None:
+            existing.preferred_services = preferences.preferred_services
+        
+        if preferences.preferred_time is not None:
+            existing.preferred_time = preferences.preferred_time
+        
+        if preferences.preferred_intensity is not None:
+            existing.preferred_intensity = preferences.preferred_intensity
+        
+        if preferences.health_interests is not None:
+            existing.health_interests = preferences.health_interests
+        
+        if preferences.communication_preference is not None:
+            existing.communication_preference = preferences.communication_preference
+        
+        if preferences.marketing_consent is not None:
+            existing.marketing_consent = preferences.marketing_consent
+        
+        db.commit()
+        db.refresh(existing)
+        
+        return {
+            "message": "선호도가 성공적으로 업데이트되었습니다.",
+            "data": {"preference_id": existing.preference_id}
+        }
+    except Exception as e:
+        import traceback
+        print(f"Error updating preference: {str(e)}")
+        print(traceback.format_exc())
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to update preference: {str(e)}"
+        )
