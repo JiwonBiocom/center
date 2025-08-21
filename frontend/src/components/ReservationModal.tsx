@@ -35,8 +35,22 @@ export default function ReservationModal({
   customers,
   onSave
 }: ReservationModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    customer_id: string;
+    customer_name?: string;
+    customer_phone?: string;
+    service_type_id: string;
+    staff_id: string;
+    reservation_date: string;
+    reservation_time: string;
+    duration_minutes: number;
+    status: string;
+    customer_request: string;
+    internal_memo: string;
+  }>({
     customer_id: '',
+    customer_name: '',
+    customer_phone: '',
     service_type_id: '',
     staff_id: '',
     reservation_date: format(selectedDate, 'yyyy-MM-dd'),
@@ -59,6 +73,8 @@ export default function ReservationModal({
       if (reservation) {
         setFormData({
           customer_id: reservation.customer_id.toString(),
+          customer_name: '',
+          customer_phone: '',
           service_type_id: reservation.service_type_id.toString(),
           staff_id: reservation.staff_id ? reservation.staff_id.toString() : '',
           reservation_date: reservation.reservation_date,
@@ -72,6 +88,8 @@ export default function ReservationModal({
         // 새 예약 생성 시 초기화
         setFormData({
           customer_id: '',
+          customer_name: '',
+          customer_phone: '',
           service_type_id: '',
           staff_id: '',
           reservation_date: format(selectedDate, 'yyyy-MM-dd'),
@@ -107,13 +125,24 @@ export default function ReservationModal({
 
     try {
       // 데이터 타입 변환
-      const requestData = {
-        ...formData,
-        customer_id: parseInt(formData.customer_id),
+      const requestData: any = {
         service_type_id: parseInt(formData.service_type_id),
         staff_id: formData.staff_id ? parseInt(formData.staff_id) : null,
-        duration_minutes: parseInt(formData.duration_minutes.toString())
+        duration_minutes: parseInt(formData.duration_minutes.toString()),
+        reservation_date: formData.reservation_date,
+        reservation_time: formData.reservation_time,
+        customer_request: formData.customer_request,
+        internal_memo: formData.internal_memo,
+        status: formData.status
       };
+
+      // Add either customer_id or customer_name/phone
+      if (formData.customer_id) {
+        requestData.customer_id = parseInt(formData.customer_id);
+      } else if (formData.customer_name) {
+        requestData.customer_name = formData.customer_name;
+        requestData.customer_phone = formData.customer_phone;
+      }
       
       if (reservation) {
         await api.put(`/api/v1/reservations/${reservation.reservation_id}`, requestData);
