@@ -16,6 +16,9 @@ from crud.customer import customer as customer_crud
 from schemas.response import APIResponse, PaginatedResponse, success_response, paginated_response
 from utils.response_wrapper import wrap_response, wrap_paginated_response
 
+from models.inbody import InBodyRecord
+from models.customer_extended import CustomerPreference
+
 router = APIRouter()
 
 # redirect_slashes=False 때문에 두 버전 모두 등록
@@ -324,63 +327,42 @@ def read_customer_detail(
     customer_dict['risk_level'] = 'stable'  # 기본값
     
     # InBody 기록 추가
-    from models.inbody import InBodyRecord
-    inbody_records = db.query(InBodyRecord).filter(
-        InBodyRecord.customer_id == customer_id
-    ).order_by(InBodyRecord.measurement_date.desc()).all()
+    inbody_records = db.query(InBodyRecord).filter(InBodyRecord.customer_id == customer_id).order_by(InBodyRecord.measurement_date.desc()).all()
     
     inbody_list = []
     for record in inbody_records:
         inbody_list.append({
             "record_id": record.record_id,
             "customer_id": record.customer_id,
-            "measurement_date": record.measurement_date.isoformat() if record.measurement_date else None,
-            "weight": record.weight,
-            "body_fat_percentage": record.body_fat_percentage,
-            "skeletal_muscle_mass": record.skeletal_muscle_mass,
-            "extracellular_water_ratio": record.extracellular_water_ratio,
-            "phase_angle": record.phase_angle,
-            "visceral_fat_level": record.visceral_fat_level,
+            "measurement_date": record.measurement_date.isoformat() if record.measurement_date else None,  # 측정일
+            "weight": record.weight,  # 체중
+            "body_fat_percentage": record.body_fat_percentage,  # 체지방률
+            "skeletal_muscle_mass": record.skeletal_muscle_mass,  # 골격근량
+            "extracellular_water_ratio": record.extracellular_water_ratio,  # 세포외수분비
+            "phase_angle": record.phase_angle,  # 위상각
+            "visceral_fat_level": record.visceral_fat_level,  # 내장지방
             "notes": record.notes,
-            "measured_by": record.measured_by,
+            "measured_by": record.measured_by,  # 측정자
             "created_at": record.created_at.isoformat() if record.created_at else None,
             "updated_at": record.updated_at.isoformat() if record.updated_at else None
         })
     
     # 고객 선호도 추가
-    from sqlalchemy import text
-    preferences_query = text("""
-        SELECT 
-            preference_id,
-            customer_id,
-            preferred_services,
-            preferred_time,
-            preferred_intensity,
-            health_interests,
-            communication_preference,
-            marketing_consent,
-            created_at,
-            updated_at
-        FROM customer_preferences
-        WHERE customer_id = :customer_id
-        LIMIT 1
-    """)
-    
-    preferences_result = db.execute(preferences_query, {"customer_id": customer_id}).first()
+    preference_record = db.query(CustomerPreference).filter(CustomerPreference.customer_id == customer_id).first()
     
     preferences = None
-    if preferences_result:
+    if preference_record:
         preferences = {
-            "preference_id": preferences_result.preference_id,
-            "customer_id": preferences_result.customer_id,
-            "preferred_services": preferences_result.preferred_services or [],
-            "preferred_time": preferences_result.preferred_time,
-            "preferred_intensity": preferences_result.preferred_intensity,
-            "health_interests": preferences_result.health_interests or [],
-            "communication_preference": preferences_result.communication_preference,
-            "marketing_consent": preferences_result.marketing_consent,
-            "created_at": preferences_result.created_at.isoformat() if preferences_result.created_at else None,
-            "updated_at": preferences_result.updated_at.isoformat() if preferences_result.updated_at else None
+            "preference_id": preference_record.preference_id,
+            "customer_id": preference_record.customer_id,
+            "preferred_services": preference_record.preferred_services or [],
+            "preferred_time": preference_record.preferred_time,
+            "preferred_intensity": preference_record.preferred_intensity,
+            "health_interests": preference_record.health_interests or [],
+            "communication_preference": preference_record.communication_preference,
+            "marketing_consent": preference_record.marketing_consent,
+            "created_at": preference_record.created_at.isoformat() if preference_record.created_at else None,
+            "updated_at": preference_record.updated_at.isoformat() if preference_record.updated_at else None
         }
 
     return {
