@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Heart, Clock, Calendar, AlertCircle, Save } from 'lucide-react';
+import { api } from '../../../lib/api';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface PreferencesTabProps {
   customerId: number;
@@ -7,8 +9,10 @@ interface PreferencesTabProps {
   onUpdate?: (preferences: any) => void;
 }
 
-export default function PreferencesTab({ preferences, onUpdate }: PreferencesTabProps) {
+export default function PreferencesTab({ customerId, preferences, onUpdate }: PreferencesTabProps) {
+  const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [editedPreferences, setEditedPreferences] = useState(preferences || {
     preferred_services: [],
     preferred_time: '',
@@ -53,12 +57,35 @@ export default function PreferencesTab({ preferences, onUpdate }: PreferencesTab
     });
   };
 
-  const handleSave = () => {
-    // API 호출 로직 추가
-    if (onUpdate) {
-      onUpdate(editedPreferences);
+  const handleSave = async () => {
+    try {
+      setIsSaving(true);
+      
+      // API 호출
+      await api.put(`customers/${customerId}/preferences/`, {
+        preferred_services: editedPreferences.preferred_services || [],
+        preferred_time: editedPreferences.preferred_time || null,
+        preferred_intensity: editedPreferences.preferred_intensity || null,
+        health_interests: editedPreferences.health_interests || [],
+        communication_preference: editedPreferences.communication_preference || null,
+        marketing_consent: editedPreferences.marketing_consent || false
+      });
+      
+      // 캐시 무효화
+      queryClient.invalidateQueries({ queryKey: ['customer-detail', customerId] });
+      
+      if (onUpdate) {
+        onUpdate(editedPreferences);
+      }
+      
+      setIsEditing(false);
+      alert('선호도가 저장되었습니다.');
+    } catch (error) {
+      console.error('Failed to save preferences:', error);
+      alert('선호도 저장에 실패했습니다.');
+    } finally {
+      setIsSaving(false);
     }
-    setIsEditing(false);
   };
 
   return (
@@ -85,10 +112,11 @@ export default function PreferencesTab({ preferences, onUpdate }: PreferencesTab
             </button>
             <button
               onClick={handleSave}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2"
+              disabled={isSaving}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2 disabled:opacity-50"
             >
               <Save className="h-4 w-4" />
-              저장
+              {isSaving ? '저장 중...' : '저장'}
             </button>
           </div>
         )}
