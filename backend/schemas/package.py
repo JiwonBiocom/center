@@ -6,8 +6,8 @@ from decimal import Decimal
 class PackageBase(BaseModel):
     package_name: str = Field(..., max_length=100)
     total_sessions: Optional[int] = None
-    price: Optional[Decimal] = Field(None, decimal_places=2)
-    valid_days: Optional[int] = None
+    base_price: Optional[int] = None  # Changed from price (Decimal) to base_price (int)
+    valid_months: Optional[int] = None  # Changed from valid_days to valid_months
     description: Optional[str] = Field(None, max_length=500)
     is_active: bool = True
 
