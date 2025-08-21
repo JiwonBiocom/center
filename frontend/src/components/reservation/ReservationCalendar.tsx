@@ -1,4 +1,4 @@
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths, isSameMonth, isToday, isSameDay } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths, isSameMonth, isToday, isSameDay, getDay, startOfWeek, endOfWeek } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import type { Reservation, ServiceType } from '../../types';
 
@@ -22,9 +22,11 @@ export default function ReservationCalendar({
   onTodayClick
 }: ReservationCalendarProps) {
   const getDaysInMonth = () => {
-    const start = startOfMonth(currentMonth);
-    const end = endOfMonth(currentMonth);
-    return eachDayOfInterval({ start, end });
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(currentMonth);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 0 }); // Start from Sunday
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 }); // End on Saturday
+    return eachDayOfInterval({ start: startDate, end: endDate });
   };
 
   const getReservationsForDate = (date: Date) => {
