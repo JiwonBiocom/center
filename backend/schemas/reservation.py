@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from typing import Optional, List
 from datetime import date, time, datetime
 from models.reservation import ReservationStatus
@@ -24,6 +24,12 @@ class ReservationCreate(BaseModel):
     duration_minutes: int = 60
     customer_request: Optional[str] = None
     internal_memo: Optional[str] = None
+    
+    @model_validator(mode='after')
+    def validate_customer(self):
+        if not self.customer_id and not self.customer_name:
+            raise ValueError('Either customer_id or customer_name must be provided')
+        return self
 
 class ReservationUpdate(BaseModel):
     service_type_id: Optional[int] = None
