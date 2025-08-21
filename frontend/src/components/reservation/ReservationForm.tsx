@@ -23,6 +23,8 @@ interface User {
 
 interface FormData {
   customer_id: string;
+  customer_name?: string;  // For new customers
+  customer_phone?: string; // For new customers
   service_type_id: string;
   staff_id: string;
   reservation_date: string;
@@ -74,7 +76,14 @@ export default function ReservationForm({
       <CustomerSelector
         customers={customers}
         selectedCustomerId={formData.customer_id}
-        onCustomerSelect={(customerId) => setFormData(prev => ({ ...prev, customer_id: customerId }))}
+        onCustomerSelect={(customerId, customerName, customerPhone) => 
+          setFormData(prev => ({ 
+            ...prev, 
+            customer_id: customerId,
+            customer_name: customerName,
+            customer_phone: customerPhone
+          }))
+        }
       />
 
       {/* 서비스 선택 */}
