@@ -74,6 +74,7 @@ def get_reservations(
             "cancelled_at": r.cancelled_at,
             "cancel_reason": r.cancel_reason,
             "customer_name": r.customer.name if r.customer else None,
+            "customer_phone": r.customer.phone if r.customer else None,
             "service_name": r.service_type.service_name if r.service_type else None,
             "staff_name": r.staff.name if r.staff else None
         }
@@ -116,6 +117,7 @@ def get_reservation(
         cancelled_at=reservation.cancelled_at,
         cancel_reason=reservation.cancel_reason,
         customer_name=reservation.customer.name if reservation.customer else None,
+        customer_phone=reservation.customer.phone if reservation.customer else None,
         service_name=reservation.service_type.service_name if reservation.service_type else None,
         staff_name=reservation.staff.name if reservation.staff else None
     )
@@ -265,6 +267,7 @@ def create_reservation(
         cancelled_at=db_reservation.cancelled_at,
         cancel_reason=db_reservation.cancel_reason,
         customer_name=customer.name,
+        customer_phone=customer.phone,
         service_name=service_type.service_name,
         staff_name=staff_name if 'staff_name' in locals() else None
     )
@@ -358,6 +361,7 @@ def update_reservation(
         cancelled_at=db_reservation.cancelled_at,
         cancel_reason=db_reservation.cancel_reason,
         customer_name=customer.name if customer else None,
+        customer_phone=customer.phone if customer else None,
         service_name=service_type.service_name if service_type else None,
         staff_name=staff.name if staff else None
     )
