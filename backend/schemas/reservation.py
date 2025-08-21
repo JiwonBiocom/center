@@ -13,8 +13,17 @@ class ReservationBase(BaseModel):
     customer_request: Optional[str] = None
     internal_memo: Optional[str] = None
 
-class ReservationCreate(ReservationBase):
-    pass
+class ReservationCreate(BaseModel):
+    customer_id: Optional[int] = None  # Make optional for guest customers
+    customer_name: Optional[str] = None  # For unregistered customers
+    customer_phone: Optional[str] = None  # For unregistered customers
+    service_type_id: int
+    staff_id: Optional[int] = None
+    reservation_date: date
+    reservation_time: time
+    duration_minutes: int = 60
+    customer_request: Optional[str] = None
+    internal_memo: Optional[str] = None
 
 class ReservationUpdate(BaseModel):
     service_type_id: Optional[int] = None
@@ -29,9 +38,17 @@ class ReservationUpdate(BaseModel):
 class ReservationCancel(BaseModel):
     cancel_reason: str
 
-class ReservationResponse(ReservationBase):
+class ReservationResponse(BaseModel):
     reservation_id: int
+    customer_id: int  # This will always have a value after creation
+    service_type_id: int
+    staff_id: Optional[int] = None
+    reservation_date: date
+    reservation_time: time
+    duration_minutes: int
     status: ReservationStatus
+    customer_request: Optional[str] = None
+    internal_memo: Optional[str] = None
     reminder_sent: bool
     confirmation_sent: bool
     created_at: datetime
@@ -41,6 +58,7 @@ class ReservationResponse(ReservationBase):
 
     # 관계 데이터
     customer_name: Optional[str] = None
+    customer_phone: Optional[str] = None
     service_name: Optional[str] = None
     staff_name: Optional[str] = None
 
