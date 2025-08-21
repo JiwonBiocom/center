@@ -322,9 +322,34 @@ def read_customer_detail(
     # risk_level 필드 추가 (임시)
     customer_dict = customer_schema.model_dump()
     customer_dict['risk_level'] = 'stable'  # 기본값
+    
+    # InBody 기록 추가
+    from models.inbody import InBodyRecord
+    inbody_records = db.query(InBodyRecord).filter(
+        InBodyRecord.customer_id == customer_id
+    ).order_by(InBodyRecord.measurement_date.desc()).all()
+    
+    inbody_list = []
+    for record in inbody_records:
+        inbody_list.append({
+            "record_id": record.record_id,
+            "customer_id": record.customer_id,
+            "measurement_date": record.measurement_date.isoformat() if record.measurement_date else None,
+            "weight": record.weight,
+            "body_fat_percentage": record.body_fat_percentage,
+            "skeletal_muscle_mass": record.skeletal_muscle_mass,
+            "extracellular_water_ratio": record.extracellular_water_ratio,
+            "phase_angle": record.phase_angle,
+            "visceral_fat_level": record.visceral_fat_level,
+            "notes": record.notes,
+            "measured_by": record.measured_by,
+            "created_at": record.created_at.isoformat() if record.created_at else None,
+            "updated_at": record.updated_at.isoformat() if record.updated_at else None
+        })
 
     return {
-        "customer": customer_dict
+        "customer": customer_dict,
+        "inbodyRecords": inbody_list
     }
 
 @router.put("/{customer_id}", response_model=Customer, include_in_schema=False)
