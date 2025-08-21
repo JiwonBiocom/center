@@ -136,13 +136,37 @@ export default function ReservationModal({
         status: formData.status
       };
 
-      // Add either customer_id or customer_name/phone
-      if (formData.customer_id && formData.customer_id !== '') {
-        requestData.customer_id = parseInt(formData.customer_id);
-      } else if (formData.customer_name && formData.customer_name !== '') {
-        requestData.customer_name = formData.customer_name;
-        requestData.customer_phone = formData.customer_phone || null;
+      // Handle customer creation for new customers first
+      let finalCustomerId = formData.customer_id;
+      
+      if (!formData.customer_id || formData.customer_id === '') {
+        // Create customer first if it's a new customer
+        if (formData.customer_name && formData.customer_name !== '') {
+          try {
+            const customerData = {
+              name: formData.customer_name,
+              phone: formData.customer_phone || null,
+              membership_level: 'basic',
+              customer_status: 'active',
+              memo: `예약 시 자동 생성 (${formData.reservation_date})`
+            };
+            
+            const customerResponse = await api.post('/api/v1/customers', customerData);
+            finalCustomerId = customerResponse.data.customer_id?.toString() || customerResponse.data.data?.customer_id?.toString();
+            console.log('Created new customer with ID:', finalCustomerId);
+          } catch (customerError: any) {
+            console.error('Failed to create customer:', customerError);
+            throw new Error('고객 정보 생성에 실패했습니다.');
+          }
+        }
       }
+      
+      // Now always send customer_id
+      if (!finalCustomerId || finalCustomerId === '') {
+        throw new Error('고객 정보가 없습니다. 고객을 선택하거나 새 고객 정보를 입력해주세요.');
+      }
+      
+      requestData.customer_id = parseInt(finalCustomerId);
       
       console.log('Sending reservation data:', requestData);
       console.log('FormData state:', formData);
