@@ -346,10 +346,47 @@ def read_customer_detail(
             "created_at": record.created_at.isoformat() if record.created_at else None,
             "updated_at": record.updated_at.isoformat() if record.updated_at else None
         })
+    
+    # 고객 선호도 추가
+    from sqlalchemy import text
+    preferences_query = text("""
+        SELECT 
+            preference_id,
+            customer_id,
+            preferred_services,
+            preferred_time,
+            preferred_intensity,
+            health_interests,
+            communication_preference,
+            marketing_consent,
+            created_at,
+            updated_at
+        FROM customer_preferences
+        WHERE customer_id = :customer_id
+        LIMIT 1
+    """)
+    
+    preferences_result = db.execute(preferences_query, {"customer_id": customer_id}).first()
+    
+    preferences = None
+    if preferences_result:
+        preferences = {
+            "preference_id": preferences_result.preference_id,
+            "customer_id": preferences_result.customer_id,
+            "preferred_services": preferences_result.preferred_services or [],
+            "preferred_time": preferences_result.preferred_time,
+            "preferred_intensity": preferences_result.preferred_intensity,
+            "health_interests": preferences_result.health_interests or [],
+            "communication_preference": preferences_result.communication_preference,
+            "marketing_consent": preferences_result.marketing_consent,
+            "created_at": preferences_result.created_at.isoformat() if preferences_result.created_at else None,
+            "updated_at": preferences_result.updated_at.isoformat() if preferences_result.updated_at else None
+        }
 
     return {
         "customer": customer_dict,
-        "inbodyRecords": inbody_list
+        "inbodyRecords": inbody_list,
+        "preferences": preferences
     }
 
 @router.put("/{customer_id}", response_model=Customer, include_in_schema=False)
