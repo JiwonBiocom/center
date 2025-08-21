@@ -3,7 +3,6 @@
 """
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from sqlalchemy import text
 from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
@@ -11,6 +10,7 @@ from datetime import datetime
 from core.database import get_db
 from core.auth import get_current_user
 from models.user import User
+from models.customer_extended import CustomerPreference
 
 router = APIRouter(prefix="/customers/{customer_id}/preferences", tags=["customer-preferences"])
 
@@ -38,29 +38,23 @@ async def get_customer_preferences(
     current_user: User = Depends(get_current_user)
 ):
     """고객 선호도 조회"""
-    query = text("""
-        SELECT * FROM customer_preferences
-        WHERE customer_id = :customer_id
-        LIMIT 1
-    """)
+    preference = db.query(CustomerPreference).filter(CustomerPreference.customer_id == customer_id).first()
     
-    result = db.execute(query, {"customer_id": customer_id}).first()
-    
-    if not result:
+    if not preference:
         return {"message": "선호도 정보가 없습니다.", "data": None}
     
     return {
         "data": {
-            "preference_id": result.preference_id,
-            "customer_id": result.customer_id,
-            "preferred_services": result.preferred_services or [],
-            "preferred_time": result.preferred_time,
-            "preferred_intensity": result.preferred_intensity,
-            "health_interests": result.health_interests or [],
-            "communication_preference": result.communication_preference,
-            "marketing_consent": result.marketing_consent,
-            "created_at": result.created_at.isoformat() if result.created_at else None,
-            "updated_at": result.updated_at.isoformat() if result.updated_at else None
+            "preference_id": preference.preference_id,
+            "customer_id": preference.customer_id,
+            "preferred_services": preference.preferred_services or [],
+            "preferred_time": preference.preferred_time,
+            "preferred_intensity": preference.preferred_intensity,
+            "health_interests": preference.health_interests or [],
+            "communication_preference": preference.communication_preference,
+            "marketing_consent": preference.marketing_consent,
+            "created_at": preference.created_at.isoformat() if preference.created_at else None,
+            "updated_at": preference.updated_at.isoformat() if preference.updated_at else None
         }
     }
 
