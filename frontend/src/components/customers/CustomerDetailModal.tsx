@@ -162,8 +162,9 @@ export default function CustomerDetailModal({
                   customerId={customerId}
                   inbodyRecords={customerDetail.inbodyRecords || []}
                   onRefresh={() => {
-                    // TODO: React Query를 사용해서 데이터 리프레시
-                    window.location.reload();
+                    // React Query를 사용해서 데이터 리프레시
+                    queryClient.invalidateQueries({ queryKey: ['customer-detail', customerId] });
+                    fetchCustomerDetail();
                   }}
                 />
               )}
