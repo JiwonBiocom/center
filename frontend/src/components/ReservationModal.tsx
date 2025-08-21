@@ -137,12 +137,15 @@ export default function ReservationModal({
       };
 
       // Add either customer_id or customer_name/phone
-      if (formData.customer_id) {
+      if (formData.customer_id && formData.customer_id !== '') {
         requestData.customer_id = parseInt(formData.customer_id);
-      } else if (formData.customer_name) {
+      } else if (formData.customer_name && formData.customer_name !== '') {
         requestData.customer_name = formData.customer_name;
-        requestData.customer_phone = formData.customer_phone;
+        requestData.customer_phone = formData.customer_phone || null;
       }
+      
+      console.log('Sending reservation data:', requestData);
+      console.log('FormData state:', formData);
       
       if (reservation) {
         await api.put(`/api/v1/reservations/${reservation.reservation_id}`, requestData);
