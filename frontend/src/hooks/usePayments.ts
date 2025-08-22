@@ -24,9 +24,11 @@ interface Payment {
 interface PaymentSummary {
   total_count: number;
   total_revenue: number;
+  current_month_revenue?: number;
   customer_count: number;
   average_amount: number;
   previous_month?: string;
+  current_month?: string;
 }
 
 export function usePayments() {
