@@ -5,7 +5,7 @@
 - 서비스 추천 조회
 """
 
-from fastapi import APIRouter, Depends, HTTPException, statusf
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func
 from typing import List, Optional, Dict, Any
