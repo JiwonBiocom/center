@@ -666,13 +666,25 @@ async def get_customer_analytics(
                 total_revenue += float(row.monthly_revenue)
         
         # 결과 포맷팅 (프론트엔드 인터페이스에 맞춤)
+        # 1970-01-01 같은 기본값은 None으로 처리
+        first_visit = None
+        last_visit = None
+        
+        if basic_info and basic_info.first_visit:
+            if basic_info.first_visit.year > 1970:
+                first_visit = basic_info.first_visit.isoformat()
+        
+        if basic_info and basic_info.last_visit:
+            if basic_info.last_visit.year > 1970:
+                last_visit = basic_info.last_visit.isoformat()
+        
         result = {
             "visit_summary": {
                 "total_visits": basic_info.total_visits if basic_info else 0,
-                "first_visit": basic_info.first_visit.isoformat() if basic_info and basic_info.first_visit else None,
-                "last_visit": basic_info.last_visit.isoformat() if basic_info and basic_info.last_visit else None,
+                "first_visit": first_visit,
+                "last_visit": last_visit,
                 "visit_frequency": basic_info.total_visits if basic_info else 0,
-                "average_interval_days": int(avg_interval)
+                "average_interval_days": int(avg_interval) if avg_interval > 0 else 0
             },
             "service_summary": {
                 "most_used_service": most_used_service or "정보 없음",
