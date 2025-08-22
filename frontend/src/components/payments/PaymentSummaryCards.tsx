@@ -3,9 +3,11 @@ import { CreditCard, DollarSign, Calendar, TrendingUp } from 'lucide-react';
 interface PaymentSummary {
   total_count: number;
   total_revenue: number;
+  current_month_revenue?: number;
   customer_count: number;
   average_amount: number;
   previous_month?: string;
+  current_month?: string;
 }
 
 interface PaymentSummaryCardsProps {
@@ -56,6 +58,11 @@ export default function PaymentSummaryCards({ summary }: PaymentSummaryCardsProp
       icon: <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-green-500" />
     },
     {
+      title: `이번 달 매출${summary.current_month ? ` (${summary.current_month})` : ''}`,
+      value: formatCurrency(summary.current_month_revenue || 0),
+      icon: <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
+    },
+    {
       title: '결제 고객수',
       value: `${summary.customer_count}명`,
       icon: <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-purple-500" />
@@ -68,7 +75,7 @@ export default function PaymentSummaryCards({ summary }: PaymentSummaryCardsProp
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
       {cards.map((card, index) => (
         <SummaryCard key={index} {...card} />
       ))}
