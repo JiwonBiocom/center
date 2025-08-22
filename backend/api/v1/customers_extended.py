@@ -5,7 +5,7 @@
 - 서비스 추천 조회
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, statusf
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func
 from typing import List, Optional, Dict, Any
@@ -633,6 +633,26 @@ async def get_customer_analytics(
         preferred_day_result = db.execute(day_pattern_query, {"customer_id": customer_id}).first()
         preferred_day = preferred_day_result.day_name if preferred_day_result else "정보 없음"
         
+        # 예약 취소율 및 노쇼율 계산
+        reservation_stats_query = text(f"""
+            SELECT 
+                COUNT(*) FILTER (WHERE status = 'cancelled') as cancelled_count,
+                COUNT(*) FILTER (WHERE status = 'no_show') as no_show_count,
+                COUNT(*) as total_reservations
+            FROM reservations
+            WHERE customer_id = :customer_id
+                AND reservation_date >= CURRENT_DATE - INTERVAL '{period_days} days'
+        """)
+        
+        reservation_stats = db.execute(reservation_stats_query, {"customer_id": customer_id}).first()
+        
+        cancellation_rate = 0
+        no_show_rate = 0
+        
+        if reservation_stats and reservation_stats.total_reservations > 0:
+            cancellation_rate = (reservation_stats.cancelled_count / reservation_stats.total_reservations) * 100
+            no_show_rate = (reservation_stats.no_show_count / reservation_stats.total_reservations) * 100
+        
         # 월별 매출 데이터
         revenue_by_month = []
         total_revenue = 0
@@ -667,8 +687,8 @@ async def get_customer_analytics(
             "patterns": {
                 "preferred_time": preferred_time,
                 "preferred_day": preferred_day,
-                "cancellation_rate": 0,  # TODO: 실제 취소율 계산
-                "no_show_rate": 0  # TODO: 실제 노쇼율 계산
+                "cancellation_rate": round(cancellation_rate, 1),
+                "no_show_rate": round(no_show_rate, 1)
             }
         }
         
