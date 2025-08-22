@@ -69,8 +69,9 @@ api.interceptors.request.use(
       config.url = config.url.replace(/([^:]\/)\/+/g, '$1')
 
       // FastAPI requires trailing slash for POST/PUT/PATCH requests
+      // Exception: InBody endpoints don't need trailing slash
       if (['post', 'put', 'patch'].includes(config.method?.toLowerCase() || '')) {
-        if (!config.url.endsWith('/') && !config.url.includes('?')) {
+        if (!config.url.includes('/inbody') && !config.url.endsWith('/') && !config.url.includes('?')) {
           config.url += '/'
         }
       }
