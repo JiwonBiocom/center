@@ -133,7 +133,7 @@ def create_guest_reservation(
     return create_reservation(reservation, send_confirmation, db, current_user)
 
 @router.post("/", response_model=ReservationResponse)
-@router.post("", response_model=ReservationResponse)  # Add without trailing slash
+# @router.post("", response_model=ReservationResponse)  # Add without trailing slash
 def create_reservation(
     reservation: ReservationCreate,
     send_confirmation: bool = True,
