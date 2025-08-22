@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, User, Calendar, Package, Heart, BarChart3, Sparkles, Activity, FileText, Brain } from 'lucide-react'
+import { X, User, Calendar, Package, Heart, BarChart3, Sparkles, Activity, FileText, Brain, MessageSquare } from 'lucide-react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { api } from '../../lib/api'
 import BasicInfoTab from './tabs/BasicInfoTab'
@@ -11,6 +11,7 @@ import RecommendationsTab from './tabs/RecommendationsTab'
 import InBodyTab from './tabs/InBodyTab'
 import HealthSurveyTab from './tabs/HealthSurveyTab'
 import AIHealthAnalysisTab from './tabs/AIHealthAnalysisTab'
+import CounselingTab from './tabs/CounselingTab'
 
 interface CustomerDetailModalProps {
   customerId: number
@@ -31,6 +32,7 @@ const tabs: TabConfig[] = [
   { id: 'packages', label: '패키지관리', icon: Package },
   { id: 'inbody', label: '인바디정보', icon: Activity },
   { id: 'health-survey', label: '건강설문', icon: FileText },
+  { id: 'counseling', label: '상담 내역', icon: MessageSquare },
   { id: 'preferences', label: '선호도', icon: Heart },
   { id: 'analytics', label: '분석', icon: BarChart3 },
   // 추천 탭과 AI 건강분석 탭은 추후 고도화 후 오픈 예정
@@ -171,6 +173,10 @@ export default function CustomerDetailModal({
 
               {activeTab === 'health-survey' && (
                 <HealthSurveyTab customerId={customerId} />
+              )}
+
+              {activeTab === 'counseling' && (
+                <CounselingTab customerId={customerId} />
               )}
               
               {activeTab === 'preferences' && customerDetail && (
