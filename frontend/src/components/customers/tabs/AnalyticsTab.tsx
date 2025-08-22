@@ -149,12 +149,32 @@ export default function AnalyticsTab({ customerId }: AnalyticsTabProps) {
           <div className="flex items-center justify-between mb-4">
             <Clock className="h-8 w-8 text-purple-600" />
             <span className="text-2xl font-bold">
-              {differenceInDays(new Date(), new Date(analytics.visit_summary.last_visit))}일
+              {(() => {
+                if (!analytics.visit_summary.last_visit) {
+                  return '없음';
+                }
+                const lastVisitDate = new Date(analytics.visit_summary.last_visit);
+                // Check if date is invalid or default (1970-01-01)
+                if (lastVisitDate.getFullYear() <= 1970 || isNaN(lastVisitDate.getTime())) {
+                  return '없음';
+                }
+                return `${differenceInDays(new Date(), lastVisitDate)}일`;
+              })()}
             </span>
           </div>
           <p className="text-sm text-gray-600">마지막 방문 후</p>
           <p className="text-xs text-gray-500 mt-1">
-            {format(new Date(analytics.visit_summary.last_visit), 'yyyy-MM-dd', { locale: ko })}
+            {(() => {
+              if (!analytics.visit_summary.last_visit) {
+                return '방문 기록 없음';
+              }
+              const lastVisitDate = new Date(analytics.visit_summary.last_visit);
+              // Check if date is invalid or default (1970-01-01)
+              if (lastVisitDate.getFullYear() <= 1970 || isNaN(lastVisitDate.getTime())) {
+                return '방문 기록 없음';
+              }
+              return format(lastVisitDate, 'yyyy-MM-dd', { locale: ko });
+            })()}
           </p>
         </div>
       </div>
