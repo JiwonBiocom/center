@@ -181,7 +181,10 @@ def get_payment_stats(
         current_month_query = select(
             func.sum(PaymentModel.amount).label('current_month_revenue')
         ).where(
-            PaymentModel.payment_date >= first_day_of_current_month
+            and_(
+                PaymentModel.payment_date >= first_day_of_current_month,
+                PaymentModel.payment_date <= today
+            )
         )
         
         current_month_result = db.execute(current_month_query).one()
