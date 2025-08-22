@@ -30,6 +30,9 @@ def get_payments(
     db: Session = Depends(get_db)
 ):
     """결제 내역 조회 - 수정된 버전"""
+    # 디버깅: 받은 파라미터 확인
+    print(f"🔍 Payment search params: date_from={date_from}, date_to={date_to}, search={search}")
+    
     try:
         # 기본 쿼리 with LEFT JOIN
         query = select(
@@ -84,6 +87,9 @@ def get_payments(
 
         if filters:
             query = query.where(and_(*filters))
+            print(f"🔍 Applied {len(filters)} filters")
+        else:
+            print(f"🔍 No filters applied - returning all payments")
 
         # 정렬 및 페이징
         query = query.order_by(PaymentModel.payment_date.desc(), PaymentModel.payment_id.desc())
@@ -115,6 +121,7 @@ def get_payments(
             }
             payments.append(payment_dict)
 
+        print(f"🔍 Returning {len(payments)} payments")
         return payments
 
     except Exception as e:
@@ -169,6 +176,16 @@ def get_payment_stats(
 
         last_month_result = db.execute(last_month_query).one()
         last_month_revenue = float(last_month_result.last_month_revenue or 0)
+        
+        # 이번달 매출 쿼리
+        current_month_query = select(
+            func.sum(PaymentModel.amount).label('current_month_revenue')
+        ).where(
+            PaymentModel.payment_date >= first_day_of_current_month
+        )
+        
+        current_month_result = db.execute(current_month_query).one()
+        current_month_revenue = float(current_month_result.current_month_revenue or 0)
 
         # 최근 3개월 평균 결제액 계산
         three_months_ago = today - timedelta(days=90)
@@ -184,10 +201,12 @@ def get_payment_stats(
 
         return {
             "total_count": result.total_count or 0,
-            "total_revenue": last_month_revenue,  # 전월 매출로 변경
+            "total_revenue": last_month_revenue,  # 전월 매출
+            "current_month_revenue": current_month_revenue,  # 이번달 매출
             "customer_count": result.customer_count or 0,
             "average_amount": avg_amount,  # 최근 3개월 기준
-            "previous_month": f"{first_day_of_previous_month.year}년 {first_day_of_previous_month.month}월"
+            "previous_month": f"{first_day_of_previous_month.year}년 {first_day_of_previous_month.month}월",
+            "current_month": f"{first_day_of_current_month.year}년 {first_day_of_current_month.month}월"
         }
 
     except Exception as e:
