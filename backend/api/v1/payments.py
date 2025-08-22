@@ -214,11 +214,16 @@ def get_payment_stats(
 
     except Exception as e:
         print(f"❌ 통계 조회 에러: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return {
             "total_count": 0,
             "total_revenue": 0,
+            "current_month_revenue": 0,
             "customer_count": 0,
-            "average_amount": 0
+            "average_amount": 0,
+            "previous_month": "",
+            "current_month": ""
         }
 
 @router.get("/stats/summary")
