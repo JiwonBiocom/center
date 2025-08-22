@@ -24,7 +24,9 @@ class ManualInBodyCreate(BaseModel):
 router = APIRouter(prefix="/inbody", tags=["inbody"])
 
 @router.post("/", response_model=dict)
+@router.post("", response_model=dict)
 @router.post("/records", response_model=dict)
+@router.post("/records/", response_model=dict)
 async def create_inbody_record(
     record_data: InBodyRecordCreate,
     db: Session = Depends(get_db),
@@ -208,6 +210,7 @@ async def get_inbody_record(
         )
 
 @router.put("/{record_id}", response_model=dict)
+@router.put("/{record_id}/", response_model=dict)
 async def update_inbody_record(
     record_id: int,
     record_data: InBodyRecordUpdate,
@@ -246,6 +249,7 @@ async def update_inbody_record(
         )
 
 @router.delete("/{record_id}", response_model=dict)
+@router.delete("/{record_id}/", response_model=dict)
 async def delete_inbody_record(
     record_id: int,
     db: Session = Depends(get_db),
