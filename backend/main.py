@@ -275,6 +275,7 @@ from api.v1 import admin_init  # 관리자 초기화 API
 from api.v1 import customers_import_service  # 고객 서비스 이력 가져오기
 from api.v1 import unreflected_customers  # 미반영 고객 관리
 from api.v1 import customer_preferences  # 고객 선호도 관리
+from api.v1 import counseling  # 상담 내역 관리
 # Temporarily disabled enhanced services until relationships are fixed
 # from api.v1 import enhanced_services, equipment, test_enhanced
 
@@ -320,6 +321,8 @@ app.include_router(master.router, prefix="/api/v1/master", tags=["master"])
 app.include_router(admin_init.router, prefix="/api/v1/init", tags=["admin-init"])
 # 미반영 고객 관리
 app.include_router(unreflected_customers.router, prefix="/api/v1/unreflected-customers", tags=["unreflected-customers"])
+# 상담 내역 관리
+app.include_router(counseling.router, prefix="/api/v1", tags=["counseling"])
 
 if __name__ == "__main__":
     # Railway나 다른 플랫폼에서 PORT 환경변수 사용
