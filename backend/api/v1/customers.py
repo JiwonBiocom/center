@@ -416,7 +416,7 @@ def update_customer(
 @handle_database_error
 def delete_customer(
     customer_id: int,
-    cascade: bool = Query(True, description="관련 데이터도 함께 삭제"),
+    cascade: bool = Query(False, description="관련 데이터도 함께 삭제"),
     db: Session = Depends(get_db)
 ):
     """고객 삭제"""
