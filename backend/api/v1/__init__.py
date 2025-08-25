@@ -2,4 +2,4 @@
 
 from . import auth, customers, customer_packages, dashboard, kits, packages, payments, payments_upload, reports, services, settings, notifications, reservations
 
-__all__ = ['auth', 'customers', 'customer_packages', 'dashboard', 'kits', 'packages', 'payments', 'payments_upload', 'reports', 'services', 'settings', 'notifications', 'reservations']
+__all__ = ['auth', 'customers', 'customer_packages', 'dashboard', 'kits', 'packages', 'payments', 'payments_upload', 'reports', 'services', 'settings', 'notifications', 'reservations', 'counseling']
