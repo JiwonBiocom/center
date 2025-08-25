@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, status
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func, desc, or_, and_, text
@@ -6,6 +6,9 @@ from typing import List, Optional, Dict, Any
 from datetime import date, datetime
 import pandas as pd
 import io
+import logging
+
+logger = logging.getLogger(__name__)
 
 from core.database import get_db
 from models.customer import Customer as CustomerModel
@@ -413,7 +416,7 @@ def update_customer(
 @handle_database_error
 def delete_customer(
     customer_id: int,
-    cascade: bool = Query(False, description="관련 데이터도 함께 삭제"),
+    cascade: bool = Query(True, description="관련 데이터도 함께 삭제"),
     db: Session = Depends(get_db)
 ):
     """고객 삭제"""
@@ -425,23 +428,48 @@ def delete_customer(
         raise ErrorResponses.not_found("고객", customer_id)
 
     if cascade:
-        # 관련 데이터 먼저 삭제
-        from models.payment import Payment
-        from models.service import ServiceUsage
-        from models.reservation import Reservation
-        from models.customer_extended import KitReceipt
-
-        # 서비스 이용 내역 삭제
-        db.execute(text("DELETE FROM service_usage WHERE customer_id = :id"), {"id": customer_id})
-
-        # 결제 내역 삭제
-        db.execute(text("DELETE FROM payments WHERE customer_id = :id"), {"id": customer_id})
-
-        # 예약 삭제
-        db.execute(text("DELETE FROM reservations WHERE customer_id = :id"), {"id": customer_id})
-
-        # 키트 수령 삭제
-        db.execute(text("DELETE FROM kit_receipts WHERE customer_id = :id"), {"id": customer_id})
+        # 관련 데이터 먼저 삭제 (외래키 제약 조건 순서에 맞춰서)
+        try:
+            # 1. 서비스 이용 내역 삭제
+            db.execute(text("DELETE FROM service_usage WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 2. 결제 내역 삭제
+            db.execute(text("DELETE FROM payments WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 3. 예약 삭제
+            db.execute(text("DELETE FROM reservations WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 4. 패키지 구매 삭제
+            db.execute(text("DELETE FROM package_purchases WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 5. 고객 선호도 삭제
+            db.execute(text("DELETE FROM customer_preferences WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 6. 인바디 기록 삭제 (CASCADE로 설정되어 있지만 명시적으로)
+            db.execute(text("DELETE FROM inbody_records WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 7. 키트 관리 삭제
+            db.execute(text("DELETE FROM kit_management WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 8. 키트 수령 삭제
+            db.execute(text("DELETE FROM kit_receipts WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 9. 설문 응답 삭제
+            db.execute(text("DELETE FROM questionnaire_responses WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 10. 고객 분석 정보 삭제 (CASCADE로 설정되어 있지만 명시적으로)
+            db.execute(text("DELETE FROM customer_analytics WHERE customer_id = :id"), {"id": customer_id})
+            
+            # 11. 마케팅 리드에서 converted_customer_id 해제
+            db.execute(text("UPDATE marketing_leads SET converted_customer_id = NULL WHERE converted_customer_id = :id"), {"id": customer_id})
+            
+        except Exception as e:
+            logger.error(f"Error deleting customer related data: {e}")
+            db.rollback()
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="관련 데이터 삭제 중 오류가 발생했습니다"
+            )
 
     db.delete(customer)
     db.commit()
